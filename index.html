@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Pick - 나에게 맞는 여행지 추천</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="brand" type="button" data-view="home">
+      <span class="brand-mark">TP</span>
+      <span>Trip Pick</span>
+    </button>
+    <nav class="nav">
+      <button type="button" data-view="home">추천 시작</button>
+      <button type="button" data-view="results">추천 결과</button>
+      <button type="button" data-view="favorites">즐겨찾기 <span id="favoriteCount">0</span></button>
+      <button type="button" data-view="login">로그인</button>
+      <button type="button" data-view="train">기차 예매</button>
+      <button type="button" data-view="hotel">숙소</button>
+      <button type="button" data-view="payment">결제</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="homeView" class="view active">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">취향 기반 여행지 추천</p>
+          <h1>Trip Pick</h1>
+          <p>여행 유형, 예산, 계절감, 동행 유형을 고르면 어울리는 여행지를 카드로 바로 추천합니다.</p>
+        </div>
+
+        <form id="preferenceForm" class="picker" autocomplete="off">
+          <div class="picker-head">
+            <h2>여행 취향 선택</h2>
+            <button class="ghost-button" id="resetChoices" type="button">초기화</button>
+          </div>
+
+          <fieldset class="option-group" data-name="theme">
+            <legend>여행 유형</legend>
+            <div class="choice-row">
+              <button type="button" data-value="힐링">힐링</button>
+              <button type="button" data-value="액티비티">액티비티</button>
+              <button type="button" data-value="맛집">맛집</button>
+              <button type="button" data-value="자연">자연</button>
+              <button type="button" data-value="역사/문화">역사/문화</button>
+              <button type="button" data-value="쇼핑">쇼핑</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="option-group" data-name="companion">
+            <legend>동행 유형</legend>
+            <div class="choice-row">
+              <button type="button" data-value="혼자">혼자</button>
+              <button type="button" data-value="친구">친구</button>
+              <button type="button" data-value="커플">커플</button>
+              <button type="button" data-value="가족">가족</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="option-group" data-name="budget">
+            <legend>예산</legend>
+            <div class="choice-row">
+              <button type="button" data-value="저예산">저예산</button>
+              <button type="button" data-value="보통">보통</button>
+              <button type="button" data-value="여유">여유</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="option-group" data-name="duration">
+            <legend>여행 기간</legend>
+            <div class="choice-row">
+              <button type="button" data-value="당일치기">당일치기</button>
+              <button type="button" data-value="1박 2일">1박 2일</button>
+              <button type="button" data-value="2박 3일 이상">2박 3일 이상</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="option-group" data-name="season">
+            <legend>선호 계절</legend>
+            <div class="choice-row">
+              <button type="button" data-value="봄">봄</button>
+              <button type="button" data-value="여름">여름</button>
+              <button type="button" data-value="가을">가을</button>
+              <button type="button" data-value="겨울">겨울</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="option-group" data-name="region">
+            <legend>선호 지역</legend>
+            <div class="choice-row">
+              <button type="button" data-value="국내">국내</button>
+              <button type="button" data-value="해외">해외</button>
+              <button type="button" data-value="바다">바다</button>
+              <button type="button" data-value="산">산</button>
+              <button type="button" data-value="도시">도시</button>
+            </div>
+          </fieldset>
+
+          <button class="primary-button" type="submit">추천 결과 보기</button>
+        </form>
+      </div>
+
+      <section class="popular-section">
+        <div class="section-title">
+          <p class="eyebrow">Popular Picks</p>
+          <h2>인기 여행지 미리보기</h2>
+        </div>
+        <div id="popularList" class="preview-grid"></div>
+      </section>
+    </section>
+
+    <section id="resultsView" class="view">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Recommendation</p>
+          <h1>추천 여행지</h1>
+        </div>
+        <button class="secondary-button" type="button" data-view="home">다시 추천받기</button>
+      </div>
+
+      <div id="selectedSummary" class="summary-bar"></div>
+
+      <div class="toolbar">
+        <label>
+          지역 검색
+          <input id="searchInput" type="search" placeholder="예: 강릉, 제주, 도쿄">
+        </label>
+        <label>
+          가격대
+          <select id="budgetFilter">
+            <option value="">전체</option>
+            <option value="저예산">저예산</option>
+            <option value="보통">보통</option>
+            <option value="여유">여유</option>
+          </select>
+        </label>
+        <label>
+          여행 테마
+          <select id="themeFilter">
+            <option value="">전체</option>
+            <option value="힐링">힐링</option>
+            <option value="액티비티">액티비티</option>
+            <option value="맛집">맛집</option>
+            <option value="자연">자연</option>
+            <option value="역사/문화">역사/문화</option>
+            <option value="쇼핑">쇼핑</option>
+          </select>
+        </label>
+        <label>
+          정렬
+          <select id="sortSelect">
+            <option value="recommend">추천순</option>
+            <option value="popular">인기순</option>
+            <option value="cost">예상 비용 낮은순</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="resultList" class="card-grid"></div>
+    </section>
+
+    <section id="detailView" class="view">
+      <button class="back-button" type="button" data-view="results">← 추천 결과로</button>
+      <article id="detailContent" class="detail"></article>
+    </section>
+
+    <section id="favoritesView" class="view">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Saved Places</p>
+          <h1>즐겨찾기</h1>
+        </div>
+        <button class="secondary-button" type="button" data-view="results">추천 결과 보기</button>
+      </div>
+      <div id="favoriteList" class="card-grid"></div>
+    </section>
+
+    <section id="loginView" class="view service-view">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Member Login</p>
+          <h1>로그인</h1>
+        </div>
+        <button class="secondary-button" type="button" data-view="home">메인으로</button>
+      </div>
+
+      <div class="service-grid">
+        <form id="loginForm" class="form-panel">
+          <h2>Trip Pick 계정</h2>
+          <p class="panel-copy">즐겨찾기와 예약 정보를 저장하기 위한 데모 로그인 화면입니다.</p>
+          <label>
+            이메일
+            <input id="loginEmail" type="email" placeholder="trip@example.com" required>
+          </label>
+          <label>
+            비밀번호
+            <input id="loginPassword" type="password" placeholder="비밀번호 입력" required>
+          </label>
+          <button class="primary-button" type="submit">로그인</button>
+          <button class="ghost-line-button" id="logoutButton" type="button">로그아웃</button>
+          <p id="loginMessage" class="status-message">로그인 전입니다.</p>
+        </form>
+
+        <div class="feature-panel">
+          <h2>로그인 후 이용 가능 기능</h2>
+          <div class="feature-list">
+            <span>관심 여행지 저장</span>
+            <span>기차 예매 정보 보관</span>
+            <span>숙소 선택 내역 확인</span>
+            <span>결제 페이지 자동 요약</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="trainView" class="view service-view">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Train Booking</p>
+          <h1>기차 예매</h1>
+        </div>
+        <button class="secondary-button" type="button" data-view="payment">결제 페이지로</button>
+      </div>
+
+      <form id="trainForm" class="form-panel wide-panel">
+        <div class="form-grid">
+          <label>
+            출발역
+            <select id="departureStation">
+              <option>서울역</option>
+              <option>용산역</option>
+              <option>수서역</option>
+              <option>대전역</option>
+            </select>
+          </label>
+          <label>
+            도착역
+            <select id="arrivalStation">
+              <option>강릉역</option>
+              <option>부산역</option>
+              <option>전주역</option>
+              <option>여수엑스포역</option>
+            </select>
+          </label>
+          <label>
+            출발일
+            <input id="trainDate" type="date">
+          </label>
+          <label>
+            인원
+            <select id="passengerCount">
+              <option value="1">1명</option>
+              <option value="2">2명</option>
+              <option value="3">3명</option>
+              <option value="4">4명</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="booking-list" id="trainOptions"></div>
+      </form>
+    </section>
+
+    <section id="hotelView" class="view service-view">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Stay Booking</p>
+          <h1>숙소</h1>
+        </div>
+        <button class="secondary-button" type="button" data-view="payment">결제 페이지로</button>
+      </div>
+
+      <div class="toolbar stay-toolbar">
+        <label>
+          여행지
+          <select id="hotelDestination">
+            <option value="">전체</option>
+            <option value="강릉">강릉</option>
+            <option value="부산">부산</option>
+            <option value="제주도">제주도</option>
+            <option value="여수">여수</option>
+          </select>
+        </label>
+        <label>
+          체크인
+          <input id="checkinDate" type="date">
+        </label>
+        <label>
+          숙박
+          <select id="nightCount">
+            <option value="1">1박</option>
+            <option value="2">2박</option>
+            <option value="3">3박</option>
+          </select>
+        </label>
+        <label>
+          정렬
+          <select id="hotelSort">
+            <option value="recommend">추천순</option>
+            <option value="price">가격 낮은순</option>
+            <option value="rating">평점 높은순</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="hotelList" class="hotel-grid"></div>
+    </section>
+
+    <section id="paymentView" class="view service-view">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Payment</p>
+          <h1>결제</h1>
+        </div>
+        <button class="secondary-button" type="button" data-view="home">처음으로</button>
+      </div>
+
+      <div class="payment-layout">
+        <aside class="payment-summary">
+          <h2>예약 요약</h2>
+          <div id="bookingSummary"></div>
+          <div class="total-row">
+            <span>총 결제 금액</span>
+            <strong id="totalPrice">0원</strong>
+          </div>
+        </aside>
+
+        <form id="paymentForm" class="form-panel">
+          <h2>결제 정보</h2>
+          <label>
+            예약자 이름
+            <input id="payerName" type="text" placeholder="홍길동" required>
+          </label>
+          <label>
+            연락처
+            <input id="payerPhone" type="tel" placeholder="010-0000-0000" required>
+          </label>
+          <label>
+            결제 수단
+            <select id="paymentMethod">
+              <option>신용/체크카드</option>
+              <option>간편결제</option>
+              <option>무통장입금</option>
+            </select>
+          </label>
+          <button class="primary-button" type="submit">결제하기</button>
+          <p id="paymentMessage" class="status-message">기차나 숙소를 선택하면 결제 요약에 표시됩니다.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
