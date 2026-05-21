@@ -217,48 +217,49 @@
     </section>
 
     <section id="trainView" class="view service-view">
-      <div class="page-head">
-        <div>
-          <p class="eyebrow">Train Booking</p>
-          <h1>기차 예매</h1>
-        </div>
-        <button class="secondary-button" type="button" data-view="payment">결제 페이지로</button>
-      </div>
-
-      <form id="trainForm" class="form-panel wide-panel">
-        <div class="form-grid">
-          <label>
-            출발역
-            <select id="departureStation">
-              <option>서울역</option>
-              <option>용산역</option>
-              <option>수서역</option>
-              <option>대전역</option>
-            </select>
-          </label>
-          <label>
-            도착역
-            <select id="arrivalStation">
-              <option>강릉역</option>
-              <option>부산역</option>
-              <option>전주역</option>
-              <option>여수엑스포역</option>
-            </select>
-          </label>
-          <label>
-            출발일
-            <input id="trainDate" type="date">
-          </label>
-          <label>
-            인원
-            <select id="passengerCount">
-              <option value="1">1명</option>
-              <option value="2">2명</option>
-              <option value="3">3명</option>
-              <option value="4">4명</option>
-            </select>
-          </label>
-        </div>
+  <div class="form-panel">
+  <div class="form-grid">
+    <label>
+      출발역
+      <select id="departureStation">
+        <option value="서울역" selected>서울 (서울역)</option>
+        <option value="부산역">부산 (부산역)</option>
+        <option value="동대구역">대구 (동대구역)</option>
+        <option value="대전역">대전 (대전역)</option>
+        <option value="광주송정역">광주 (광주송정역)</option>
+        <option value="강릉역">강릉 (강릉역)</option>
+        <option value="여수엑스포역">여수 (여수엑스포역)</option>
+        <option value="전주역">전주 (전주역)</option>
+      </select>
+    </label>
+    <label>
+      도착역
+      <select id="arrivalStation">
+        <option value="서울역">서울 (서울역)</option>
+        <option value="부산역" selected>부산 (부산역)</option>
+        <option value="동대구역">대구 (동대구역)</option>
+        <option value="대전역">대전 (대전역)</option>
+        <option value="광주송정역">광주 (광주송정역)</option>
+        <option value="강릉역">강릉 (강릉역)</option>
+        <option value="여수엑스포역">여수 (여수엑스포역)</option>
+        <option value="전주역">전주 (전주역)</option>
+      </select>
+    </label>
+    <label>
+      출발일
+      <input id="trainDate" type="date">
+    </label>
+    <label>
+      인원
+      <select id="passengerCount">
+        <option value="1" selected>1명</option>
+        <option value="2">2명</option>
+        <option value="3">3명</option>
+        <option value="4">4명</option>
+      </select>
+    </label>
+  </div>
+</div>
 
         <div class="booking-list" id="trainOptions"></div>
       </form>
@@ -274,16 +275,24 @@
       </div>
 
       <div class="toolbar stay-toolbar">
-        <label>
-          여행지
-          <select id="hotelDestination">
-            <option value="">전체</option>
-            <option value="강릉">강릉</option>
-            <option value="부산">부산</option>
-            <option value="제주도">제주도</option>
-            <option value="여수">여수</option>
-          </select>
-        </label>
+       <label>
+  여행지
+  <select id="hotelDestination">
+    <option value="전체" selected>전체 지역</option>
+    <option value="서울">서울</option>
+    <option value="제주">제주</option>
+    <option value="부산">부산</option>
+    <option value="강릉">강릉</option>
+    <option value="속초">속초</option>
+    <option value="양양">양양</option>
+    <option value="가평">가평</option>
+    <option value="여수">여수</option>
+    <option value="전주">전주</option>
+    <option value="대전">대전</option>
+    <option value="대구">대구</option>
+    <option value="광주">광주</option>
+  </select>
+</label>
         <label>
           체크인
           <input id="checkinDate" type="date">

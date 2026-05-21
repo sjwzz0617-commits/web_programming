@@ -191,52 +191,130 @@ let favorites = JSON.parse(localStorage.getItem("tripPickFavorites") || "[]");
 let currentUser = JSON.parse(localStorage.getItem("tripPickUser") || "null");
 let booking = JSON.parse(localStorage.getItem("tripPickBooking") || '{"train":null,"hotel":null}');
 
-const trainProducts = [
-  { id: "ktx-morning", type: "KTX", time: "08:20", duration: "약 2시간", price: 42000 },
-  { id: "ktx-afternoon", type: "KTX", time: "13:10", duration: "약 2시간 10분", price: 39800 },
-  { id: "itx-evening", type: "ITX", time: "18:40", duration: "약 2시간 35분", price: 28600 }
-];
+const trainFareTable = {
+  "서울역": 0,
+  "대전역": 23700,
+  "동대구역": 43500,
+  "부산역": 59800,
+  "광주송정역": 46800,
+  "전주역": 34400,
+  "강릉역": 27600,
+  "여수엑스포역": 47200
+};
 
+const trainTemplates = [
+  { id: "ktxmin", type: "KTX (오전)", time: "08:30 ~ ", basePrice: 0 },
+  { id: "ktxmid", type: "KTX (오후)", time: "14:15 ~ ", basePrice: 2000 },
+  { id: "itx", type: "ITX-새마을", time: "10:00 ~ ", basePrice: -10000 }
+];
 const hotels = [
   {
-    id: "gangneung-blue",
-    destination: "강릉",
-    name: "블루웨이브 호텔",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80",
-    type: "오션뷰 호텔",
-    rating: 4.7,
-    price: 138000,
-    description: "안목해변과 가까워 카페 거리와 바다 산책을 함께 즐기기 좋습니다."
+    id: "h_seoul",
+    name: "조선 팰리스 서울 강남",
+    location: "서울",
+    rating: 4.9,
+    price: 450000,
+    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80",
+    desc: "강남 시티뷰를 자랑하는 하이엔드 럭셔리 호텔입니다."
   },
   {
-    id: "busan-harbor",
-    destination: "부산",
-    name: "하버 스테이 부산",
-    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=900&q=80",
-    type: "도심 호텔",
-    rating: 4.6,
-    price: 126000,
-    description: "광안리와 센텀 이동이 편해 친구 여행과 쇼핑 일정에 잘 맞습니다."
+    id: "h_jeju",
+    name: "제주신라호텔",
+    location: "제주",
+    rating: 4.9,
+    price: 380000,
+    image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80",
+    desc: "최고급 서비스와 이국적인 정원을 갖춘 전통의 강자입니다."
   },
   {
-    id: "jeju-garden",
-    destination: "제주도",
-    name: "제주 가든 리조트",
-    image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=80",
-    type: "리조트",
+    id: "h_busan",
+    name: "시그니엘 부산",
+    location: "부산",
     rating: 4.8,
-    price: 182000,
-    description: "정원과 수영장이 있어 가족, 커플 힐링 여행에 어울립니다."
+    price: 420000,
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80",
+    desc: "해운대 미포 해변 앞의 파노라마 오션뷰 호텔입니다."
   },
   {
-    id: "yeosu-night",
-    destination: "여수",
-    name: "여수 밤바다 펜션",
-    image: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=900&q=80",
-    type: "감성 펜션",
+    id: "h_gangneung",
+    name: "씨마크 호텔",
+    location: "강릉",
+    rating: 4.9,
+    price: 490000,
+    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80",
+    desc: "동해바다와 맞닿은 독보적인 인피니티 풀 호텔입니다."
+  },
+  {
+    id: "h_sokcho",
+    name: "카시아 속초",
+    location: "속초",
+    rating: 4.7,
+    price: 320000,
+    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=600&q=80",
+    desc: "전 객실 오션뷰와 루프탑 풀을 갖춘 신축 리조트입니다."
+  },
+  {
+    id: "h_yangyang",
+    name: "설해원",
+    location: "양양",
+    rating: 4.8,
+    price: 360000,
+    image: "https://images.unsplash.com/photo-1606046604972-77cc76aee944?auto=format&fit=crop&w=600&q=80",
+    desc: "명품 온천과 골프 코스를 품은 하이엔드 웰니스 리조트입니다."
+  },
+  {
+    id: "h_gapyeong",
+    name: "아난티 코드 가평",
+    location: "가평",
+    rating: 4.9,
+    price: 550000,
+    image: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=600&q=80",
+    desc: "숲속 완벽한 프라이버시를 보장하는 최고급 휴양지입니다."
+  },
+  {
+    id: "h_yeosu",
+    name: "소노캄 여수",
+    location: "여수",
+    rating: 4.7,
+    price: 260000,
+    image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=600&q=80",
+    desc: "다도해와 오동도 전망이 한눈에 담기는 5성급 호텔입니다."
+  },
+  {
+    id: "h_jeonju",
+    name: "라한호텔 전주",
+    location: "전주",
+    rating: 4.6,
+    price: 190000,
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80",
+    desc: "한옥마을 전망의 루프탑 수영장을 보유한 최고급 숙소입니다."
+  },
+  {
+    id: "h_daejeon",
+    name: "호텔 오노마",
+    location: "대전",
+    rating: 4.7,
+    price: 240000,
+    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=600&q=80",
+    desc: "신세계 백화점과 연결된 도심 속 프리미엄 호텔입니다."
+  },
+  {
+    id: "h_daegu",
+    name: "호텔 인터불고 대구",
+    location: "대구",
+    rating: 4.6,
+    price: 210000,
+    image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80",
+    desc: "금호강 변 야경과 최고급 뷔페로 유명한 5성급 호텔입니다."
+  },
+  {
+    id: "h_gwangju",
+    name: "홀리데이 인 광주",
+    location: "광주",
     rating: 4.5,
-    price: 98000,
-    description: "돌산대교 야경을 보기 좋고 낭만포차거리 이동도 편합니다."
+    price: 170000,
+    image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=600&q=80",
+    desc: "뛰어난 접근성과 안정적인 부대시설을 갖춘 비즈니스 호텔입니다."
   }
 ];
 
@@ -412,41 +490,83 @@ function renderLoginState() {
 }
 
 function renderTrainOptions() {
-  const list = document.querySelector("#trainOptions");
-  if (!list) return;
+  const info = getTrainSearchInfo();
+  const container = document.querySelector("#trainOptions");
+  
+  if (!container) return;
 
-  const search = getTrainSearchInfo();
-  list.innerHTML = trainProducts.map((train) => {
-    const total = train.price * search.passengers;
-    const selectedClass = booking.train && booking.train.id === train.id ? "selected" : "";
+  if (info.departure === info.arrival) {
+    container.innerHTML = `<p class="empty-message">출발역과 도착역은 같을 수 없습니다.</p>`;
+    return;
+  }
 
-    return `
-      <article class="option-card ${selectedClass}">
-        <h3>${train.type} ${train.time}</h3>
-        <p>${search.departure} → ${search.arrival}</p>
-        <p>${search.date} · ${search.passengers}명 · ${train.duration}</p>
-        <strong class="price">${formatWon(total)}</strong>
-        <button class="select-button" type="button" data-train="${train.id}">이 열차 선택</button>
-      </article>
+  const depFare = trainFareTable[info.departure] || 0;
+  const arrFare = trainFareTable[info.arrival] || 0;
+  let distanceFare = Math.abs(arrFare - depFare);
+  if (distanceFare === 0) distanceFare = 15000;
+
+  let html = "";
+
+  trainTemplates.forEach((template) => {
+    const singlePrice = distanceFare + template.basePrice;
+    const totalPrice = singlePrice * info.passengers;
+
+    const duration = template.id.includes("ktx") ? "약 2시간 10분 소요" : "약 3시간 30분 소요";
+    const [startHour, startMin] = template.time.split(" ")[0].split(":");
+    
+    let endHour = parseInt(startHour) + (template.id.includes("ktx") ? 2 : 3);
+    let endMin = parseInt(startMin) + (template.id.includes("ktx") ? 10 : 30);
+    if (endMin >= 60) { endHour += 1; endMin -= 60; }
+    const fullTime = `${template.time}${String(endHour).padStart(2, '0')}:${String(endMin).padStart(2, '0')} (${duration})`;
+
+    const isSelected = booking.train && booking.train.id === template.id &&
+                       booking.train.departure === info.departure &&
+                       booking.train.arrival === info.arrival &&
+                       booking.train.date === info.date;
+
+    html += `
+      <div class="option-card ${isSelected ? "selected" : ""}">
+        <h3>${template.type}</h3>
+        <p><strong>운행 구간:</strong> ${info.departure} ➔ ${info.arrival}</p>
+        <p><strong>탑승 일시:</strong> ${info.date} | ${fullTime}</p>
+        <p><strong>선택 인원:</strong> ${info.passengers}명 (1인당 ${formatWon(singlePrice)})</p>
+        <span class="price">${formatWon(totalPrice)}</span>
+        <button class="select-button" type="button" data-train="${template.id}" data-type="train" style="width: 100%;">
+          ${isSelected ? "선택됨" : "예약하기"}
+        </button>
+      </div>
     `;
-  }).join("");
+  });
+
+  container.innerHTML = html;
 }
 
 function selectTrain(id) {
-  const train = trainProducts.find((item) => item.id === id);
-  if (!train) return;
+  const info = getTrainSearchInfo();
+  const template = trainTemplates.find(t => t.id === id);
+  if (!template) return;
 
-  const search = getTrainSearchInfo();
+  const depFare = trainFareTable[info.departure] || 0;
+  const arrFare = trainFareTable[info.arrival] || 0;
+  let distanceFare = Math.abs(arrFare - depFare);
+  if (distanceFare === 0) distanceFare = 15000;
+
+  const singlePrice = distanceFare + template.basePrice;
+  const totalPrice = singlePrice * info.passengers;
+
   booking.train = {
-    ...train,
-    departure: search.departure,
-    arrival: search.arrival,
-    date: search.date,
-    passengers: search.passengers,
-    total: train.price * search.passengers
+    id: template.id,
+    name: `${template.type} [${info.departure}➔${info.arrival}]`,
+    date: info.date,
+    passengers: info.passengers,
+    departure: info.departure,
+    arrival: info.arrival,
+    total: totalPrice
   };
+
   saveBooking();
   renderTrainOptions();
+  renderPaymentSummary();
 }
 
 function getHotelFilters() {
@@ -459,34 +579,58 @@ function getHotelFilters() {
 }
 
 function renderHotels() {
-  const list = document.querySelector("#hotelList");
-  if (!list) return;
-
   const filters = getHotelFilters();
-  let hotelList = hotels.filter((hotel) => !filters.destination || hotel.destination === filters.destination);
+  const container = document.querySelector("#hotelList");
+  
+  if (!container) return;
 
-  if (filters.sort === "price") hotelList = hotelList.sort((a, b) => a.price - b.price);
-  if (filters.sort === "rating") hotelList = hotelList.sort((a, b) => b.rating - a.rating);
-  if (filters.sort === "recommend") hotelList = hotelList.sort((a, b) => b.rating - a.rating || a.price - b.price);
+  // 1. 선택한 도시(지역) 이름과 정확히 글자가 일치하는지 필터링
+  let filtered = hotels;
+  if (filters.destination !== "전체") {
+    filtered = hotels.filter((h) => h.location === filters.destination);
+  }
 
-  list.innerHTML = hotelList.length
-    ? hotelList.map((hotel) => {
-      const total = hotel.price * filters.nights;
-      const selectedClass = booking.hotel && booking.hotel.id === hotel.id ? "selected" : "";
+  // 2. 정렬 조건 처리 (가격순, 평점순)
+  if (filters.sort === "priceAsc") {
+    filtered.sort((a, b) => a.price - b.price);
+  } else if (filters.sort === "priceDesc") {
+    filtered.sort((a, b) => b.price - a.price);
+  } else if (filters.sort === "rating") {
+    filtered.sort((a, b) => b.rating - a.rating);
+  }
 
-      return `
-        <article class="hotel-card ${selectedClass}">
-          <img src="${hotel.image}" alt="${hotel.name} 이미지">
-          <h3>${hotel.name}</h3>
-          <p>${hotel.destination} · ${hotel.type}</p>
-          <p class="rating">평점 ${hotel.rating}</p>
-          <p>${hotel.description}</p>
-          <strong class="price">${formatWon(total)}</strong>
-          <button class="select-button" type="button" data-hotel="${hotel.id}">이 숙소 선택</button>
-        </article>
-      `;
-    }).join("")
-    : `<div class="empty">조건에 맞는 숙소가 없습니다.</div>`;
+  if (filtered.length === 0) {
+    container.innerHTML = `<p class="empty-message">해당 조건에 맞는 숙소가 없습니다.</p>`;
+    return;
+  }
+
+  let html = "";
+  filtered.forEach((hotel) => {
+    // 1박당 요금 기반 총 요금 계산
+    const totalPrice = hotel.price * filters.nights;
+
+    // 현재 선택된 숙소인지 체크
+    const isSelected = booking.hotel && booking.hotel.id === hotel.id && booking.hotel.nights === filters.nights;
+
+    html += `
+      <div class="hotel-card ${isSelected ? "selected" : ""}">
+        <img src="${hotel.image}" alt="${hotel.name}" style="width:100%; height:180px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
+        <h3>${hotel.name}</h3>
+        <p><strong>위치:</strong> ${hotel.location} | <strong>평점:</strong> ⭐ ${hotel.rating}</p>
+        <p class="hotel-desc" style="font-size:14px; color:#6b7b82; margin:8px 0; min-height:42px;">${hotel.desc}</p>
+        <p style="font-size:13px; color:#a0a0a0;">${filters.nights}박 투숙 총 요금 (1박: ${formatWon(hotel.price)})</p>
+        <span class="price">${formatWon(totalPrice)}</span>
+        <button class="select-button" type="button" data-hotel="${hotel.id}">
+          ${isSelected ? "선택됨" : "예약하기"}
+        </button>
+        <button class="map-button" type="button" data-map-id="${hotel.id}" style="width: 100%; background-color: #6b7b82; color: white; border: none; padding: 12px 14px; border-radius: 8px; margin-top: 8px; font-weight: 800; cursor: pointer;">
+          지도 보기
+        </button>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
 }
 
 function selectHotel(id) {
@@ -648,7 +792,33 @@ document.body.addEventListener("click", (event) => {
     renderResults();
   }
   if (trainButton) selectTrain(trainButton.dataset.train);
-  if (hotelButton) selectHotel(hotelButton.dataset.hotel);
+if (hotelButton) {
+    selectHotel(hotelButton.dataset.hotel);
+  }
+
+  const mapButton = event.target.closest("[data-map-id]");
+  if (mapButton) {
+    const hotelId = mapButton.dataset.mapId;
+    const hotelMapUrls = {
+      "h_seoul": "https://www.google.com/maps/search/?api=1&query=조선+팰리스+서울+강남",
+      "h_jeju": "https://www.google.com/maps/search/?api=1&query=제주신라호텔",
+      "h_busan": "https://www.google.com/maps/search/?api=1&query=시그니엘+부산",
+      "h_gangneung": "https://www.google.com/maps/search/?api=1&query=씨마크+호텔",
+      "h_sokcho": "https://www.google.com/maps/search/?api=1&query=카시아+속초",
+      "h_yangyang": "https://www.google.com/maps/search/?api=1&query=설해원+양양",
+      "h_gapyeong": "https://www.google.com/maps/search/?api=1&query=아난티+코드+가평",
+      "h_yeosu": "https://www.google.com/maps/search/?api=1&query=소노캄+여수",
+      "h_jeonju": "https://www.google.com/maps/search/?api=1&query=라한호텔+전주",
+      "h_daejeon": "https://www.google.com/maps/search/?api=1&query=호텔+오노마+대전",
+      "h_daegu": "https://www.google.com/maps/search/?api=1&query=호텔+인터불고+대구",
+      "h_gwangju": "https://www.google.com/maps/search/?api=1&query=홀리데이+인+광주"
+    };
+
+    const mapUrl = hotelMapUrls[hotelId];
+    if (mapUrl) {
+      window.open(mapUrl, "_blank");
+    }
+  }
 });
 
 ["#searchInput", "#budgetFilter", "#themeFilter", "#sortSelect"].forEach((selector) => {
