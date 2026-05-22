@@ -187,14 +187,17 @@ const destinations = [
 
 let selected = {};
 let currentResults = [...destinations];
-let favorites = JSON.parse(localStorage.getItem("tripPickFavorites") || "[]");
-let currentUser = JSON.parse(localStorage.getItem("tripPickUser") || "null");
-let booking = JSON.parse(localStorage.getItem("tripPickBooking") || '{"train":null,"hotel":null}');
+let favorites = [];
+let booking = { train: null, hotel: null };
 
 const trainProducts = [
-  { id: "ktx-morning", type: "KTX", time: "08:20", duration: "약 2시간", price: 42000 },
-  { id: "ktx-afternoon", type: "KTX", time: "13:10", duration: "약 2시간 10분", price: 39800 },
-  { id: "itx-evening", type: "ITX", time: "18:40", duration: "약 2시간 35분", price: 28600 }
+  { id: "ktx-morning", category: "train", type: "KTX", time: "08:20", duration: "약 2시간", price: 42000 },
+  { id: "ktx-afternoon", category: "train", type: "KTX", time: "13:10", duration: "약 2시간 10분", price: 39800 },
+  { id: "itx-evening", category: "train", type: "ITX", time: "18:40", duration: "약 2시간 35분", price: 28600 },
+  { id: "flight-morning", category: "flight", type: "비행기", time: "09:30", duration: "약 1시간", price: 68000 },
+  { id: "flight-afternoon", category: "flight", type: "비행기", time: "15:20", duration: "약 1시간 5분", price: 72000 },
+  { id: "rental-compact", category: "car", type: "소형차 렌트", time: "종일", duration: "24시간 이용", price: 55000 },
+  { id: "rental-suv", category: "car", type: "SUV 렌트", time: "종일", duration: "24시간 이용", price: 82000 }
 ];
 
 const hotels = [
@@ -246,6 +249,7 @@ const views = {
   detail: document.querySelector("#detailView"),
   favorites: document.querySelector("#favoritesView"),
   login: document.querySelector("#loginView"),
+  signup: document.querySelector("#signupView"),
   train: document.querySelector("#trainView"),
   hotel: document.querySelector("#hotelView"),
   payment: document.querySelector("#paymentView")
@@ -257,18 +261,11 @@ const popularList = document.querySelector("#popularList");
 const selectedSummary = document.querySelector("#selectedSummary");
 const favoriteCount = document.querySelector("#favoriteCount");
 
-function saveFavorites() {
-  localStorage.setItem("tripPickFavorites", JSON.stringify(favorites));
+function updateFavoriteCount() {
   favoriteCount.textContent = favorites.length;
 }
 
-function saveUser() {
-  localStorage.setItem("tripPickUser", JSON.stringify(currentUser));
-  renderLoginState();
-}
-
-function saveBooking() {
-  localStorage.setItem("tripPickBooking", JSON.stringify(booking));
+function updateBookingSummary() {
   renderPaymentSummary();
 }
 
@@ -278,7 +275,6 @@ function showView(viewName) {
   window.scrollTo({ top: 0, behavior: "smooth" });
   if (viewName === "favorites") renderFavorites();
   if (viewName === "results") renderResults();
-  if (viewName === "login") renderLoginState();
   if (viewName === "train") renderTrainOptions();
   if (viewName === "hotel") renderHotels();
   if (viewName === "payment") renderPaymentSummary();
@@ -367,7 +363,7 @@ function renderResults() {
   resultList.innerHTML = list.length
     ? list.map((place) => makeCard(place)).join("")
     : `<div class="empty">조건에 맞는 여행지가 없습니다. 검색어 또는 필터를 바꿔보세요.</div>`;
-  saveFavorites();
+  updateFavoriteCount();
 }
 
 function renderPopular() {
@@ -383,7 +379,7 @@ function renderFavorites() {
   favoriteList.innerHTML = savedPlaces.length
     ? savedPlaces.map((place) => makeCard(place, { favoritePage: true })).join("")
     : `<div class="empty">아직 저장한 여행지가 없습니다. 마음에 드는 여행지를 즐겨찾기에 추가해보세요.</div>`;
-  saveFavorites();
+  updateFavoriteCount();
 }
 
 function formatWon(price) {
@@ -392,6 +388,7 @@ function formatWon(price) {
 
 function getTrainSearchInfo() {
   return {
+    transportType: document.querySelector("#transportType").value,
     departure: document.querySelector("#departureStation").value,
     arrival: document.querySelector("#arrivalStation").value,
     date: document.querySelector("#trainDate").value || "날짜 미정",
@@ -399,16 +396,16 @@ function getTrainSearchInfo() {
   };
 }
 
-function renderLoginState() {
-  const message = document.querySelector("#loginMessage");
-  if (!message) return;
+function updatePassengerOptions() {
+  const transportType = document.querySelector("#transportType").value;
+  const label = document.querySelector("#passengerLabel");
+  const select = document.querySelector("#passengerCount");
+  const unit = transportType === "car" ? "대" : "명";
 
-  if (currentUser) {
-    message.textContent = `${currentUser.email} 계정으로 로그인 중입니다.`;
-    document.querySelector("#loginEmail").value = currentUser.email;
-  } else {
-    message.textContent = "로그인 전입니다.";
-  }
+  label.firstChild.textContent = transportType === "car" ? "차량 수" : "인원";
+  select.innerHTML = [1, 2, 3, 4]
+    .map((count) => `<option value="${count}">${count}${unit}</option>`)
+    .join("");
 }
 
 function renderTrainOptions() {
@@ -416,7 +413,9 @@ function renderTrainOptions() {
   if (!list) return;
 
   const search = getTrainSearchInfo();
-  list.innerHTML = trainProducts.map((train) => {
+  const filteredProducts = trainProducts.filter((train) => train.category === search.transportType);
+
+  list.innerHTML = filteredProducts.map((train) => {
     const total = train.price * search.passengers;
     const selectedClass = booking.train && booking.train.id === train.id ? "selected" : "";
 
@@ -424,9 +423,9 @@ function renderTrainOptions() {
       <article class="option-card ${selectedClass}">
         <h3>${train.type} ${train.time}</h3>
         <p>${search.departure} → ${search.arrival}</p>
-        <p>${search.date} · ${search.passengers}명 · ${train.duration}</p>
+        <p>${search.date} · ${search.passengers}${search.transportType === "car" ? "대" : "명"} · ${train.duration}</p>
         <strong class="price">${formatWon(total)}</strong>
-        <button class="select-button" type="button" data-train="${train.id}">이 열차 선택</button>
+        <button class="select-button" type="button" data-train="${train.id}">선택하기</button>
       </article>
     `;
   }).join("");
@@ -445,7 +444,7 @@ function selectTrain(id) {
     passengers: search.passengers,
     total: train.price * search.passengers
   };
-  saveBooking();
+  updateBookingSummary();
   renderTrainOptions();
 }
 
@@ -500,7 +499,7 @@ function selectHotel(id) {
     nights: filters.nights,
     total: hotel.price * filters.nights
   };
-  saveBooking();
+  updateBookingSummary();
   renderHotels();
 }
 
@@ -516,7 +515,7 @@ function renderPaymentSummary() {
     total += booking.train.total;
     items.push(`
       <div class="summary-item">
-        <strong>기차 예매</strong>
+        <strong>이동수단 예약</strong>
         <p>${booking.train.type} ${booking.train.time}</p>
         <p>${booking.train.departure} → ${booking.train.arrival}</p>
         <p>${booking.train.date} · ${booking.train.passengers}명</p>
@@ -539,7 +538,7 @@ function renderPaymentSummary() {
 
   summary.innerHTML = items.length
     ? items.join("")
-    : `<div class="summary-item"><strong>선택된 예약 없음</strong><p>기차 예매 또는 숙소를 선택하면 이곳에 표시됩니다.</p></div>`;
+    : `<div class="summary-item"><strong>선택된 예약 없음</strong><p>이동수단 또는 숙소를 선택하면 이곳에 표시됩니다.</p></div>`;
   totalPrice.textContent = formatWon(total);
 }
 
@@ -602,7 +601,7 @@ function toggleFavorite(id) {
   favorites = favorites.includes(id)
     ? favorites.filter((item) => item !== id)
     : [...favorites, id];
-  saveFavorites();
+  updateFavoriteCount();
   renderResults();
   renderFavorites();
   const activeDetail = document.querySelector("#detailView.active");
@@ -655,6 +654,11 @@ document.body.addEventListener("click", (event) => {
   document.querySelector(selector).addEventListener("input", renderResults);
 });
 
+document.querySelector("#transportType").addEventListener("input", () => {
+  updatePassengerOptions();
+  renderTrainOptions();
+});
+
 ["#departureStation", "#arrivalStation", "#trainDate", "#passengerCount"].forEach((selector) => {
   document.querySelector(selector).addEventListener("input", renderTrainOptions);
 });
@@ -665,17 +669,32 @@ document.body.addEventListener("click", (event) => {
 
 document.querySelector("#loginForm").addEventListener("submit", (event) => {
   event.preventDefault();
-  const email = document.querySelector("#loginEmail").value.trim();
-  currentUser = { email, loggedAt: new Date().toISOString() };
-  saveUser();
+
+  const id = document.querySelector("#loginEmail").value.trim();
+  const password = document.querySelector("#loginPassword").value.trim();
+
+  if (!id || !password) {
+    alert("아이디와 비밀번호를 모두 입력해주세요.");
+    return;
+  }
+
+  alert("로그인되었습니다.");
 });
 
-document.querySelector("#logoutButton").addEventListener("click", () => {
-  currentUser = null;
-  localStorage.removeItem("tripPickUser");
-  document.querySelector("#loginEmail").value = "";
-  document.querySelector("#loginPassword").value = "";
-  renderLoginState();
+document.querySelector("#signupForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const emailInput = document.querySelector("#signupEmail");
+  const email = emailInput.value.trim();
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailPattern.test(email)) {
+    alert("이메일 형식이 올바르지 않습니다.");
+    emailInput.focus();
+    return;
+  }
+
+  alert("회원가입이 완료되었습니다.");
 });
 
 document.querySelector("#paymentForm").addEventListener("submit", (event) => {
@@ -684,7 +703,7 @@ document.querySelector("#paymentForm").addEventListener("submit", (event) => {
   const total = (booking.train?.total || 0) + (booking.hotel?.total || 0);
 
   if (!total) {
-    message.textContent = "결제할 기차나 숙소를 먼저 선택해주세요.";
+    message.textContent = "결제할 이동수단이나 숙소를 먼저 선택해주세요.";
     return;
   }
 
@@ -708,8 +727,8 @@ setDefaultDates();
 recommend();
 renderPopular();
 renderResults();
+updatePassengerOptions();
 renderTrainOptions();
 renderHotels();
-renderLoginState();
 renderPaymentSummary();
-saveFavorites();
+updateFavoriteCount();
