@@ -2,7 +2,6 @@ const destinations = [
   {
     id: "jeju",
     name: "제주도",
-    image: "https://images.unsplash.com/photo-1579169825453-8d4b465d1f8b?auto=format&fit=crop&w=1200&q=80",
     tags: ["자연", "바다", "힐링", "액티비티", "국내"],
     companions: ["커플", "친구", "가족", "혼자"],
     budgets: ["보통", "여유"],
@@ -25,7 +24,6 @@ const destinations = [
   {
     id: "gangneung",
     name: "강릉",
-    image: "https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&w=1200&q=80",
     tags: ["바다", "카페", "힐링", "맛집", "국내"],
     companions: ["커플", "친구", "혼자"],
     budgets: ["저예산", "보통"],
@@ -48,7 +46,6 @@ const destinations = [
   {
     id: "busan",
     name: "부산",
-    image: "https://images.unsplash.com/photo-1596618815918-61b5aa5ff10f?auto=format&fit=crop&w=1200&q=80",
     tags: ["도시", "바다", "맛집", "쇼핑", "국내"],
     companions: ["친구", "가족", "커플"],
     budgets: ["보통", "여유"],
@@ -71,7 +68,6 @@ const destinations = [
   {
     id: "jeonju",
     name: "전주",
-    image: "https://images.unsplash.com/photo-1609726494499-27d3e942456c?auto=format&fit=crop&w=1200&q=80",
     tags: ["역사/문화", "맛집", "도시", "국내"],
     companions: ["친구", "가족", "커플", "혼자"],
     budgets: ["저예산", "보통"],
@@ -94,7 +90,6 @@ const destinations = [
   {
     id: "yeosu",
     name: "여수",
-    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
     tags: ["바다", "야경", "힐링", "맛집", "국내"],
     companions: ["커플", "가족", "친구"],
     budgets: ["보통", "여유"],
@@ -117,7 +112,6 @@ const destinations = [
   {
     id: "sokcho",
     name: "속초",
-    image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=80",
     tags: ["산", "바다", "자연", "맛집", "국내"],
     companions: ["친구", "가족", "커플"],
     budgets: ["저예산", "보통"],
@@ -138,50 +132,136 @@ const destinations = [
     tips: "설악산 단풍철에는 교통 체증이 심해 이른 출발이 좋습니다."
   },
   {
-    id: "tokyo",
-    name: "도쿄",
-    image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80",
-    tags: ["해외", "도시", "맛집", "쇼핑", "역사/문화"],
-    companions: ["친구", "커플", "혼자", "가족"],
-    budgets: ["보통", "여유"],
-    durations: ["2박 3일 이상"],
-    seasons: ["봄", "가을", "겨울"],
-    popularity: 95,
-    costValue: 3,
-    cost: "약 60만~120만원",
-    schedule: "2박 3일 이상",
-    spots: ["시부야", "아사쿠사", "하라주쿠"],
-    reason: "쇼핑, 맛집, 전시, 도시 산책이 밀집되어 첫 해외여행으로도 계획하기 쉽습니다.",
-    intro: "도쿄는 지역별 개성이 뚜렷해 쇼핑과 문화, 음식 취향에 맞춘 일정 구성이 쉽습니다.",
-    course: "시부야와 하라주쿠 쇼핑, 아사쿠사 문화 산책, 긴자와 도쿄역 야경",
-    food: "라멘, 스시, 돈카츠, 디저트 카페",
-    transport: "지하철과 JR 노선이 촘촘해 교통패스 활용이 좋습니다.",
-    location: "일본 도쿄도. 시부야, 신주쿠, 아사쿠사, 긴자를 지역별 하루 코스로 묶기 좋습니다.",
-    season: "벚꽃 시즌인 봄과 선선한 가을이 가장 여행하기 좋습니다.",
-    tips: "인기 식당은 예약이 필요하고, 교통카드는 미리 준비하면 편합니다."
+    id: "yangyang",
+    name: "양양",
+    tags: ["바다", "액티비티", "힐링", "카페", "국내"],
+    companions: ["친구", "커플", "혼자"],
+    budgets: ["저예산", "보통"],
+    durations: ["당일치기", "1박 2일"],
+    seasons: ["여름", "가을", "봄"],
+    popularity: 82,
+    costValue: 2,
+    cost: "약 12만~30만원",
+    schedule: "1박 2일",
+    spots: ["서피비치", "낙산사", "하조대"],
+    reason: "서핑과 바다 산책, 감성 카페를 짧은 일정에 담기 좋아 친구 여행에 잘 맞습니다.",
+    intro: "양양은 동해 바다와 서핑 문화가 돋보이는 여행지로, 가볍게 떠나는 휴식 여행에 좋습니다.",
+    course: "서피비치 산책과 서핑 체험, 낙산사 일몰, 하조대 해변과 카페 거리",
+    food: "물회, 섭국, 막국수, 해변 카페",
+    transport: "고속버스나 자가용 이용이 편하며, 해변 간 이동은 택시나 렌터카가 좋습니다.",
+    location: "강원특별자치도 양양군 해안권. 낙산사, 하조대, 서피비치를 한 방향으로 묶기 좋습니다.",
+    season: "여름에는 서핑과 해수욕, 가을에는 한적한 바다 산책이 좋습니다.",
+    tips: "서핑 강습은 주말에 빨리 마감될 수 있어 미리 예약하는 편이 좋습니다."
   },
   {
-    id: "danang",
-    name: "다낭",
-    image: "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=1200&q=80",
-    tags: ["해외", "바다", "힐링", "맛집", "액티비티"],
-    companions: ["커플", "가족", "친구"],
-    budgets: ["보통", "여유"],
-    durations: ["2박 3일 이상"],
-    seasons: ["봄", "여름"],
-    popularity: 89,
-    costValue: 3,
-    cost: "약 55만~110만원",
-    schedule: "2박 3일 이상",
-    spots: ["미케비치", "바나힐", "호이안"],
-    reason: "리조트 휴식과 근교 투어를 함께 즐기기 좋아 여유 있는 바다 여행에 적합합니다.",
-    intro: "다낭은 해변 리조트, 야시장, 근교 도시 호이안까지 묶어 가기 좋은 해외 휴양지입니다.",
-    course: "미케비치 휴식, 바나힐 투어, 호이안 야경, 한시장 쇼핑",
-    food: "쌀국수, 반미, 해산물, 코코넛 커피",
-    transport: "그랩 차량 이동이 편리하며 근교 투어는 현지 투어 예약이 효율적입니다.",
-    location: "베트남 중부 다낭과 호이안 권역. 미케비치 숙소를 기준으로 근교 투어를 잡기 좋습니다.",
-    season: "건기인 2월부터 8월까지가 바다 여행에 좋습니다.",
-    tips: "우기에는 비가 잦으므로 실내 일정과 마사지 코스를 함께 준비하면 좋습니다."
+    id: "gapyeong",
+    name: "가평",
+    tags: ["자연", "힐링", "액티비티", "카페", "국내"],
+    companions: ["커플", "친구", "가족"],
+    budgets: ["저예산", "보통"],
+    durations: ["당일치기", "1박 2일"],
+    seasons: ["봄", "여름", "가을"],
+    popularity: 80,
+    costValue: 1,
+    cost: "약 8만~25만원",
+    schedule: "당일치기 또는 1박 2일",
+    spots: ["남이섬", "아침고요수목원", "자라섬"],
+    reason: "서울 근교에서 자연 산책과 액티비티를 함께 즐기기 좋아 부담 없이 다녀오기 좋습니다.",
+    intro: "가평은 강과 숲, 수목원, 캠핑 감성을 가까운 거리에서 즐길 수 있는 근교 여행지입니다.",
+    course: "남이섬 산책, 자라섬 피크닉, 아침고요수목원 야간 조명 또는 계절 정원",
+    food: "잣두부, 닭갈비, 막국수, 브런치 카페",
+    transport: "ITX 청춘과 버스를 이용하거나 자가용으로 주요 명소를 이동하기 좋습니다.",
+    location: "경기도 가평군 일대. 남이섬, 자라섬, 아침고요수목원을 일정에 맞춰 나누면 좋습니다.",
+    season: "봄꽃과 가을 단풍 시기가 특히 좋고, 여름에는 물놀이 일정도 인기가 많습니다.",
+    tips: "주말에는 도로 정체가 잦아 오전 일찍 출발하면 일정이 편합니다."
+  },
+  {
+    id: "seoul",
+    name: "서울",
+    tags: ["도시", "맛집", "쇼핑", "역사/문화", "국내"],
+    companions: ["친구", "커플", "혼자", "가족"],
+    budgets: ["저예산", "보통", "여유"],
+    durations: ["당일치기", "1박 2일"],
+    seasons: ["봄", "가을", "겨울"],
+    popularity: 94,
+    costValue: 2,
+    cost: "약 8만~35만원",
+    schedule: "당일치기 또는 1박 2일",
+    spots: ["경복궁", "코엑스", "남산타워"],
+    reason: "전시, 쇼핑, 맛집, 고궁 산책까지 선택지가 많아 취향별 일정 구성이 쉽습니다.",
+    intro: "서울은 전통과 최신 트렌드가 함께 있는 도시 여행지로, 짧은 일정에도 밀도 있게 즐길 수 있습니다.",
+    course: "경복궁과 북촌 산책, 코엑스 쇼핑과 전시, 한강 또는 남산 야경",
+    food: "광장시장 먹거리, 냉면, 디저트 카페, 한식 다이닝",
+    transport: "지하철과 버스가 촘촘해 대중교통 중심 여행이 가장 편합니다.",
+    location: "서울특별시 전역. 고궁권, 강남권, 성수와 한강권처럼 권역별로 묶으면 이동이 효율적입니다.",
+    season: "봄 벚꽃과 가을 산책이 좋고, 겨울에는 전시와 실내 맛집 코스가 잘 맞습니다.",
+    tips: "인기 전시와 식당은 사전 예약을 확인하면 대기 시간을 줄일 수 있습니다."
+  },
+  {
+    id: "daejeon",
+    name: "대전",
+    tags: ["도시", "맛집", "자연", "힐링", "국내"],
+    companions: ["친구", "가족", "혼자"],
+    budgets: ["저예산", "보통"],
+    durations: ["당일치기", "1박 2일"],
+    seasons: ["봄", "가을", "겨울"],
+    popularity: 76,
+    costValue: 1,
+    cost: "약 7만~22만원",
+    schedule: "당일치기 또는 1박 2일",
+    spots: ["성심당", "한밭수목원", "엑스포과학공원"],
+    reason: "교통 접근성이 좋고 빵집, 수목원, 과학공원 코스를 편하게 묶을 수 있습니다.",
+    intro: "대전은 전국에서 접근하기 쉬운 도시로, 맛집과 가벼운 산책 일정을 함께 즐기기 좋습니다.",
+    course: "성심당과 원도심 먹거리, 한밭수목원 산책, 엑스포과학공원과 대전신세계 주변",
+    food: "튀김소보로, 칼국수, 두부두루치기, 로컬 카페",
+    transport: "KTX 대전역과 지하철, 버스를 이용해 주요 지역을 이동할 수 있습니다.",
+    location: "대전광역시 중구, 서구, 유성구 일대. 원도심과 둔산, 유성권을 나눠 보면 좋습니다.",
+    season: "봄과 가을 수목원 산책이 좋고, 겨울에는 맛집 중심 실내 일정이 편합니다.",
+    tips: "성심당 본점은 주말 대기가 길 수 있어 오전 방문이 비교적 좋습니다."
+  },
+  {
+    id: "daegu",
+    name: "대구",
+    tags: ["도시", "맛집", "쇼핑", "역사/문화", "국내"],
+    companions: ["친구", "커플", "혼자"],
+    budgets: ["저예산", "보통"],
+    durations: ["당일치기", "1박 2일"],
+    seasons: ["봄", "가을", "겨울"],
+    popularity: 78,
+    costValue: 1,
+    cost: "약 8만~24만원",
+    schedule: "1박 2일",
+    spots: ["김광석거리", "서문시장", "동성로"],
+    reason: "먹거리와 도심 산책, 시장 구경이 가까운 동선에 있어 짧은 여행으로도 알찹니다.",
+    intro: "대구는 로컬 음식과 도심 문화, 시장 분위기를 함께 즐기기 좋은 도시 여행지입니다.",
+    course: "김광석거리 산책, 동성로 카페와 쇼핑, 서문시장 야시장, 근대골목 투어",
+    food: "막창, 납작만두, 따로국밥, 서문시장 간식",
+    transport: "동대구역 도착 후 지하철과 버스로 도심권 이동이 편리합니다.",
+    location: "대구광역시 중구와 동구 일대. 동성로, 서문시장, 김광석거리를 중심으로 묶기 좋습니다.",
+    season: "봄과 가을 도보 여행이 좋고, 겨울에는 시장 먹거리 코스가 잘 맞습니다.",
+    tips: "여름에는 더위가 강하므로 실내 카페와 쇼핑 일정을 함께 넣는 편이 좋습니다."
+  },
+  {
+    id: "gwangju",
+    name: "광주",
+    tags: ["도시", "맛집", "역사/문화", "예술", "국내"],
+    companions: ["친구", "가족", "혼자"],
+    budgets: ["저예산", "보통"],
+    durations: ["당일치기", "1박 2일"],
+    seasons: ["봄", "가을", "겨울"],
+    popularity: 77,
+    costValue: 1,
+    cost: "약 8만~25만원",
+    schedule: "1박 2일",
+    spots: ["양림동", "국립아시아문화전당", "무등산"],
+    reason: "예술 산책과 남도 음식, 무등산 자연 코스를 취향에 맞게 조합하기 좋습니다.",
+    intro: "광주는 문화 예술 공간과 깊은 맛의 음식 여행을 함께 즐길 수 있는 남도 도시 여행지입니다.",
+    course: "양림동 역사문화마을, 국립아시아문화전당 전시, 무등산 산책, 송정역시장 먹거리",
+    food: "떡갈비, 상추튀김, 오리탕, 한정식",
+    transport: "광주송정역과 지하철, 버스를 이용해 도심과 주요 명소를 이동할 수 있습니다.",
+    location: "광주광역시 동구, 남구, 광산구 일대. 문화전당과 양림동을 도보권으로 묶기 좋습니다.",
+    season: "봄과 가을 도심 산책이 좋고, 겨울에는 전시와 음식 여행 중심 일정이 편합니다.",
+    tips: "전시 일정과 시장 운영 시간을 미리 확인하면 동선 낭비를 줄일 수 있습니다."
   }
 ];
 
@@ -542,10 +622,109 @@ function renderPaymentSummary() {
   totalPrice.textContent = formatWon(total);
 }
 
+function getRecommendedHotels(destination) {
+  return hotels
+    .filter((hotel) => hotel.destination === destination)
+    .sort((a, b) => b.rating - a.rating || a.price - b.price);
+}
+
+function makeDetailHotelCard(hotel) {
+  const selectedClass = booking.hotel && booking.hotel.id === hotel.id ? "selected" : "";
+
+  return `
+    <article class="detail-hotel-card ${selectedClass}">
+      <img src="${hotel.image}" alt="${hotel.name} 이미지">
+      <div>
+        <h3>${hotel.name}</h3>
+        <p>${hotel.destination} · ${hotel.type}</p>
+        <p class="rating">평점 ${hotel.rating}</p>
+        <p>${hotel.description}</p>
+        <strong class="price">${formatWon(hotel.price)} / 1박</strong>
+        <button class="select-button" type="button" data-hotel="${hotel.id}">이 숙소 선택</button>
+      </div>
+    </article>
+  `;
+}
+
+const attractionDescriptions = {
+  "성산일출봉": "유네스코 세계자연유산으로 지정된 제주의 대표 명소이며, 정상에서 바라보는 일출과 바다 풍경이 유명합니다.",
+  "협재해변": "맑은 에메랄드빛 바다와 비양도 풍경을 함께 볼 수 있는 제주 서쪽의 인기 해변입니다.",
+  "우도": "제주 동쪽에서 배로 들어가는 섬으로 해안도로, 검멀레해변, 땅콩 아이스크림으로 잘 알려져 있습니다.",
+  "안목해변": "강릉 커피거리와 맞닿아 있어 바다 산책과 카페 투어를 함께 즐기기 좋은 해변입니다.",
+  "경포호": "잔잔한 호수 산책로와 벚꽃길로 유명하며 경포해변과 함께 둘러보기 좋은 강릉 명소입니다.",
+  "초당순두부마을": "강릉의 대표 먹거리 골목으로 부드러운 순두부 요리와 지역 맛집을 즐길 수 있습니다.",
+  "해운대": "부산을 대표하는 해변으로 넓은 백사장, 고층 빌딩 야경, 주변 맛집 접근성이 좋습니다.",
+  "광안리": "광안대교 야경을 가까이 볼 수 있는 해변으로 저녁 산책과 카페, 식당 코스가 인기가 많습니다.",
+  "감천문화마을": "알록달록한 집과 골목길 전망이 특징인 부산의 문화마을로 사진 찍기 좋은 명소입니다.",
+  "전주한옥마을": "전통 한옥이 모여 있는 전주의 대표 관광지로 한복 체험과 길거리 음식을 함께 즐길 수 있습니다.",
+  "경기전": "조선 태조 어진을 모신 역사 공간으로 전주한옥마을과 함께 둘러보기 좋은 문화유산입니다.",
+  "남부시장": "전주 먹거리와 야시장 분위기를 느낄 수 있는 시장으로 한옥마을 여행 동선에 넣기 좋습니다.",
+  "오동도": "동백나무와 해안 산책로가 유명한 여수의 대표 섬 관광지입니다.",
+  "해상케이블카": "여수 바다와 돌산대교 일대를 공중에서 내려다볼 수 있는 인기 체험 코스입니다.",
+  "낭만포차거리": "여수 밤바다 분위기와 해산물 요리를 함께 즐길 수 있는 야간 명소입니다.",
+  "설악산": "속초와 인접한 국립공원으로 웅장한 산세, 단풍, 케이블카 코스가 유명합니다.",
+  "속초해변": "동해 바다를 가까이 즐길 수 있는 속초 대표 해변으로 중앙시장과 함께 방문하기 좋습니다.",
+  "중앙시장": "속초 먹거리 여행의 중심지로 닭강정, 오징어순대, 해산물 간식을 맛볼 수 있습니다.",
+  "서피비치": "양양의 서핑 문화가 잘 드러나는 해변으로 이국적인 분위기와 해변 카페가 인기입니다.",
+  "낙산사": "동해를 내려다보는 사찰로 의상대와 해수관음상 풍경이 인상적인 양양 명소입니다.",
+  "하조대": "기암절벽과 정자, 해변 풍경이 어우러진 양양의 대표 해안 전망지입니다.",
+  "남이섬": "나무길과 강변 산책로가 유명한 가평 대표 관광지로 계절마다 다른 풍경을 즐길 수 있습니다.",
+  "아침고요수목원": "잘 가꾼 정원과 계절 축제가 있는 수목원으로 산책과 사진 촬영에 좋습니다.",
+  "자라섬": "북한강변에 있는 섬으로 축제, 캠핑, 피크닉 장소로 잘 알려져 있습니다.",
+  "경복궁": "조선 왕궁의 중심 공간으로 광화문, 근정전, 수문장 교대식 등을 볼 수 있는 서울 대표 고궁입니다.",
+  "코엑스": "쇼핑몰, 전시관, 아쿠아리움, 별마당도서관이 모여 있는 강남의 복합 문화 공간으로 실내 데이트와 쇼핑 코스로 인기가 많습니다.",
+  "남산타워": "서울 도심 전경을 한눈에 볼 수 있는 전망 명소로 야경 코스로 인기가 많습니다.",
+  "성심당": "대전을 대표하는 빵집으로 튀김소보로와 다양한 베이커리 메뉴가 유명합니다.",
+  "한밭수목원": "도심 속 넓은 녹지와 산책로를 갖춘 대전의 대표 휴식 공간입니다.",
+  "엑스포과학공원": "대전 엑스포의 흔적과 과학 테마 공간을 볼 수 있는 가족 여행 명소입니다.",
+  "김광석거리": "가수 김광석을 테마로 한 벽화와 음악 분위기를 느낄 수 있는 대구의 문화 거리입니다.",
+  "서문시장": "대구의 대표 전통시장으로 야시장과 다양한 먹거리가 유명합니다.",
+  "동성로": "대구의 중심 번화가로 쇼핑, 카페, 맛집을 한 번에 즐기기 좋습니다.",
+  "양림동": "근대 건축물과 골목 산책 코스가 있는 광주의 역사문화 동네입니다.",
+  "국립아시아문화전당": "전시, 공연, 문화 행사가 열리는 광주의 대표 복합문화공간입니다.",
+  "무등산": "광주를 대표하는 산으로 등산과 전망, 계절 자연 풍경을 즐기기 좋은 명소입니다."
+};
+
+function getAttractionDescription(place, spot) {
+  return attractionDescriptions[spot] || `${place.name} 여행에서 함께 둘러보기 좋은 추천 관광지입니다.`;
+}
+
+function getNaverMapSearchUrl(place, spot) {
+  return `https://map.naver.com/p/search/${encodeURIComponent(`${place.name} ${spot}`)}`;
+}
+
+function makeAttractionCard(place, spot, index) {
+  const attractionId = `${place.id}-attraction-${index + 1}`;
+  const mapUrl = getNaverMapSearchUrl(place, spot);
+
+  return `
+    <article class="detail-attraction-card">
+      <div class="attraction-frame-wrap">
+        <iframe
+          class="attraction-frame"
+          title="${place.name} ${spot} 이미지 영역"
+          src="about:blank"
+          data-image-file=""
+          data-map-url="${mapUrl}">
+        </iframe>
+        <span class="attraction-image-slot">이미지 넣는 곳: ${attractionId}</span>
+      </div>
+      <div class="attraction-card-body">
+        <h3>${spot}</h3>
+        <p>${getAttractionDescription(place, spot)}</p>
+        <div class="attraction-actions">
+          <a href="${mapUrl}" target="_blank" rel="noopener" data-attraction-map="${attractionId}">위치 보기</a>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
 function renderDetail(id) {
   const place = destinations.find((item) => item.id === id);
   if (!place) return;
   const isSaved = favorites.includes(place.id);
+  const recommendedHotels = getRecommendedHotels(place.name);
 
   document.querySelector("#detailContent").innerHTML = `
     <div class="detail-hero">
@@ -590,6 +769,24 @@ function renderDetail(id) {
             <p>${place.tips}</p>
           </section>
         </div>
+        <section class="detail-attraction-tab">
+          <div class="detail-tab-head">
+            <span>추천 관광지</span>
+          </div>
+          <div class="detail-attraction-list">
+            ${place.spots.map((spot, index) => makeAttractionCard(place, spot, index)).join("")}
+          </div>
+        </section>
+        <section class="detail-hotel-tab">
+          <div class="detail-tab-head">
+            <span>추천 숙소</span>
+          </div>
+          <div class="detail-hotel-list">
+            ${recommendedHotels.length
+              ? recommendedHotels.map((hotel) => makeDetailHotelCard(hotel)).join("")
+              : `<div class="empty">아직 등록된 추천 숙소가 없습니다.</div>`}
+          </div>
+        </section>
       </div>
     </div>
   `;
@@ -647,7 +844,11 @@ document.body.addEventListener("click", (event) => {
     renderResults();
   }
   if (trainButton) selectTrain(trainButton.dataset.train);
-  if (hotelButton) selectHotel(hotelButton.dataset.hotel);
+  if (hotelButton) {
+    const isDetailHotel = Boolean(hotelButton.closest("#detailView"));
+    selectHotel(hotelButton.dataset.hotel);
+    if (isDetailHotel) alert("선택하신 숙소가 장바구니에 담겼습니다.");
+  }
 });
 
 ["#searchInput", "#budgetFilter", "#themeFilter", "#sortSelect"].forEach((selector) => {
