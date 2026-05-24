@@ -898,19 +898,31 @@ document.querySelector("#signupForm").addEventListener("submit", (event) => {
   alert("회원가입이 완료되었습니다.");
 });
 
+document.querySelector("#payerPhone").addEventListener("input", (event) => {
+  const numbers = event.target.value.replace(/[^0-9]/g, "").slice(0, 11);
+
+  if (numbers.length <= 3) {
+    event.target.value = numbers;
+  } else if (numbers.length <= 7) {
+    event.target.value = `${numbers.slice(0, 3)}-${numbers.slice(3)}`;
+  } else {
+    event.target.value = `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(7)}`;
+  }
+});
+
 document.querySelector("#paymentForm").addEventListener("submit", (event) => {
   event.preventDefault();
   const message = document.querySelector("#paymentMessage");
   const total = (booking.train?.total || 0) + (booking.hotel?.total || 0);
 
   if (!total) {
-    message.textContent = "결제할 이동수단이나 숙소를 먼저 선택해주세요.";
+    message.textContent = "장바구니에 담을 이동수단이나 숙소를 먼저 선택해주세요.";
     return;
   }
 
   const payer = document.querySelector("#payerName").value.trim();
   const method = document.querySelector("#paymentMethod").value;
-  message.textContent = `${payer}님의 ${method} 결제가 완료되었습니다. 총 결제 금액은 ${formatWon(total)}입니다.`;
+  message.textContent = `${payer}님의 ${method} 주문이 완료되었습니다. 총 금액은 ${formatWon(total)}입니다.`;
 });
 
 function setDefaultDates() {

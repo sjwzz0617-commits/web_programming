@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --sky: #76c7e8;
   --sky-dark: #237fa3;
   --mint: #c9eddc;
@@ -312,62 +312,62 @@ button {
 
 .travel-card img[alt^="서울"],
 .detail-hero img[alt^="서울"] {
-  content: url("서울1.png");
+  content: url("photo/서울1.png");
 }
 
 .travel-card img[alt^="제주도"],
 .detail-hero img[alt^="제주도"] {
-  content: url("제주도1.png");
+  content: url("photo/제주도1.png");
 }
 
 .travel-card img[alt^="부산"],
 .detail-hero img[alt^="부산"] {
-  content: url("부산1.png");
+  content: url("photo/부산1.png");
 }
 
 .travel-card img[alt^="양양"],
 .detail-hero img[alt^="양양"] {
-  content: url("양양1.png");
+  content: url("photo/양양1.png");
 }
 
 .travel-card img[alt^="강릉"],
 .detail-hero img[alt^="강릉"] {
-  content: url("강릉1.png");
+  content: url("photo/강릉1.png");
 }
 
 .travel-card img[alt^="여수"],
 .detail-hero img[alt^="여수"] {
-  content: url("여수1.png");
+  content: url("photo/여수1.png");
 }
 
 .travel-card img[alt^="가평"],
 .detail-hero img[alt^="가평"] {
-  content: url("가평1.png");
+  content: url("photo/가평1.png");
 }
 
 .travel-card img[alt^="속초"],
 .detail-hero img[alt^="속초"] {
-  content: url("속초1.png");
+  content: url("photo/속초1.png");
 }
 
 .travel-card img[alt^="전주"],
 .detail-hero img[alt^="전주"] {
-  content: url("전주1.png");
+  content: url("photo/전주1.png");
 }
 
 .travel-card img[alt^="대전"],
 .detail-hero img[alt^="대전"] {
-  content: url("대전1.png");
+  content: url("photo/대전1.png");
 }
 
 .travel-card img[alt^="대구"],
 .detail-hero img[alt^="대구"] {
-  content: url("대구1.png");
+  content: url("photo/대구1.png");
 }
 
 .travel-card img[alt^="광주"],
 .detail-hero img[alt^="광주"] {
-  content: url("광주1.png");
+  content: url("photo/광주1.png");
 }
 
 .card-body {
@@ -677,147 +677,147 @@ button {
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="성산일출봉"]) .attraction-frame-wrap {
-  --attraction-image: url("성산일출봉.png");
+  --attraction-image: url("photo/성산일출봉.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="협재해변"]) .attraction-frame-wrap {
-  --attraction-image: url("협재해변.png");
+  --attraction-image: url("photo/협재해변.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="우도"]) .attraction-frame-wrap {
-  --attraction-image: url("우도.png");
+  --attraction-image: url("photo/우도.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="안목해변"]) .attraction-frame-wrap {
-  --attraction-image: url("안목해변.png");
+  --attraction-image: url("photo/안목해변.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="경포호"]) .attraction-frame-wrap {
-  --attraction-image: url("경포호.png");
+  --attraction-image: url("photo/경포호.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="초당순두부마을"]) .attraction-frame-wrap {
-  --attraction-image: url("초당순두부마을.png");
+  --attraction-image: url("photo/초당순두부마을.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="해운대"]) .attraction-frame-wrap {
-  --attraction-image: url("해운대.png");
+  --attraction-image: url("photo/해운대.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="광안리"]) .attraction-frame-wrap {
-  --attraction-image: url("광안리.png");
+  --attraction-image: url("photo/광안리.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="감천문화마을"]) .attraction-frame-wrap {
-  --attraction-image: url("감천문화마을.png");
+  --attraction-image: url("photo/감천문화마을.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="전주한옥마을"]) .attraction-frame-wrap {
-  --attraction-image: url("한옥마을.png");
+  --attraction-image: url("photo/한옥마을.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="경기전"]) .attraction-frame-wrap {
-  --attraction-image: url("경기전.png");
+  --attraction-image: url("photo/경기전.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="남부시장"]) .attraction-frame-wrap {
-  --attraction-image: url("남부시장.png");
+  --attraction-image: url("photo/남부시장.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="오동도"]) .attraction-frame-wrap {
-  --attraction-image: url("오동도.png");
+  --attraction-image: url("photo/오동도.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="해상케이블카"]) .attraction-frame-wrap {
-  --attraction-image: url("해상케이블카.png");
+  --attraction-image: url("photo/해상케이블카.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="낭만포차거리"]) .attraction-frame-wrap {
-  --attraction-image: url("낭만포차거리.png");
+  --attraction-image: url("photo/낭만포차거리.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="설악산"]) .attraction-frame-wrap {
-  --attraction-image: url("설악산.png");
+  --attraction-image: url("photo/설악산.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="속초해변"]) .attraction-frame-wrap {
-  --attraction-image: url("속초해변.png");
+  --attraction-image: url("photo/속초해변.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="중앙시장"]) .attraction-frame-wrap {
-  --attraction-image: url("중앙시장.png");
+  --attraction-image: url("photo/중앙시장.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="서피비치"]) .attraction-frame-wrap {
-  --attraction-image: url("서퍼비치.png");
+  --attraction-image: url("photo/서퍼비치.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="낙산사"]) .attraction-frame-wrap {
-  --attraction-image: url("낙산사.png");
+  --attraction-image: url("photo/낙산사.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="하조대"]) .attraction-frame-wrap {
-  --attraction-image: url("하조대.png");
+  --attraction-image: url("photo/하조대.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="남이섬"]) .attraction-frame-wrap {
-  --attraction-image: url("남이섬.png");
+  --attraction-image: url("photo/남이섬.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="아침고요수목원"]) .attraction-frame-wrap {
-  --attraction-image: url("아침고요수목원.png");
+  --attraction-image: url("photo/아침고요수목원.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="자라섬"]) .attraction-frame-wrap {
-  --attraction-image: url("자라섬.png");
+  --attraction-image: url("photo/자라섬.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="경복궁"]) .attraction-frame-wrap {
-  --attraction-image: url("경복궁.png");
+  --attraction-image: url("photo/경복궁.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="코엑스"]) .attraction-frame-wrap {
-  --attraction-image: url("코엑스.png");
+  --attraction-image: url("photo/코엑스.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="남산타워"]) .attraction-frame-wrap {
-  --attraction-image: url("남산타워.png");
+  --attraction-image: url("photo/남산타워.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="성심당"]) .attraction-frame-wrap {
-  --attraction-image: url("성심당.png");
+  --attraction-image: url("photo/성심당.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="한밭수목원"]) .attraction-frame-wrap {
-  --attraction-image: url("한밭수목원.png");
+  --attraction-image: url("photo/한밭수목원.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="엑스포과학공원"]) .attraction-frame-wrap {
-  --attraction-image: url("엑스포과학공원.png");
+  --attraction-image: url("photo/엑스포과학공원.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="김광석거리"]) .attraction-frame-wrap {
-  --attraction-image: url("김광석거리.png");
+  --attraction-image: url("photo/김광석거리.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="서문시장"]) .attraction-frame-wrap {
-  --attraction-image: url("서문시장.png");
+  --attraction-image: url("photo/서문시장.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="동성로"]) .attraction-frame-wrap {
-  --attraction-image: url("동성로.png");
+  --attraction-image: url("photo/동성로.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="양림동"]) .attraction-frame-wrap {
-  --attraction-image: url("양림동.png");
+  --attraction-image: url("photo/양림동.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="국립아시아문화전당"]) .attraction-frame-wrap {
-  --attraction-image: url("아시아문화전당.png");
+  --attraction-image: url("photo/아시아문화전당.png");
 }
 
 .detail-attraction-card:has(.attraction-frame[title*="무등산"]) .attraction-frame-wrap {
-  --attraction-image: url("무등산.png");
+  --attraction-image: url("photo/무등산.png");
 }
 
 .attraction-frame {
