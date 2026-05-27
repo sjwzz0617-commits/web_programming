@@ -6,7 +6,8 @@
   signup: document.querySelector("#signupView"),
   train: document.querySelector("#trainView"),
   hotel: document.querySelector("#hotelView"),
-  payment: document.querySelector("#paymentView")
+  payment: document.querySelector("#paymentView"),
+  checkout: document.querySelector("#checkoutView")
 };
 
 const favoriteList = document.querySelector("#favoriteList");
@@ -36,5 +37,6 @@ function showView(viewName) {
   if (viewName === "train") renderTrainOptions();
   if (viewName === "hotel") renderHotels();
   if (viewName === "payment") renderPaymentSummary();
+  if (viewName === "checkout") renderPaymentSummary();
 }
 

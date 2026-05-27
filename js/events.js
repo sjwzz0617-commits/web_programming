@@ -14,15 +14,17 @@
     renderFavorites();
     updateHomeFavoriteButtons();
   }
-  if (trainButton) selectTrain(trainButton.dataset.train);
+  if (trainButton && selectTrain(trainButton.dataset.train)) {
+    alert("해당 이동수단을 장바구니에 추가하였습니다.");
+  }
   if (hotelButton) {
-    const isDetailHotel = Boolean(hotelButton.closest("#detailView"));
     selectHotel(hotelButton.dataset.hotel);
-    if (isDetailHotel) alert("선택하신 숙소가 장바구니에 담겼습니다.");
+    alert("장바구니에 추가되었습니다.");
   }
 });
 
 document.querySelector("#transportType").addEventListener("input", () => {
+  updateTransportPlaceOptions();
   updatePassengerOptions();
   renderTrainOptions();
 });
@@ -31,8 +33,18 @@ document.querySelector("#transportType").addEventListener("input", () => {
   document.querySelector(selector).addEventListener("input", renderTrainOptions);
 });
 
-["#hotelDestination", "#checkinDate", "#nightCount", "#hotelSort"].forEach((selector) => {
-  document.querySelector(selector).addEventListener("input", renderHotels);
+const trainDateInput = document.querySelector("#trainDate");
+trainDateInput.addEventListener("click", () => openDatePicker(trainDateInput));
+trainDateInput.addEventListener("focus", () => openDatePicker(trainDateInput));
+
+["#hotelDestination", "#checkinDate", "#checkoutDate", "#hotelSort"].forEach((selector) => {
+  document.querySelector(selector).addEventListener("input", handleHotelFilterChange);
+});
+
+["#checkinDate", "#checkoutDate"].forEach((selector) => {
+  const input = document.querySelector(selector);
+  input.addEventListener("click", () => openDatePicker(input));
+  input.addEventListener("focus", () => openDatePicker(input));
 });
 
 document.querySelector("#loginForm").addEventListener("submit", (event) => {
@@ -46,19 +58,42 @@ document.querySelector("#loginForm").addEventListener("submit", (event) => {
     return;
   }
 
+  if (password.length < 8) {
+    alert("비밀번호를 다시한번 확인해주세요.");
+    document.querySelector("#loginPassword").focus();
+    return;
+  }
+
   alert("로그인되었습니다.");
 });
 
 document.querySelector("#signupForm").addEventListener("submit", (event) => {
   event.preventDefault();
 
+  const nameInput = document.querySelector("#signupName");
   const emailInput = document.querySelector("#signupEmail");
+  const passwordInput = document.querySelector("#signupPassword");
+  const name = nameInput.value.trim();
   const email = emailInput.value.trim();
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const password = passwordInput.value.trim();
+  const namePattern = /^[가-힣]{3}$/;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.com$/;
+
+  if (!namePattern.test(name)) {
+    alert("이름은 한글 세 글자로 입력해주세요.");
+    nameInput.focus();
+    return;
+  }
 
   if (!emailPattern.test(email)) {
-    alert("이메일 형식이 올바르지 않습니다.");
+    alert("이메일에는 @와 .com이 포함되어야 합니다.");
     emailInput.focus();
+    return;
+  }
+
+  if (password.length < 8) {
+    alert("비밀번호는 8자 이상 입력해야합니다.");
+    passwordInput.focus();
     return;
   }
 
@@ -80,7 +115,8 @@ document.querySelector("#payerPhone").addEventListener("input", (event) => {
 document.querySelector("#paymentForm").addEventListener("submit", (event) => {
   event.preventDefault();
   const message = document.querySelector("#paymentMessage");
-  const total = (booking.train?.total || 0) + (booking.hotel?.total || 0);
+  const trainTotal = booking.trains.reduce((sum, train) => sum + train.total, 0);
+  const total = trainTotal + (booking.hotel?.total || 0);
 
   if (!total) {
     message.textContent = "장바구니에 담을 이동수단이나 숙소를 먼저 선택해주세요.";
@@ -88,6 +124,13 @@ document.querySelector("#paymentForm").addEventListener("submit", (event) => {
   }
 
   const payer = document.querySelector("#payerName").value.trim();
+  const payerNamePattern = /^[가-힣]{3}$/;
+  if (!payerNamePattern.test(payer)) {
+    alert("유효한 이름이 아닙니다.");
+    document.querySelector("#payerName").focus();
+    return;
+  }
+
   const method = document.querySelector("#paymentMethod").value;
   message.textContent = `${payer}님의 ${method} 주문이 완료되었습니다. 총 금액은 ${formatWon(total)}입니다.`;
 });

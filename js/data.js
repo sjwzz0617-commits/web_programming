@@ -278,7 +278,7 @@
 ];
 
 let favorites = [];
-let booking = { train: null, hotel: null };
+let booking = { trains: [], hotel: null };
 
 const trainProducts = [
   { id: "ktx-morning", category: "train", type: "KTX", time: "08:20", duration: "약 2시간", price: 42000 },
@@ -294,7 +294,7 @@ const hotels = [
   {
     id: "gangneung-blue",
     destination: "강릉",
-    name: "블루웨이브 호텔",
+    name: "씨마크 호텔",
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80",
     type: "오션뷰 호텔",
     rating: 4.7,
@@ -304,7 +304,7 @@ const hotels = [
   {
     id: "busan-harbor",
     destination: "부산",
-    name: "하버 스테이 부산",
+    name: "파라다이스 호텔 부산",
     image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=900&q=80",
     type: "도심 호텔",
     rating: 4.6,
@@ -314,7 +314,7 @@ const hotels = [
   {
     id: "jeju-garden",
     destination: "제주도",
-    name: "제주 가든 리조트",
+    name: "롯데호텔 제주",
     image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=80",
     type: "리조트",
     rating: 4.8,
@@ -324,12 +324,92 @@ const hotels = [
   {
     id: "yeosu-night",
     destination: "여수",
-    name: "여수 밤바다 펜션",
+    name: "소노캄 여수",
     image: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=900&q=80",
     type: "감성 펜션",
     rating: 4.5,
     price: 98000,
     description: "돌산대교 야경을 보기 좋고 낭만포차거리 이동도 편합니다."
+  },
+  {
+    id: "jeonju-hanok",
+    destination: "전주",
+    name: "라한호텔 전주",
+    image: "photo/전주1.png",
+    type: "한옥 숙소",
+    rating: 4.7,
+    price: 112000,
+    description: "한옥마을 도보 여행에 편하고 전주 감성을 느끼기 좋은 숙소입니다."
+  },
+  {
+    id: "sokcho-sea",
+    destination: "속초",
+    name: "롯데리조트 속초",
+    image: "photo/속초1.png",
+    type: "오션뷰 호텔",
+    rating: 4.6,
+    price: 132000,
+    description: "속초해변과 중앙시장 이동이 편해 바다와 먹거리 일정을 함께 즐기기 좋습니다."
+  },
+  {
+    id: "yangyang-surf",
+    destination: "양양",
+    name: "쏠비치 양양",
+    image: "photo/양양1.png",
+    type: "비치 게스트하우스",
+    rating: 4.4,
+    price: 89000,
+    description: "서퍼비치와 가까워 액티비티 중심 여행에 잘 맞는 캐주얼한 숙소입니다."
+  },
+  {
+    id: "gapyeong-garden",
+    destination: "가평",
+    name: "마이다스 호텔&리조트",
+    image: "photo/가평1.png",
+    type: "숲속 펜션",
+    rating: 4.5,
+    price: 108000,
+    description: "남이섬과 아침고요수목원 코스를 여유롭게 이어가기 좋은 숙소입니다."
+  },
+  {
+    id: "seoul-city",
+    destination: "서울",
+    name: "롯데호텔 서울",
+    image: "photo/서울1.png",
+    type: "도심 호텔",
+    rating: 4.7,
+    price: 148000,
+    description: "명동, 경복궁, 남산 이동이 쉬워 첫 서울 여행 일정에 편합니다."
+  },
+  {
+    id: "daejeon-station",
+    destination: "대전",
+    name: "호텔 오노마 대전",
+    image: "photo/대전1.png",
+    type: "비즈니스 호텔",
+    rating: 4.3,
+    price: 92000,
+    description: "대전역과 성심당 접근성이 좋아 짧은 도시 여행에 실용적입니다."
+  },
+  {
+    id: "daegu-downtown",
+    destination: "대구",
+    name: "대구 메리어트 호텔",
+    image: "photo/대구1.png",
+    type: "부티크 호텔",
+    rating: 4.5,
+    price: 104000,
+    description: "동성로와 서문시장 이동이 편해 맛집과 쇼핑 일정을 잡기 좋습니다."
+  },
+  {
+    id: "gwangju-art",
+    destination: "광주",
+    name: "홀리데이 인 광주 호텔",
+    image: "photo/광주1.png",
+    type: "레지던스",
+    rating: 4.4,
+    price: 97000,
+    description: "아시아문화전당과 양림동을 둘러보기 좋은 차분한 숙소입니다."
   }
 ];
 

@@ -147,3 +147,25 @@ button {
   display: block;
 }
 
+.travel-card,
+.option-card,
+.hotel-card,
+.detail-hotel-card,
+.detail-attraction-card,
+.info-box,
+.summary-item {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  transform-origin: center;
+}
+
+.travel-card:hover,
+.option-card:hover,
+.hotel-card:hover,
+.detail-hotel-card:hover,
+.detail-attraction-card:hover,
+.info-box:hover,
+.summary-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 16px 34px rgba(25, 74, 88, 0.16);
+}
+

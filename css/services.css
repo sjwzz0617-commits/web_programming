@@ -6,6 +6,21 @@
   margin-top: 24px;
 }
 
+#paymentView .payment-layout {
+  grid-template-columns: 1fr;
+}
+
+.cart-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+.checkout-button {
+  width: auto;
+  min-width: 180px;
+}
+
 .member-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -230,9 +245,49 @@
   font-weight: 800;
 }
 
+.select-button:hover {
+  outline: 3px solid var(--sun);
+  outline-offset: 2px;
+}
+
+.hotel-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.location-button {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: 12px 14px;
+  color: var(--sky-dark);
+  border: 1px solid #b9dce6;
+  border-radius: 8px;
+  background: #eef8fb;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+}
+
+.location-button:hover {
+  outline: 3px solid var(--mint);
+  outline-offset: 2px;
+}
+
 .stay-toolbar {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   margin-top: 24px;
+}
+
+.stay-toolbar input[type="date"] {
+  cursor: pointer;
+}
+
+#nightCount {
+  color: var(--muted);
+  background: var(--soft);
+  cursor: default;
 }
 
 .hotel-grid {

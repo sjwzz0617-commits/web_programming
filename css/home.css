@@ -95,6 +95,7 @@
 }
 
 #tab-all:checked ~ .category-tabs label[for="tab-all"],
+#tab-sea:checked ~ .category-tabs label[for="tab-sea"],
 #tab-healing:checked ~ .category-tabs label[for="tab-healing"],
 #tab-activity:checked ~ .category-tabs label[for="tab-activity"],
 #tab-shopping:checked ~ .category-tabs label[for="tab-shopping"],
@@ -105,6 +106,7 @@
 }
 
 #tab-all:checked ~ .tab-panels .all-panel,
+#tab-sea:checked ~ .tab-panels .sea-panel,
 #tab-healing:checked ~ .tab-panels .healing-panel,
 #tab-activity:checked ~ .tab-panels .activity-panel,
 #tab-shopping:checked ~ .tab-panels .shopping-panel,
