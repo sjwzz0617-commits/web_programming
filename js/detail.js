@@ -37,6 +37,45 @@
   "무등산": "광주를 대표하는 산으로 등산과 전망, 계절 자연 풍경을 즐기기 좋은 명소입니다."
 };
 
+const attractionImages = {
+  "성산일출봉": "photo/성산일출봉.png",
+  "협재해변": "photo/협재해변.png",
+  "우도": "photo/우도.png",
+  "안목해변": "photo/안목해변.png",
+  "경포호": "photo/경포호.png",
+  "초당순두부마을": "photo/초당순두부마을.png",
+  "해운대": "photo/해운대.png",
+  "광안리": "photo/광안리.png",
+  "감천문화마을": "photo/감천문화마을.png",
+  "전주한옥마을": "photo/한옥마을.png",
+  "경기전": "photo/경기전.png",
+  "남부시장": "photo/남부시장.png",
+  "오동도": "photo/오동도.png",
+  "해상케이블카": "photo/해상케이블카.png",
+  "낭만포차거리": "photo/낭만포차거리.png",
+  "설악산": "photo/설악산.png",
+  "속초해변": "photo/속초해변.png",
+  "중앙시장": "photo/중앙시장.png",
+  "서피비치": "photo/서퍼비치.png",
+  "낙산사": "photo/낙산사.png",
+  "하조대": "photo/하조대.png",
+  "남이섬": "photo/남이섬.png",
+  "아침고요수목원": "photo/아침고요수목원.png",
+  "자라섬": "photo/자라섬.png",
+  "경복궁": "photo/경복궁.png",
+  "코엑스": "photo/코엑스.png",
+  "남산타워": "photo/남산타워.png",
+  "성심당": "photo/성심당.png",
+  "한밭수목원": "photo/한밭수목원.png",
+  "엑스포과학공원": "photo/엑스포과학공원.png",
+  "김광석거리": "photo/김광석거리.png",
+  "서문시장": "photo/서문시장.png",
+  "동성로": "photo/동성로.png",
+  "양림동": "photo/양림동.png",
+  "국립아시아문화전당": "photo/아시아문화전당.png",
+  "무등산": "photo/무등산.png"
+};
+
 function getAttractionDescription(place, spot) {
   return attractionDescriptions[spot] || `${place.name} 여행에서 함께 둘러보기 좋은 추천 관광지입니다.`;
 }
@@ -48,19 +87,13 @@ function getNaverMapSearchUrl(place, spot) {
 function makeAttractionCard(place, spot, index) {
   const attractionId = `${place.id}-attraction-${index + 1}`;
   const mapUrl = getNaverMapSearchUrl(place, spot);
+  const image = attractionImages[spot];
 
   return `
     <article class="detail-attraction-card">
-      <div class="attraction-frame-wrap">
-        <iframe
-          class="attraction-frame"
-          title="${place.name} ${spot} 이미지 영역"
-          src="about:blank"
-          data-image-file=""
-          data-map-url="${mapUrl}">
-        </iframe>
-        <span class="attraction-image-slot">이미지 넣는 곳: ${attractionId}</span>
-      </div>
+      ${image
+        ? `<img class="attraction-image" src="${image}" alt="${spot} 이미지">`
+        : `<div class="attraction-image-slot">이미지 넣는 곳: ${attractionId}</div>`}
       <div class="attraction-card-body">
         <h3>${spot}</h3>
         <p>${getAttractionDescription(place, spot)}</p>

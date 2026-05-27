@@ -17,6 +17,7 @@ populateHotelDestinations();
 setDefaultDates();
 updateTransportPlaceOptions();
 updatePassengerOptions();
+renderHomeDestinations();
 renderTrainOptions();
 renderHotels();
 renderPaymentSummary();

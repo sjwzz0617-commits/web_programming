@@ -11,7 +11,6 @@
 };
 
 const favoriteList = document.querySelector("#favoriteList");
-const popularList = document.querySelector("#popularList");
 const favoriteCount = document.querySelector("#favoriteCount");
 
 function updateFavoriteCount() {
@@ -32,7 +31,10 @@ function showView(viewName) {
   Object.values(views).forEach((view) => view.classList.remove("active"));
   views[viewName].classList.add("active");
   window.scrollTo({ top: 0, behavior: "smooth" });
-  if (viewName === "home") document.querySelector("#tab-all").checked = true;
+  if (viewName === "home") {
+    document.querySelector("#tab-all").checked = true;
+    renderHomeDestinations();
+  }
   if (viewName === "favorites") renderFavorites();
   if (viewName === "train") renderTrainOptions();
   if (viewName === "hotel") renderHotels();
