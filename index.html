@@ -1,10 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trip Pick - 나에게 맞는 여행지 추천</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/destinations.css">
+  <link rel="stylesheet" href="css/detail.css">
+  <link rel="stylesheet" href="css/services.css">
 </head>
 <body>
   <header class="topbar">
@@ -15,7 +19,6 @@
     <nav class="nav" aria-label="주요 메뉴">
       <div class="nav-group">
         <span class="nav-title">여행</span>
-        <button type="button" data-view="results">추천 여행지</button>
         <button type="button" data-view="favorites">즐겨찾기 <span id="favoriteCount">0</span></button>
       </div>
       <div class="nav-group">
@@ -35,143 +38,326 @@
     <section id="homeView" class="view active">
       <div class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">취향 기반 여행지 추천</p>
+          <p class="eyebrow">테마별 추천 여행지</p>
           <h1>Trip Pick</h1>
-          <p>여행 유형, 예산, 계절감, 동행 유형을 고르면 어울리는 여행지를 카드로 바로 추천합니다.</p>
+          <p>힐링, 액티비티, 쇼핑, 관광 탭에서 취향에 맞는 여행지를 바로 둘러보고 마음에 드는 장소를 저장해보세요.</p>
         </div>
 
-        <form id="preferenceForm" class="picker" autocomplete="off">
-          <div class="picker-head">
-            <h2>여행 취향 선택</h2>
-            <button class="ghost-button" id="resetChoices" type="button">초기화</button>
-          </div>
-
-          <fieldset class="option-group" data-name="theme">
-            <legend>여행 유형</legend>
-            <div class="choice-row">
-              <button type="button" data-value="힐링">힐링</button>
-              <button type="button" data-value="액티비티">액티비티</button>
-              <button type="button" data-value="맛집">맛집</button>
-              <button type="button" data-value="자연">자연</button>
-              <button type="button" data-value="역사/문화">역사/문화</button>
-              <button type="button" data-value="쇼핑">쇼핑</button>
-            </div>
-          </fieldset>
-
-          <fieldset class="option-group" data-name="companion">
-            <legend>동행 유형</legend>
-            <div class="choice-row">
-              <button type="button" data-value="혼자">혼자</button>
-              <button type="button" data-value="친구">친구</button>
-              <button type="button" data-value="커플">커플</button>
-              <button type="button" data-value="가족">가족</button>
-            </div>
-          </fieldset>
-
-          <fieldset class="option-group" data-name="budget">
-            <legend>예산</legend>
-            <div class="choice-row">
-              <button type="button" data-value="저예산">저예산</button>
-              <button type="button" data-value="보통">보통</button>
-              <button type="button" data-value="여유">여유</button>
-            </div>
-          </fieldset>
-
-          <fieldset class="option-group" data-name="duration">
-            <legend>여행 기간</legend>
-            <div class="choice-row">
-              <button type="button" data-value="당일치기">당일치기</button>
-              <button type="button" data-value="1박 2일">1박 2일</button>
-              <button type="button" data-value="2박 3일 이상">2박 3일 이상</button>
-            </div>
-          </fieldset>
-
-          <fieldset class="option-group" data-name="season">
-            <legend>선호 계절</legend>
-            <div class="choice-row">
-              <button type="button" data-value="봄">봄</button>
-              <button type="button" data-value="여름">여름</button>
-              <button type="button" data-value="가을">가을</button>
-              <button type="button" data-value="겨울">겨울</button>
-            </div>
-          </fieldset>
-
-          <fieldset class="option-group" data-name="region">
-            <legend>선호 지역</legend>
-            <div class="choice-row">
-              <button type="button" data-value="국내">국내</button>
-              <button type="button" data-value="해외">해외</button>
-              <button type="button" data-value="바다">바다</button>
-              <button type="button" data-value="산">산</button>
-              <button type="button" data-value="도시">도시</button>
-            </div>
-          </fieldset>
-
-          <button class="primary-button" type="submit">전체 여행지 보기</button>
-        </form>
       </div>
 
-      <section class="popular-section">
+      <section class="all-destinations-section">
         <div class="section-title">
-          <p class="eyebrow">Popular Picks</p>
-          <h2>인기 여행지 미리보기</h2>
+          <p class="eyebrow">RECOMMENDS</p>
+          <h2>추천 여행지 보기</h2>
         </div>
-        <div id="popularList" class="preview-grid"></div>
+
+        <div class="category-tabs-wrap">
+          <input class="category-radio" type="radio" name="homeCategory" id="tab-all" checked>
+          <input class="category-radio" type="radio" name="homeCategory" id="tab-healing">
+          <input class="category-radio" type="radio" name="homeCategory" id="tab-activity">
+          <input class="category-radio" type="radio" name="homeCategory" id="tab-shopping">
+          <input class="category-radio" type="radio" name="homeCategory" id="tab-tour">
+
+          <nav class="category-tabs" aria-label="여행지 카테고리">
+            <label for="tab-all">전체 여행지</label>
+            <label for="tab-healing">힐링</label>
+            <label for="tab-activity">액티비티</label>
+            <label for="tab-shopping">쇼핑</label>
+            <label for="tab-tour">관광</label>
+          </nav>
+
+          <div class="tab-panels">
+            <section class="tab-panel all-panel">
+              <article class="travel-card">
+                <img src="photo/제주도1.png" alt="제주도 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>제주도</h3><button class="favorite-button" type="button" data-favorite="jeju" aria-label="제주도 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">자연</span><span class="tag">바다</span><span class="tag">힐링</span><span class="tag">액티비티</span></div>
+                  <p class="reason">바다와 오름, 카페와 해안 드라이브를 한 번에 즐길 수 있는 대표 여행지입니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 35만~70만원</span><span>추천 일정: 2박 3일 이상</span><span>대표 명소: 성산일출봉, 협재해변, 우도</span></div>
+                  <button class="detail-button" type="button" data-detail="jeju">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/강릉1.png" alt="강릉 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>강릉</h3><button class="favorite-button" type="button" data-favorite="gangneung" aria-label="강릉 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">바다</span><span class="tag">카페</span><span class="tag">힐링</span><span class="tag">맛집</span></div>
+                  <p class="reason">안목해변과 경포호, 커피 거리가 가까워 짧은 일정에도 여유로운 코스를 만들기 좋습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 12만~28만원</span><span>추천 일정: 1박 2일</span><span>대표 명소: 안목해변, 경포호, 초당순두부마을</span></div>
+                  <button class="detail-button" type="button" data-detail="gangneung">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/부산1.png" alt="부산 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>부산</h3><button class="favorite-button" type="button" data-favorite="busan" aria-label="부산 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">도시</span><span class="tag">바다</span><span class="tag">맛집</span><span class="tag">쇼핑</span></div>
+                  <p class="reason">도시 쇼핑과 바다, 야경, 먹거리를 한 번에 연결하기 쉬운 여행지입니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 20만~45만원</span><span>추천 일정: 1박 2일</span><span>대표 명소: 해운대, 광안리, 감천문화마을</span></div>
+                  <button class="detail-button" type="button" data-detail="busan">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/전주1.png" alt="전주 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>전주</h3><button class="favorite-button" type="button" data-favorite="jeonju" aria-label="전주 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">역사/문화</span><span class="tag">맛집</span><span class="tag">도시</span><span class="tag">국내</span></div>
+                  <p class="reason">한옥마을과 전통 먹거리 동선이 가까워 문화 관광과 맛집 여행을 함께 즐기기 좋습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 8만~22만원</span><span>추천 일정: 당일치기 또는 1박 2일</span><span>대표 명소: 전주한옥마을, 경기전, 남부시장</span></div>
+                  <button class="detail-button" type="button" data-detail="jeonju">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/여수1.png" alt="여수 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>여수</h3><button class="favorite-button" type="button" data-favorite="yeosu" aria-label="여수 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">바다</span><span class="tag">야경</span><span class="tag">힐링</span><span class="tag">맛집</span></div>
+                  <p class="reason">밤바다와 야경이 강점이라 커플 여행이나 조용한 휴식 여행에 잘 맞습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 18만~40만원</span><span>추천 일정: 1박 2일</span><span>대표 명소: 오동도, 해상케이블카, 낭만포차거리</span></div>
+                  <button class="detail-button" type="button" data-detail="yeosu">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/속초1.png" alt="속초 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>속초</h3><button class="favorite-button" type="button" data-favorite="sokcho" aria-label="속초 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">산</span><span class="tag">바다</span><span class="tag">자연</span><span class="tag">맛집</span></div>
+                  <p class="reason">설악산과 동해 바다를 하루 안에 모두 볼 수 있어 움직임이 많은 여행에 적합합니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 10만~30만원</span><span>추천 일정: 1박 2일</span><span>대표 명소: 설악산, 속초해변, 중앙시장</span></div>
+                  <button class="detail-button" type="button" data-detail="sokcho">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/양양1.png" alt="양양 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>양양</h3><button class="favorite-button" type="button" data-favorite="yangyang" aria-label="양양 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">바다</span><span class="tag">액티비티</span><span class="tag">힐링</span><span class="tag">카페</span></div>
+                  <p class="reason">서핑과 바다 산책, 감성 카페를 짧은 일정에 묶기 좋아 친구 여행에 잘 어울립니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 12만~30만원</span><span>추천 일정: 당일치기 또는 1박 2일</span><span>대표 명소: 서피비치, 낙산사, 하조대</span></div>
+                  <button class="detail-button" type="button" data-detail="yangyang">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/가평1.png" alt="가평 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>가평</h3><button class="favorite-button" type="button" data-favorite="gapyeong" aria-label="가평 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">자연</span><span class="tag">힐링</span><span class="tag">액티비티</span><span class="tag">국내</span></div>
+                  <p class="reason">서울 근교에서 자연 산책과 수목원, 섬 여행을 가볍게 즐기기 좋습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 8만~25만원</span><span>추천 일정: 당일치기 또는 1박 2일</span><span>대표 명소: 남이섬, 아침고요수목원, 자라섬</span></div>
+                  <button class="detail-button" type="button" data-detail="gapyeong">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/서울1.png" alt="서울 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>서울</h3><button class="favorite-button" type="button" data-favorite="seoul" aria-label="서울 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">도시</span><span class="tag">맛집</span><span class="tag">쇼핑</span><span class="tag">역사/문화</span></div>
+                  <p class="reason">쇼핑, 전시, 맛집, 고궁 산책까지 선택지가 많아 취향별 일정 구성이 쉽습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 8만~35만원</span><span>추천 일정: 당일치기 또는 1박 2일</span><span>대표 명소: 경복궁, 코엑스, 남산타워</span></div>
+                  <button class="detail-button" type="button" data-detail="seoul">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/대전1.png" alt="대전 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>대전</h3><button class="favorite-button" type="button" data-favorite="daejeon" aria-label="대전 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">도시</span><span class="tag">맛집</span><span class="tag">자연</span><span class="tag">힐링</span></div>
+                  <p class="reason">교통 접근성이 좋고 빵집, 수목원, 과학공원 코스를 편하게 묶을 수 있습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 7만~22만원</span><span>추천 일정: 당일치기 또는 1박 2일</span><span>대표 명소: 성심당, 한밭수목원, 엑스포과학공원</span></div>
+                  <button class="detail-button" type="button" data-detail="daejeon">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/대구1.png" alt="대구 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>대구</h3><button class="favorite-button" type="button" data-favorite="daegu" aria-label="대구 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">도시</span><span class="tag">맛집</span><span class="tag">쇼핑</span><span class="tag">역사/문화</span></div>
+                  <p class="reason">동성로와 서문시장, 로컬 먹거리를 중심으로 가볍게 쇼핑 코스를 만들기 좋습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 8만~24만원</span><span>추천 일정: 1박 2일</span><span>대표 명소: 김광석거리, 서문시장, 동성로</span></div>
+                  <button class="detail-button" type="button" data-detail="daegu">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/광주1.png" alt="광주 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>광주</h3><button class="favorite-button" type="button" data-favorite="gwangju" aria-label="광주 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">도시</span><span class="tag">맛집</span><span class="tag">역사/문화</span><span class="tag">예술</span></div>
+                  <p class="reason">문화 예술 공간과 지역 맛집, 무등산 자연 코스를 취향에 맞게 조합할 수 있습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 8만~25만원</span><span>추천 일정: 1박 2일</span><span>대표 명소: 양림동, 국립아시아문화전당, 무등산</span></div>
+                  <button class="detail-button" type="button" data-detail="gwangju">상세 보기</button>
+                </div>
+              </article>
+            </section>
+
+            <section class="tab-panel healing-panel">
+              <article class="travel-card">
+                <img src="photo/제주도1.png" alt="제주도 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>제주도</h3><button class="favorite-button" type="button" data-favorite="jeju" aria-label="제주도 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">자연</span><span class="tag">바다</span><span class="tag">힐링</span><span class="tag">국내</span></div>
+                  <p class="reason">바다와 오름, 카페와 해안 드라이브를 한 번에 즐길 수 있는 대표 힐링 여행지입니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 35만~70만원</span><span>추천 일정: 2박 3일 이상</span><span>대표 명소: 성산일출봉, 협재해변, 우도</span></div>
+                  <button class="detail-button" type="button" data-detail="jeju">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/강릉1.png" alt="강릉 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>강릉</h3><button class="favorite-button" type="button" data-favorite="gangneung" aria-label="강릉 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">바다</span><span class="tag">카페</span><span class="tag">힐링</span><span class="tag">국내</span></div>
+                  <p class="reason">안목해변과 경포호, 커피 거리가 가까워 짧은 일정에도 여유로운 코스를 만들기 좋습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 12만~28만원</span><span>추천 일정: 1박 2일</span><span>대표 명소: 안목해변, 경포호, 초당순두부마을</span></div>
+                  <button class="detail-button" type="button" data-detail="gangneung">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/여수1.png" alt="여수 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>여수</h3><button class="favorite-button" type="button" data-favorite="yeosu" aria-label="여수 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">바다</span><span class="tag">야경</span><span class="tag">힐링</span><span class="tag">맛집</span></div>
+                  <p class="reason">밤바다와 야경이 강점이라 커플 여행이나 조용한 휴식 여행에 잘 맞습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 18만~40만원</span><span>추천 일정: 1박 2일</span><span>대표 명소: 오동도, 해상케이블카, 낭만포차거리</span></div>
+                  <button class="detail-button" type="button" data-detail="yeosu">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/가평1.png" alt="가평 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>가평</h3><button class="favorite-button" type="button" data-favorite="gapyeong" aria-label="가평 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">자연</span><span class="tag">힐링</span><span class="tag">카페</span><span class="tag">국내</span></div>
+                  <p class="reason">서울 근교에서 자연 산책과 수목원, 섬 여행을 가볍게 즐기기 좋습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 8만~25만원</span><span>추천 일정: 당일치기 또는 1박 2일</span><span>대표 명소: 남이섬, 아침고요수목원, 자라섬</span></div>
+                  <button class="detail-button" type="button" data-detail="gapyeong">상세 보기</button>
+                </div>
+              </article>
+            </section>
+
+            <section class="tab-panel activity-panel">
+              <article class="travel-card">
+                <img src="photo/양양1.png" alt="양양 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>양양</h3><button class="favorite-button" type="button" data-favorite="yangyang" aria-label="양양 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">바다</span><span class="tag">액티비티</span><span class="tag">힐링</span><span class="tag">카페</span></div>
+                  <p class="reason">서핑과 바다 산책, 감성 카페를 짧은 일정에 묶기 좋아 친구 여행에 잘 어울립니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 12만~30만원</span><span>추천 일정: 당일치기 또는 1박 2일</span><span>대표 명소: 서피비치, 낙산사, 하조대</span></div>
+                  <button class="detail-button" type="button" data-detail="yangyang">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/제주도1.png" alt="제주도 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>제주도</h3><button class="favorite-button" type="button" data-favorite="jeju" aria-label="제주도 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">자연</span><span class="tag">바다</span><span class="tag">액티비티</span><span class="tag">국내</span></div>
+                  <p class="reason">해안 드라이브와 오름, 섬 코스를 함께 즐길 수 있어 활동적인 여행에도 좋습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 35만~70만원</span><span>추천 일정: 2박 3일 이상</span><span>대표 명소: 성산일출봉, 협재해변, 우도</span></div>
+                  <button class="detail-button" type="button" data-detail="jeju">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/속초1.png" alt="속초 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>속초</h3><button class="favorite-button" type="button" data-favorite="sokcho" aria-label="속초 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">산</span><span class="tag">바다</span><span class="tag">자연</span><span class="tag">맛집</span></div>
+                  <p class="reason">설악산과 동해 바다를 하루 안에 모두 볼 수 있어 움직임이 많은 여행에 적합합니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 10만~30만원</span><span>추천 일정: 1박 2일</span><span>대표 명소: 설악산, 속초해변, 중앙시장</span></div>
+                  <button class="detail-button" type="button" data-detail="sokcho">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/가평1.png" alt="가평 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>가평</h3><button class="favorite-button" type="button" data-favorite="gapyeong" aria-label="가평 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">자연</span><span class="tag">힐링</span><span class="tag">액티비티</span><span class="tag">국내</span></div>
+                  <p class="reason">수상 레저와 산책 코스를 함께 넣기 좋아 근교 액티비티 코스로 인기가 많습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 8만~25만원</span><span>추천 일정: 당일치기 또는 1박 2일</span><span>대표 명소: 남이섬, 아침고요수목원, 자라섬</span></div>
+                  <button class="detail-button" type="button" data-detail="gapyeong">상세 보기</button>
+                </div>
+              </article>
+            </section>
+
+            <section class="tab-panel shopping-panel">
+              <article class="travel-card">
+                <img src="photo/서울1.png" alt="서울 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>서울</h3><button class="favorite-button" type="button" data-favorite="seoul" aria-label="서울 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">도시</span><span class="tag">맛집</span><span class="tag">쇼핑</span><span class="tag">역사/문화</span></div>
+                  <p class="reason">쇼핑, 전시, 맛집, 고궁 산책까지 선택지가 많아 취향별 일정 구성이 쉽습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 8만~35만원</span><span>추천 일정: 당일치기 또는 1박 2일</span><span>대표 명소: 경복궁, 코엑스, 남산타워</span></div>
+                  <button class="detail-button" type="button" data-detail="seoul">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/부산1.png" alt="부산 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>부산</h3><button class="favorite-button" type="button" data-favorite="busan" aria-label="부산 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">도시</span><span class="tag">바다</span><span class="tag">맛집</span><span class="tag">쇼핑</span></div>
+                  <p class="reason">도시 쇼핑과 바다, 야경, 먹거리를 한 번에 연결하기 쉬운 여행지입니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 20만~45만원</span><span>추천 일정: 1박 2일</span><span>대표 명소: 해운대, 광안리, 감천문화마을</span></div>
+                  <button class="detail-button" type="button" data-detail="busan">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/대구1.png" alt="대구 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>대구</h3><button class="favorite-button" type="button" data-favorite="daegu" aria-label="대구 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">도시</span><span class="tag">맛집</span><span class="tag">쇼핑</span><span class="tag">역사/문화</span></div>
+                  <p class="reason">동성로와 서문시장, 로컬 먹거리를 중심으로 가볍게 쇼핑 코스를 만들기 좋습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 8만~24만원</span><span>추천 일정: 1박 2일</span><span>대표 명소: 김광석거리, 서문시장, 동성로</span></div>
+                  <button class="detail-button" type="button" data-detail="daegu">상세 보기</button>
+                </div>
+              </article>
+            </section>
+
+            <section class="tab-panel tour-panel">
+              <article class="travel-card">
+                <img src="photo/전주1.png" alt="전주 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>전주</h3><button class="favorite-button" type="button" data-favorite="jeonju" aria-label="전주 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">역사/문화</span><span class="tag">맛집</span><span class="tag">도시</span><span class="tag">국내</span></div>
+                  <p class="reason">한옥마을과 전통 먹거리 동선이 가까워 문화 관광과 맛집 여행을 함께 즐기기 좋습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 8만~22만원</span><span>추천 일정: 당일치기 또는 1박 2일</span><span>대표 명소: 전주한옥마을, 경기전, 남부시장</span></div>
+                  <button class="detail-button" type="button" data-detail="jeonju">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/광주1.png" alt="광주 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>광주</h3><button class="favorite-button" type="button" data-favorite="gwangju" aria-label="광주 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">도시</span><span class="tag">맛집</span><span class="tag">역사/문화</span><span class="tag">예술</span></div>
+                  <p class="reason">문화 예술 공간과 지역 맛집, 무등산 자연 코스를 취향에 맞게 조합할 수 있습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 8만~25만원</span><span>추천 일정: 1박 2일</span><span>대표 명소: 양림동, 국립아시아문화전당, 무등산</span></div>
+                  <button class="detail-button" type="button" data-detail="gwangju">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/대전1.png" alt="대전 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>대전</h3><button class="favorite-button" type="button" data-favorite="daejeon" aria-label="대전 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">도시</span><span class="tag">맛집</span><span class="tag">자연</span><span class="tag">힐링</span></div>
+                  <p class="reason">교통 접근성이 좋고 빵집, 수목원, 과학공원 코스를 편하게 묶을 수 있습니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 7만~22만원</span><span>추천 일정: 당일치기 또는 1박 2일</span><span>대표 명소: 성심당, 한밭수목원, 엑스포과학공원</span></div>
+                  <button class="detail-button" type="button" data-detail="daejeon">상세 보기</button>
+                </div>
+              </article>
+              <article class="travel-card">
+                <img src="photo/서울1.png" alt="서울 대표 이미지">
+                <div class="card-body">
+                  <div class="card-top"><h3>서울</h3><button class="favorite-button" type="button" data-favorite="seoul" aria-label="서울 즐겨찾기">♥</button></div>
+                  <div class="tags"><span class="tag">도시</span><span class="tag">쇼핑</span><span class="tag">역사/문화</span><span class="tag">국내</span></div>
+                  <p class="reason">궁궐과 전시, 전망 명소가 많아 짧은 관광 일정에도 볼거리가 풍부합니다.</p>
+                  <div class="meta-list"><span>예상 비용: 약 8만~35만원</span><span>추천 일정: 당일치기 또는 1박 2일</span><span>대표 명소: 경복궁, 코엑스, 남산타워</span></div>
+                  <button class="detail-button" type="button" data-detail="seoul">상세 보기</button>
+                </div>
+              </article>
+            </section>
+          </div>
+        </div>
       </section>
     </section>
 
-    <section id="resultsView" class="view">
-      <div class="page-head">
-        <div>
-          <p class="eyebrow">Recommendation</p>
-          <h1>추천 여행지</h1>
-        </div>
-        <button class="secondary-button" type="button" data-view="home">다시 추천받기</button>
-      </div>
-
-      <div id="selectedSummary" class="summary-bar"></div>
-
-      <div class="toolbar">
-        <label>
-          지역 검색
-          <input id="searchInput" type="search" placeholder="예: 강릉, 제주, 서울">
-        </label>
-        <label>
-          가격대
-          <select id="budgetFilter">
-            <option value="">전체</option>
-            <option value="저예산">저예산</option>
-            <option value="보통">보통</option>
-            <option value="여유">여유</option>
-          </select>
-        </label>
-        <label>
-          여행 테마
-          <select id="themeFilter">
-            <option value="">전체</option>
-            <option value="힐링">힐링</option>
-            <option value="액티비티">액티비티</option>
-            <option value="맛집">맛집</option>
-            <option value="자연">자연</option>
-            <option value="역사/문화">역사/문화</option>
-            <option value="쇼핑">쇼핑</option>
-          </select>
-        </label>
-        <label>
-          정렬
-          <select id="sortSelect">
-            <option value="recommend">추천순</option>
-            <option value="popular">인기순</option>
-            <option value="cost">예상 비용 낮은순</option>
-          </select>
-        </label>
-      </div>
-
-      <div id="resultList" class="card-grid"></div>
-    </section>
-
     <section id="detailView" class="view">
-      <button class="back-button" type="button" data-view="results">← 추천 결과로</button>
+      <button class="back-button" type="button" data-view="home">← 첫 화면으로</button>
       <article id="detailContent" class="detail"></article>
     </section>
 
@@ -181,7 +367,7 @@
           <p class="eyebrow">Saved Places</p>
           <h1>즐겨찾기</h1>
         </div>
-        <button class="secondary-button" type="button" data-view="results">추천 결과 보기</button>
+        <button class="secondary-button" type="button" data-view="home">전체 여행지 보기</button>
       </div>
       <div id="favoriteList" class="card-grid"></div>
     </section>
@@ -407,6 +593,12 @@
       </div>
     </section>
   </main>
-  <script src="script.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app-state.js"></script>
+  <script src="js/recommendations.js"></script>
+  <script src="js/booking.js"></script>
+  <script src="js/detail.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/init.js"></script>
 </body>
 </html>

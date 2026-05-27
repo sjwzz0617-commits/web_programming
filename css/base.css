@@ -1,0 +1,149 @@
+﻿:root {
+  --sky: #76c7e8;
+  --sky-dark: #237fa3;
+  --mint: #c9eddc;
+  --leaf: #2b8a63;
+  --ink: #1e2d33;
+  --muted: #6b7b82;
+  --line: #dce8eb;
+  --paper: #ffffff;
+  --soft: #f4fbf8;
+  --sun: #ffcb6b;
+  --coral: #ff8e72;
+  --shadow: 0 18px 40px rgba(25, 74, 88, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 1100px;
+  color: var(--ink);
+  font-family: "Noto Sans KR", "Malgun Gothic", Arial, sans-serif;
+  background: #f7fbfc;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+  padding: 14px 44px;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+}
+
+.brand,
+.nav button,
+.ghost-button,
+.secondary-button,
+.back-button {
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  color: white;
+  background: linear-gradient(135deg, var(--sky-dark), var(--leaf));
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.nav-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid #e8f0f2;
+  border-radius: 8px;
+  background: #f8fcfd;
+}
+
+.nav-title {
+  padding: 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.nav button {
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.nav button:hover,
+.ghost-button:hover,
+.back-button:hover {
+  background: #eaf6f8;
+}
+
+.login-nav-button {
+  color: white;
+  background: var(--sky-dark);
+}
+
+.login-nav-button:hover {
+  background: var(--leaf);
+}
+
+.nav button span {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  margin-left: 4px;
+  color: white;
+  background: var(--coral);
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}
+
