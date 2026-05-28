@@ -34,6 +34,17 @@ function makeDestinationCard(place, options = {}) {
           <span>\ucd94\ucc9c \uc77c\uc815: ${place.schedule}</span>
           <span>\ub300\ud45c \uba85\uc18c: ${place.spots.join(", ")}</span>
         </div>
+        <!-- HTML 기본 태그 progress와 range로 여행지 정보를 간단히 보여줍니다. -->
+        <div class="card-meter-list">
+          <label>
+            \uc778\uae30\ub3c4 ${place.popularity}%
+            <progress value="${place.popularity}" max="100"></progress>
+          </label>
+          <label>
+            \uac00\uc131\ube44 ${place.costValue}%
+            <input type="range" min="0" max="100" value="${place.costValue}" disabled>
+          </label>
+        </div>
         <button class="detail-button" type="button" data-detail="${place.id}">\uc0c1\uc138 \ubcf4\uae30</button>
         ${deleteButton}
       </div>

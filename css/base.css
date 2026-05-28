@@ -25,6 +25,30 @@ body {
   background: #f7fbfc;
 }
 
+/* 페이지 맨 아래 팀 프로젝트 정보를 footer 태그로 표시합니다. */
+.site-footer {
+  padding: 28px 20px;
+  color: #d7e8ec;
+  background: #263f47;
+  text-align: center;
+}
+
+.site-footer strong {
+  display: block;
+  margin-bottom: 8px;
+  color: white;
+  font-size: 22px;
+}
+
+.site-footer p {
+  margin: 6px 0;
+}
+
+.site-footer a {
+  color: #bfeef5;
+  font-weight: 800;
+}
+
 button,
 input,
 select {

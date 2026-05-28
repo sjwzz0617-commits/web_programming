@@ -222,7 +222,6 @@ function renderHotels() {
     ? hotelList.map((hotel) => {
       const total = hotel.price * filters.nights;
       const selectedClass = booking.hotel && booking.hotel.id === hotel.id ? "selected" : "";
-      const mapUrl = getHotelMapSearchUrl(hotel);
 
       return `
         <article class="hotel-card ${selectedClass}">
@@ -234,7 +233,7 @@ function renderHotels() {
           <strong class="price">${formatWon(total)}</strong>
           <div class="hotel-actions">
             <button class="select-button" type="button" data-hotel="${hotel.id}">이 숙소 선택</button>
-            <a class="location-button" href="${mapUrl}" target="_blank" rel="noopener">숙소 위치 보기</a>
+            <button class="location-button" type="button" data-hotel-detail="${hotel.id}">상세 보기</button>
           </div>
         </article>
       `;
@@ -332,7 +331,6 @@ function getHotelMapSearchUrl(hotel) {
 
 function makeDetailHotelCard(hotel) {
   const selectedClass = booking.hotel && booking.hotel.id === hotel.id ? "selected" : "";
-  const mapUrl = getHotelMapSearchUrl(hotel);
 
   return `
     <article class="detail-hotel-card ${selectedClass}">
@@ -345,10 +343,57 @@ function makeDetailHotelCard(hotel) {
         <strong class="price">${formatWon(hotel.price)} / 1박</strong>
         <div class="hotel-actions">
           <button class="select-button" type="button" data-hotel="${hotel.id}">이 숙소 선택</button>
-          <a class="location-button" href="${mapUrl}" target="_blank" rel="noopener">숙소 위치 보기</a>
+          <button class="location-button" type="button" data-hotel-detail="${hotel.id}">상세 보기</button>
         </div>
       </div>
     </article>
   `;
+}
+
+function renderHotelDetail(id) {
+  const hotel = hotels.find((item) => item.id === id);
+  if (!hotel) return;
+
+  const mapUrl = getHotelMapSearchUrl(hotel);
+  const serviceList = hotel.services
+    .map((service) => `<li>${service}</li>`)
+    .join("");
+
+  document.querySelector("#detailContent").innerHTML = `
+    <div class="detail-hero hotel-detail">
+      <img src="${hotel.image}" alt="${hotel.name} 이미지">
+      <div class="detail-main">
+        <div class="detail-title-row">
+          <div>
+            <p class="eyebrow">Hotel Detail</p>
+            <h1>${hotel.name}</h1>
+            <p class="detail-intro">${hotel.description}</p>
+          </div>
+        </div>
+
+        <section class="info-box hotel-info-box">
+          <h3>숙소 정보</h3>
+          <p>${hotel.destination} · ${hotel.type} · 평점 ${hotel.rating} · ${formatWon(hotel.price)} / 1박</p>
+        </section>
+
+        <section class="hotel-map-section">
+          <h3>숙소 위치</h3>
+          <iframe src="${mapUrl}" title="${hotel.name} 네이버 지도"></iframe>
+          <p class="map-link-text">
+            <a href="${mapUrl}" target="_blank" rel="noopener">위치 자세히 보기</a>
+          </p>
+        </section>
+
+        <section class="hotel-service-section">
+          <h3>숙소 서비스</h3>
+          <ul>
+            ${serviceList}
+          </ul>
+        </section>
+      </div>
+    </div>
+  `;
+
+  showView("detail");
 }
 

@@ -345,20 +345,36 @@
             연락처
             <input id="payerPhone" type="tel" placeholder="010-0000-0000" pattern="010-[0-9]{4}-[0-9]{4}" maxlength="13" required>
           </label>
-          <label>
-            결제 수단
-            <select id="paymentMethod">
-              <option>신용/체크카드</option>
-              <option>간편결제</option>
-              <option>무통장입금</option>
-            </select>
-          </label>
+          <!-- 결제 수단은 입력양식 단원에서 배운 fieldset, legend, radio 태그로 구성했습니다. -->
+          <fieldset class="payment-method-fieldset">
+            <legend>결제 수단 선택</legend>
+            <label>
+              <input type="radio" name="payment" value="카드 결제" required>
+              카드 결제
+            </label>
+            <label>
+              <input type="radio" name="payment" value="간편 결제">
+              간편 결제
+            </label>
+            <label>
+              <input type="radio" name="payment" value="무통장 입금">
+              무통장 입금
+            </label>
+          </fieldset>
           <button class="primary-button" type="submit">주문하기</button>
           <p id="paymentMessage" class="status-message">이동수단이나 숙소를 선택하면 장바구니 요약에 표시됩니다.</p>
         </form>
       </div>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <strong>Trip Pick</strong>
+    <p>여행지 추천 · 숙소 예약 · 캠핑용품 대여</p>
+    <p>컴퓨터소프트웨어공학과 웹프로그래밍 팀 프로젝트</p>
+    <p>문의: <a href="mailto:trippick@example.com">trippick@example.com</a></p>
+    <p>Copyright 2026 CampTrip. All rights reserved.</p>
+  </footer>
   <script src="js/data.js"></script>
   <script src="js/app-state.js"></script>
   <script src="js/destination-cards.js"></script>

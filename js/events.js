@@ -5,10 +5,12 @@
   const removeButton = event.target.closest("[data-remove]");
   const trainButton = event.target.closest("[data-train]");
   const hotelButton = event.target.closest("[data-hotel]");
+  const hotelDetailButton = event.target.closest("[data-hotel-detail]");
 
   if (viewButton) showView(viewButton.dataset.view);
   if (favoriteButton) toggleFavorite(favoriteButton.dataset.favorite);
   if (detailButton) renderDetail(detailButton.dataset.detail);
+  if (hotelDetailButton) renderHotelDetail(hotelDetailButton.dataset.hotelDetail);
   if (removeButton) {
     favorites = favorites.filter((id) => id !== removeButton.dataset.remove);
     renderFavorites();
@@ -131,7 +133,8 @@ document.querySelector("#paymentForm").addEventListener("submit", (event) => {
     return;
   }
 
-  const method = document.querySelector("#paymentMethod").value;
+  // select 대신 선택된 radio 버튼의 결제 수단 값을 사용합니다.
+  const method = document.querySelector("input[name='payment']:checked").value;
   message.textContent = `${payer}님의 ${method} 주문이 완료되었습니다. 총 금액은 ${formatWon(total)}입니다.`;
 });
 

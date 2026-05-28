@@ -9,7 +9,7 @@
     durations: ["1박 2일", "2박 3일 이상"],
     seasons: ["봄", "여름", "가을"],
     popularity: 98,
-    costValue: 3,
+    costValue: 78,
     cost: "약 35만~70만원",
     schedule: "2박 3일 이상",
     spots: ["성산일출봉", "협재해변", "우도"],
@@ -31,8 +31,8 @@
     budgets: ["저예산", "보통"],
     durations: ["당일치기", "1박 2일"],
     seasons: ["봄", "가을", "겨울"],
-    popularity: 91,
-    costValue: 2,
+    popularity: 90,
+    costValue: 88,
     cost: "약 12만~28만원",
     schedule: "1박 2일",
     spots: ["안목해변", "경포호", "초당순두부마을"],
@@ -55,7 +55,7 @@
     durations: ["1박 2일", "2박 3일 이상"],
     seasons: ["여름", "가을", "겨울"],
     popularity: 96,
-    costValue: 2,
+    costValue: 86,
     cost: "약 20만~45만원",
     schedule: "1박 2일",
     spots: ["해운대", "광안리", "감천문화마을"],
@@ -77,8 +77,8 @@
     budgets: ["저예산", "보통"],
     durations: ["당일치기", "1박 2일"],
     seasons: ["봄", "가을", "겨울"],
-    popularity: 84,
-    costValue: 1,
+    popularity: 87,
+    costValue: 90,
     cost: "약 8만~22만원",
     schedule: "당일치기 또는 1박 2일",
     spots: ["전주한옥마을", "경기전", "남부시장"],
@@ -100,8 +100,8 @@
     budgets: ["보통", "여유"],
     durations: ["1박 2일", "2박 3일 이상"],
     seasons: ["봄", "여름", "가을"],
-    popularity: 88,
-    costValue: 2,
+    popularity: 89,
+    costValue: 82,
     cost: "약 18만~40만원",
     schedule: "1박 2일",
     spots: ["오동도", "해상케이블카", "낭만포차거리"],
@@ -123,8 +123,8 @@
     budgets: ["저예산", "보통"],
     durations: ["당일치기", "1박 2일"],
     seasons: ["가을", "겨울", "봄"],
-    popularity: 86,
-    costValue: 2,
+    popularity: 85,
+    costValue: 87,
     cost: "약 10만~30만원",
     schedule: "1박 2일",
     spots: ["설악산", "속초해변", "중앙시장"],
@@ -146,8 +146,8 @@
     budgets: ["저예산", "보통"],
     durations: ["당일치기", "1박 2일"],
     seasons: ["여름", "가을", "봄"],
-    popularity: 82,
-    costValue: 2,
+    popularity: 81,
+    costValue: 80,
     cost: "약 12만~30만원",
     schedule: "1박 2일",
     spots: ["서피비치", "낙산사", "하조대"],
@@ -169,8 +169,8 @@
     budgets: ["저예산", "보통"],
     durations: ["당일치기", "1박 2일"],
     seasons: ["봄", "여름", "가을"],
-    popularity: 80,
-    costValue: 1,
+    popularity: 82,
+    costValue: 84,
     cost: "약 8만~25만원",
     schedule: "당일치기 또는 1박 2일",
     spots: ["남이섬", "아침고요수목원", "자라섬"],
@@ -193,7 +193,7 @@
     durations: ["당일치기", "1박 2일"],
     seasons: ["봄", "가을", "겨울"],
     popularity: 94,
-    costValue: 2,
+    costValue: 83,
     cost: "약 8만~35만원",
     schedule: "당일치기 또는 1박 2일",
     spots: ["경복궁", "코엑스", "남산타워"],
@@ -215,8 +215,8 @@
     budgets: ["저예산", "보통"],
     durations: ["당일치기", "1박 2일"],
     seasons: ["봄", "가을", "겨울"],
-    popularity: 76,
-    costValue: 1,
+    popularity: 78,
+    costValue: 89,
     cost: "약 7만~22만원",
     schedule: "당일치기 또는 1박 2일",
     spots: ["성심당", "한밭수목원", "엑스포과학공원"],
@@ -238,8 +238,8 @@
     budgets: ["저예산", "보통"],
     durations: ["당일치기", "1박 2일"],
     seasons: ["봄", "가을", "겨울"],
-    popularity: 78,
-    costValue: 1,
+    popularity: 80,
+    costValue: 88,
     cost: "약 8만~24만원",
     schedule: "1박 2일",
     spots: ["김광석거리", "서문시장", "동성로"],
@@ -261,8 +261,8 @@
     budgets: ["저예산", "보통"],
     durations: ["당일치기", "1박 2일"],
     seasons: ["봄", "가을", "겨울"],
-    popularity: 77,
-    costValue: 1,
+    popularity: 79,
+    costValue: 86,
     cost: "약 8만~25만원",
     schedule: "1박 2일",
     spots: ["양림동", "국립아시아문화전당", "무등산"],
@@ -299,7 +299,8 @@ const hotels = [
     type: "오션뷰 호텔",
     rating: 4.7,
     price: 138000,
-    description: "안목해변과 가까워 카페 거리와 바다 산책을 함께 즐기기 좋습니다."
+    description: "안목해변과 가까워 카페 거리와 바다 산책을 함께 즐기기 좋습니다.",
+    services: ["오션뷰", "수영장", "스파", "조식 뷔페", "무료 주차"]
   },
   {
     id: "busan-harbor",
@@ -309,7 +310,8 @@ const hotels = [
     type: "도심 호텔",
     rating: 4.6,
     price: 126000,
-    description: "광안리와 센텀 이동이 편해 친구 여행과 쇼핑 일정에 잘 맞습니다."
+    description: "광안리와 센텀 이동이 편해 친구 여행과 쇼핑 일정에 잘 맞습니다.",
+    services: ["오션뷰", "온천 스파", "야외 수영장", "카지노", "무료 와이파이"]
   },
   {
     id: "jeju-garden",
@@ -319,7 +321,8 @@ const hotels = [
     type: "리조트",
     rating: 4.8,
     price: 182000,
-    description: "정원과 수영장이 있어 가족, 커플 힐링 여행에 어울립니다."
+    description: "정원과 수영장이 있어 가족, 커플 힐링 여행에 어울립니다.",
+    services: ["인룸다이닝(룸서비스)", "유아/패밀리 케어", "시티/공항 셔틀", "레스토랑 및 부대시설", "온수풀, 스파, 피트니스 센터"]
   },
   {
     id: "yeosu-night",
@@ -329,7 +332,8 @@ const hotels = [
     type: "감성 펜션",
     rating: 4.5,
     price: 98000,
-    description: "돌산대교 야경을 보기 좋고 낭만포차거리 이동도 편합니다."
+    description: "돌산대교 야경을 보기 좋고 낭만포차거리 이동도 편합니다.",
+    services: ["오션뷰", "인피니티풀", "조식 제공", "카페", "피트니스센터"]
   },
   {
     id: "jeonju-hanok",
@@ -339,7 +343,8 @@ const hotels = [
     type: "한옥 숙소",
     rating: 4.7,
     price: 112000,
-    description: "한옥마을 도보 여행에 편하고 전주 감성을 느끼기 좋은 숙소입니다."
+    description: "한옥마을 도보 여행에 편하고 전주 감성을 느끼기 좋은 숙소입니다.",
+    services: ["무료 주차", "조식 제공", "한옥마을 근처", "와이파이 제공", "피트니스룸"]
   },
   {
     id: "sokcho-sea",
@@ -349,7 +354,8 @@ const hotels = [
     type: "오션뷰 호텔",
     rating: 4.6,
     price: 132000,
-    description: "속초해변과 중앙시장 이동이 편해 바다와 먹거리 일정을 함께 즐기기 좋습니다."
+    description: "속초해변과 중앙시장 이동이 편해 바다와 먹거리 일정을 함께 즐기기 좋습니다.",
+    services: ["워터파크", "바다 전망", "가족 객실", "무료 주차", "키즈존"]
   },
   {
     id: "yangyang-surf",
@@ -359,7 +365,8 @@ const hotels = [
     type: "비치 게스트하우스",
     rating: 4.4,
     price: 89000,
-    description: "서퍼비치와 가까워 액티비티 중심 여행에 잘 맞는 캐주얼한 숙소입니다."
+    description: "서퍼비치와 가까워 액티비티 중심 여행에 잘 맞는 캐주얼한 숙소입니다.",
+    services: ["해변 접근", "워터파크", "사우나", "조식 제공", "무료 주차"]
   },
   {
     id: "gapyeong-garden",
@@ -369,7 +376,8 @@ const hotels = [
     type: "숲속 펜션",
     rating: 4.5,
     price: 108000,
-    description: "남이섬과 아침고요수목원 코스를 여유롭게 이어가기 좋은 숙소입니다."
+    description: "남이섬과 아침고요수목원 코스를 여유롭게 이어가기 좋은 숙소입니다.",
+    services: ["북한강 전망", "가족 객실", "바비큐장", "카페", "무료 주차"]
   },
   {
     id: "seoul-city",
@@ -379,7 +387,8 @@ const hotels = [
     type: "도심 호텔",
     rating: 4.7,
     price: 148000,
-    description: "명동, 경복궁, 남산 이동이 쉬워 첫 서울 여행 일정에 편합니다."
+    description: "명동, 경복궁, 남산 이동이 쉬워 첫 서울 여행 일정에 편합니다.",
+    services: ["실내 수영장", "피트니스센터", "발렛파킹", "룸서비스", "라운지 바"]
   },
   {
     id: "daejeon-station",
@@ -389,7 +398,8 @@ const hotels = [
     type: "비즈니스 호텔",
     rating: 4.3,
     price: 92000,
-    description: "대전역과 성심당 접근성이 좋아 짧은 도시 여행에 실용적입니다."
+    description: "대전역과 성심당 접근성이 좋아 짧은 도시 여행에 실용적입니다.",
+    services: ["신세계백화점 연결", "실내 수영장", "피트니스센터", "시티뷰", "무료 와이파이"]
   },
   {
     id: "daegu-downtown",
@@ -399,7 +409,8 @@ const hotels = [
     type: "부티크 호텔",
     rating: 4.5,
     price: 104000,
-    description: "동성로와 서문시장 이동이 편해 맛집과 쇼핑 일정을 잡기 좋습니다."
+    description: "동성로와 서문시장 이동이 편해 맛집과 쇼핑 일정을 잡기 좋습니다.",
+    services: ["실내 수영장", "피트니스센터", "조식 뷔페", "무료 주차", "비즈니스룸"]
   },
   {
     id: "gwangju-art",
@@ -409,7 +420,8 @@ const hotels = [
     type: "레지던스",
     rating: 4.4,
     price: 97000,
-    description: "아시아문화전당과 양림동을 둘러보기 좋은 차분한 숙소입니다."
+    description: "아시아문화전당과 양림동을 둘러보기 좋은 차분한 숙소입니다.",
+    services: ["실내 수영장", "스파", "피트니스센터", "조식 뷔페", "비즈니스센터"]
   }
 ];
 
