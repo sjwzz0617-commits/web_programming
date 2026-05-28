@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Pick - 여행 리뷰</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/reviews.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">TP</span>
+      <span>Trip Pick</span>
+    </a>
+    <nav class="nav" aria-label="주요 메뉴">
+      <div class="nav-group">
+        <span class="nav-title">여행</span>
+        <a class="nav-link-button" href="index.html">메인으로</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="review-page">
+    <section class="review-head">
+      <p class="eyebrow">Travel Reviews</p>
+      <h1>여행 리뷰</h1>
+      <p>다녀온 여행지의 분위기, 만족도, 추천 포인트를 남겨보세요.</p>
+    </section>
+
+    <section class="review-layout">
+      <form id="reviewForm" class="review-form">
+        <h2>리뷰 등록</h2>
+
+        <label>
+          여행지
+          <select id="reviewDestination" required>
+            <option value="">여행지를 선택하세요</option>
+            <option value="제주도">제주도</option>
+            <option value="강릉">강릉</option>
+            <option value="부산">부산</option>
+            <option value="전주">전주</option>
+            <option value="여수">여수</option>
+            <option value="속초">속초</option>
+            <option value="양양">양양</option>
+            <option value="가평">가평</option>
+            <option value="서울">서울</option>
+            <option value="대전">대전</option>
+            <option value="대구">대구</option>
+            <option value="광주">광주</option>
+          </select>
+        </label>
+
+        <label>
+          작성자
+          <input id="reviewName" type="text" placeholder="홍길동" required>
+        </label>
+
+        <fieldset class="rating-fieldset">
+          <legend>만족도</legend>
+          <label><input type="radio" name="rating" value="5" required> 5점</label>
+          <label><input type="radio" name="rating" value="4"> 4점</label>
+          <label><input type="radio" name="rating" value="3"> 3점</label>
+          <label><input type="radio" name="rating" value="2"> 2점</label>
+          <label><input type="radio" name="rating" value="1"> 1점</label>
+        </fieldset>
+
+        <fieldset class="travel-type-fieldset">
+          <legend>여행 유형</legend>
+          <label><input type="radio" name="travelType" value="혼자" required> 혼자</label>
+          <label><input type="radio" name="travelType" value="커플"> 커플</label>
+          <label><input type="radio" name="travelType" value="친구"> 친구</label>
+          <label><input type="radio" name="travelType" value="가족"> 가족</label>
+        </fieldset>
+
+        <label class="review-date-label">
+          여행 날짜
+          <input id="reviewDate" type="date" required>
+        </label>
+
+        <label>
+          리뷰 내용
+          <textarea id="reviewContent" rows="6" placeholder="좋았던 점, 추천 코스, 아쉬웠던 점을 적어주세요." required></textarea>
+        </label>
+
+        <section class="review-guide" aria-label="리뷰 작성 안내">
+          <h3>리뷰에 넣으면 좋은 내용</h3>
+          <ol>
+            <li>가장 좋았던 장소나 활동</li>
+            <li>추천하는 맛집 또는 카페</li>
+            <li>다음 여행자에게 알려주고 싶은 팁</li>
+          </ol>
+        </section>
+
+        <button class="primary-button review-submit-button" type="submit">리뷰 등록</button>
+        <p id="reviewMessage" class="review-message">등록한 리뷰는 현재 페이지에서 바로 확인할 수 있습니다.</p>
+      </form>
+
+      <section class="review-list-section">
+        <div class="review-list-head">
+          <div>
+            <p class="eyebrow">Community</p>
+            <h2>등록된 리뷰</h2>
+          </div>
+          <button id="clearReviews" class="secondary-button" type="button">전체 삭제</button>
+        </div>
+
+        <ul id="reviewList" class="review-list"></ul>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <strong>Trip Pick</strong>
+    <p>여행지 추천 · 숙소 예약 · 이동수단 예매</p>
+    <p>동양미래대 컴퓨터소프트웨어공학과 웹프로그래밍 6조</p>
+    <p>문의: <a href="mailto:trippick@example.com">trippick@example.com</a></p>
+  </footer>
+
+  <script src="js/reviews.js"></script>
+</body>
+</html>

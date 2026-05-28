@@ -18,6 +18,10 @@
     </button>
     <nav class="nav" aria-label="주요 메뉴">
       <div class="nav-group">
+        <span class="nav-title">소통</span>
+        <a class="nav-link-button" href="reviews.html">리뷰</a>
+      </div>
+      <div class="nav-group">
         <span class="nav-title">여행</span>
         <button type="button" data-view="favorites">즐겨찾기 <span id="favoriteCount">0</span></button>
       </div>
@@ -368,12 +372,115 @@
     </section>
   </main>
 
+  <template id="detailTemplate">
+    <div class="detail-hero">
+      <img data-field="image" src="" alt="">
+      <div class="detail-main">
+        <div class="detail-title-row">
+          <div>
+            <p class="eyebrow">Destination Detail</p>
+            <h1 data-field="name"></h1>
+            <p class="detail-intro" data-field="intro"></p>
+          </div>
+          <button class="favorite-button" type="button" data-field="favoriteButton">♥</button>
+        </div>
+        <div class="tags" data-field="tags"></div>
+        <div class="info-grid">
+          <section class="info-box">
+            <h3>추천 코스</h3>
+            <p data-field="course"></p>
+          </section>
+          <section class="info-box">
+            <h3>맛집/카페</h3>
+            <p data-field="food"></p>
+          </section>
+          <section class="info-box">
+            <h3>교통 정보</h3>
+            <p data-field="transport"></p>
+          </section>
+          <section class="info-box">
+            <h3>지도 또는 위치 정보</h3>
+            <p data-field="location"></p>
+          </section>
+          <section class="info-box">
+            <h3>예상 경비</h3>
+            <p data-field="cost"></p>
+          </section>
+          <section class="info-box">
+            <h3>방문하기 좋은 계절</h3>
+            <p data-field="season"></p>
+          </section>
+          <section class="info-box">
+            <h3>주의사항 또는 팁</h3>
+            <p data-field="tips"></p>
+          </section>
+        </div>
+        <div class="detail-accordion">
+          <details class="detail-panel">
+            <summary>1일차 / 2일차 / 3일차 추천 코스</summary>
+            <div class="itinerary-stack" data-field="itinerary"></div>
+          </details>
+          <details class="detail-panel">
+            <summary>여행 준비물 체크리스트</summary>
+            <ul class="packing-checklist" data-field="packing"></ul>
+          </details>
+        </div>
+        <section class="detail-attraction-tab">
+          <div class="detail-tab-head">
+            <span>추천 관광지</span>
+          </div>
+          <div class="detail-attraction-list" data-field="attractions"></div>
+        </section>
+        <section class="detail-hotel-tab">
+          <div class="detail-tab-head">
+            <span>추천 숙소</span>
+          </div>
+          <div class="detail-hotel-list" data-field="hotels"></div>
+        </section>
+      </div>
+    </div>
+  </template>
+
+  <template id="itineraryTableTemplate">
+    <table class="itinerary-table">
+      <caption></caption>
+      <thead>
+        <tr>
+          <th scope="col">시간</th>
+          <th scope="col">장소</th>
+          <th scope="col">활동</th>
+          <th scope="col">예상 비용</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </template>
+
+  <template id="itineraryRowTemplate">
+    <tr>
+      <td data-field="time"></td>
+      <td data-field="place"></td>
+      <td data-field="activity"></td>
+      <td data-field="price"></td>
+    </tr>.
+  </template>
+
+  <template id="packingItemTemplate">
+    <li>
+      <label>
+        <input type="checkbox">
+        <span></span>
+      </label>
+    </li>
+  </template>
+
   <footer class="site-footer">
     <strong>Trip Pick</strong>
-    <p>여행지 추천 · 숙소 예약 · 캠핑용품 대여</p>
-    <p>컴퓨터소프트웨어공학과 웹프로그래밍 팀 프로젝트</p>
+    <p>여행지 추천 · 숙소 예약 · 이동수단 예매</p>
+    <p>동양미래대 컴퓨터소프트웨어공학과 웹프로그래밍 6조</p>
     <p>문의: <a href="mailto:trippick@example.com">trippick@example.com</a></p>
     <p>Copyright 2026 CampTrip. All rights reserved.</p>
+    
   </footer>
   <script src="js/data.js"></script>
   <script src="js/app-state.js"></script>

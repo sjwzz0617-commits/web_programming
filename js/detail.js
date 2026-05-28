@@ -105,76 +105,146 @@ function makeAttractionCard(place, spot, index) {
   `;
 }
 
+function getFoodItem(place, index) {
+  const items = place.food.split(",").map((item) => item.trim()).filter(Boolean);
+  return items[index] || items[0] || "지역 맛집";
+}
+
+function getTravelItinerary(place) {
+  const [firstSpot, secondSpot, thirdSpot] = place.spots;
+
+  return [
+    {
+      day: "1일차",
+      rows: [
+        ["10:00", `${place.name} 도착`, "숙소 위치와 이동 동선을 확인하고 가볍게 여행을 시작합니다.", "교통비 별도"],
+        ["12:00", getFoodItem(place, 0), `${place.name} 대표 음식으로 점심 식사를 합니다.`, "10,000~20,000원"],
+        ["14:00", firstSpot, getAttractionDescription(place, firstSpot), "0~15,000원"],
+        ["18:00", "숙소 주변", "저녁 식사 후 산책하며 다음 날 일정을 정리합니다.", "15,000~35,000원"]
+      ]
+    },
+    {
+      day: "2일차",
+      rows: [
+        ["09:30", secondSpot, getAttractionDescription(place, secondSpot), "0~20,000원"],
+        ["12:30", getFoodItem(place, 1), "지역 특색이 있는 메뉴로 점심을 먹습니다.", "10,000~25,000원"],
+        ["15:00", thirdSpot, getAttractionDescription(place, thirdSpot), "0~20,000원"],
+        ["19:00", "야경/카페 코스", `${place.food} 중 취향에 맞는 맛집이나 카페를 선택합니다.`, "15,000~35,000원"]
+      ]
+    },
+    {
+      day: "3일차",
+      rows: [
+        ["10:00", "여유 산책", `${place.name}의 분위기를 느낄 수 있는 가까운 산책 코스를 둘러봅니다.`, "0~10,000원"],
+        ["12:00", getFoodItem(place, 2), "마지막 식사로 지역 먹거리를 즐깁니다.", "10,000~25,000원"],
+        ["14:00", "기념품/시장", "간식과 기념품을 사고 이동 전 휴식합니다.", "10,000~30,000원"],
+        ["16:00", "복귀", "역, 터미널, 공항으로 이동해 여행을 마무리합니다.", "교통비 별도"]
+      ]
+    }
+  ];
+}
+
+function getDetailField(root, name) {
+  return root.querySelector(`[data-field="${name}"]`);
+}
+
+function setDetailText(root, name, value) {
+  const element = getDetailField(root, name);
+  if (element) element.textContent = value;
+}
+
+function makeItineraryTable(place, dayPlan) {
+  const table = document.querySelector("#itineraryTableTemplate").content.firstElementChild.cloneNode(true);
+  const rowTemplate = document.querySelector("#itineraryRowTemplate");
+  const tbody = table.querySelector("tbody");
+
+  table.querySelector("caption").textContent = `${place.name} ${dayPlan.day} 추천 여행 코스`;
+  dayPlan.rows.forEach((row) => {
+    const tr = rowTemplate.content.firstElementChild.cloneNode(true);
+    setDetailText(tr, "time", row[0]);
+    setDetailText(tr, "place", row[1]);
+    setDetailText(tr, "activity", row[2]);
+    setDetailText(tr, "price", row[3]);
+    tbody.appendChild(tr);
+  });
+
+  return table;
+}
+
+function getPackingItems(place) {
+  return [
+    "신분증/예약 확인 내역",
+    "보조배터리와 충전기",
+    "상비약과 개인 위생용품",
+    "편한 신발",
+    place.tags.includes("바다") ? "선크림과 여벌 옷" : "가벼운 겉옷",
+    place.tags.includes("산") || place.tags.includes("자연") ? "물병과 작은 간식" : "휴대용 우산"
+  ];
+}
+
+function makePackingChecklistItem(place, item, index) {
+  const li = document.querySelector("#packingItemTemplate").content.firstElementChild.cloneNode(true);
+  const input = li.querySelector("input");
+  input.id = `${place.id}-packing-${index + 1}`;
+  li.querySelector("span").textContent = item;
+
+  return li;
+}
+
 function renderDetail(id) {
   const place = destinations.find((item) => item.id === id);
   if (!place) return;
   const isSaved = favorites.includes(place.id);
   const recommendedHotels = getRecommendedHotels(place.name);
+  const itinerary = getTravelItinerary(place);
+  const detail = document.querySelector("#detailTemplate").content.firstElementChild.cloneNode(true);
+  const image = getDetailField(detail, "image");
+  const favoriteButton = getDetailField(detail, "favoriteButton");
+  const tags = getDetailField(detail, "tags");
+  const itineraryStack = getDetailField(detail, "itinerary");
+  const packingList = getDetailField(detail, "packing");
+  const attractionList = getDetailField(detail, "attractions");
+  const hotelList = getDetailField(detail, "hotels");
 
-  document.querySelector("#detailContent").innerHTML = `
-    <div class="detail-hero">
-      <img src="${place.image}" alt="${place.name} 풍경">
-      <div class="detail-main">
-        <div class="detail-title-row">
-          <div>
-            <p class="eyebrow">Destination Detail</p>
-            <h1>${place.name}</h1>
-            <p class="detail-intro">${place.intro}</p>
-          </div>
-          <button class="favorite-button ${isSaved ? "saved" : ""}" type="button" data-favorite="${place.id}" aria-label="${place.name} 즐겨찾기">♥</button>
-        </div>
-        <div class="tags">${place.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
-        <div class="info-grid">
-          <section class="info-box">
-            <h3>추천 코스</h3>
-            <p>${place.course}</p>
-          </section>
-          <section class="info-box">
-            <h3>맛집/카페</h3>
-            <p>${place.food}</p>
-          </section>
-          <section class="info-box">
-            <h3>교통 정보</h3>
-            <p>${place.transport}</p>
-          </section>
-          <section class="info-box">
-            <h3>지도 또는 위치 정보</h3>
-            <p>${place.location}</p>
-          </section>
-          <section class="info-box">
-            <h3>예상 경비</h3>
-            <p>${place.cost}</p>
-          </section>
-          <section class="info-box">
-            <h3>방문하기 좋은 계절</h3>
-            <p>${place.season}</p>
-          </section>
-          <section class="info-box">
-            <h3>주의사항 또는 팁</h3>
-            <p>${place.tips}</p>
-          </section>
-        </div>
-        <section class="detail-attraction-tab">
-          <div class="detail-tab-head">
-            <span>추천 관광지</span>
-          </div>
-          <div class="detail-attraction-list">
-            ${place.spots.map((spot, index) => makeAttractionCard(place, spot, index)).join("")}
-          </div>
-        </section>
-        <section class="detail-hotel-tab">
-          <div class="detail-tab-head">
-            <span>추천 숙소</span>
-          </div>
-          <div class="detail-hotel-list">
-            ${recommendedHotels.length
-              ? recommendedHotels.map((hotel) => makeDetailHotelCard(hotel)).join("")
-              : `<div class="empty">아직 등록된 추천 숙소가 없습니다.</div>`}
-          </div>
-        </section>
-      </div>
-    </div>
-  `;
+  image.src = place.image;
+  image.alt = `${place.name} 풍경`;
+  favoriteButton.classList.toggle("saved", isSaved);
+  favoriteButton.dataset.favorite = place.id;
+  favoriteButton.setAttribute("aria-label", `${place.name} 즐겨찾기`);
+
+  setDetailText(detail, "name", place.name);
+  setDetailText(detail, "intro", place.intro);
+  setDetailText(detail, "course", place.course);
+  setDetailText(detail, "food", place.food);
+  setDetailText(detail, "transport", place.transport);
+  setDetailText(detail, "location", place.location);
+  setDetailText(detail, "cost", place.cost);
+  setDetailText(detail, "season", place.season);
+  setDetailText(detail, "tips", place.tips);
+
+  place.tags.forEach((tag) => {
+    const span = document.createElement("span");
+    span.className = "tag";
+    span.textContent = tag;
+    tags.appendChild(span);
+  });
+
+  itinerary.forEach((dayPlan) => {
+    itineraryStack.appendChild(makeItineraryTable(place, dayPlan));
+  });
+
+  getPackingItems(place).forEach((item, index) => {
+    packingList.appendChild(makePackingChecklistItem(place, item, index));
+  });
+
+  attractionList.innerHTML = place.spots.map((spot, index) => makeAttractionCard(place, spot, index)).join("");
+  hotelList.innerHTML = recommendedHotels.length
+    ? recommendedHotels.map((hotel) => makeDetailHotelCard(hotel)).join("")
+    : `<div class="empty">아직 등록된 추천 숙소가 없습니다.</div>`;
+
+  const detailContent = document.querySelector("#detailContent");
+  detailContent.innerHTML = "";
+  detailContent.appendChild(detail);
 
   showView("detail");
 }

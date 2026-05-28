@@ -42,7 +42,7 @@ function makeDestinationCard(place, options = {}) {
           </label>
           <label>
             \uac00\uc131\ube44 ${place.costValue}%
-            <input type="range" min="0" max="100" value="${place.costValue}" disabled>
+            <input class="cost-range" type="range" min="0" max="100" value="${place.costValue}" style="--value: ${place.costValue}%;" disabled>
           </label>
         </div>
         <button class="detail-button" type="button" data-detail="${place.id}">\uc0c1\uc138 \ubcf4\uae30</button>
