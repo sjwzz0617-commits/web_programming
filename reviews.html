@@ -3,37 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  # 웹 브라우저 탭에 표시될 사이트의 제목입니다.
   <title>Trip Pick - 여행 리뷰</title>
+  # 외부에 있는 CSS(스타일시트) 파일들을 불러와서 웹 페이지를 예쁘게 꾸밉니다.
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/reviews.css">
 </head>
 <body>
+  # [상단 바] 웹사이트의 최상단에 고정되는 로고와 메뉴 영역입니다.
   <header class="topbar">
+    # 브랜드 로고 링크: 클릭하면 첫 페이지인 index.html로 이동하도록 설정한 하이퍼링크 태그입니다.
     <a class="brand" href="index.html">
+      # 로고 앞에 붙는 작은 심볼/마크를 감싸는 태그입니다.
       <span class="brand-mark">TP</span>
+      # 서비스 이름입니다.
       <span>Trip Pick</span>
     </a>
+    # 네비게이션 메뉴: 사용자가 사이트를 탐색할 수 있는 메뉴 링크들을 모아두는 태그입니다.
     <nav class="nav" aria-label="주요 메뉴">
+      # 여행 관련 메뉴 그룹입니다.
       <div class="nav-group">
         <span class="nav-title">여행</span>
+        # 메인 화면(index.html)으로 돌아가게 해주는 버튼 스타일의 링크입니다.
         <a class="nav-link-button" href="index.html">메인으로</a>
       </div>
     </nav>
   </header>
 
+  # [리뷰 페이지 본문] 리뷰 작성 양식과 등록된 목록이 들어가는 메인 영역입니다.
   <main class="review-page">
+    # 리뷰 페이지의 제목과 간단한 설명을 담은 상단 머리말 섹션입니다.
     <section class="review-head">
       <p class="eyebrow">Travel Reviews</p>
       <h1>여행 리뷰</h1>
       <p>다녀온 여행지의 분위기, 만족도, 추천 포인트를 남겨보세요.</p>
     </section>
 
+    # 리뷰 입력 폼과 리뷰 목록을 나란히 배치하기 위한 레이아웃 구역입니다.
     <section class="review-layout">
+      # 사용자가 작성한 리뷰 데이터를 제출(submit)할 수 있는 폼 상자입니다.
       <form id="reviewForm" class="review-form">
         <h2>리뷰 등록</h2>
 
+        # 입력창과 텍스트 제목을 연결해 주는 label 태그입니다.
         <label>
           여행지
+          # 드롭다운 선택 상자입니다. 목록에서 다녀온 여행지 중 하나를 꼭 골라야 합니다(required).
           <select id="reviewDestination" required>
             <option value="">여행지를 선택하세요</option>
             <option value="제주도">제주도</option>
@@ -53,11 +68,15 @@
 
         <label>
           작성자
+          # 이름을 적는 필수 일반 텍스트 입력창입니다.
           <input id="reviewName" type="text" placeholder="홍길동" required>
         </label>
 
+        # fieldset: 만족도 점수(1점~5점) 라디오 버튼들을 하나의 그룹으로 예쁘게 묶어줍니다.
         <fieldset class="rating-fieldset">
+          # legend: 만족도 그룹의 대표 제목을 붙여줍니다.
           <legend>만족도</legend>
+          # radio: 똑같은 name("rating")을 공유하므로 5개 중 단 하나만 동그라미 체크할 수 있습니다.
           <label><input type="radio" name="rating" value="5" required> 5점</label>
           <label><input type="radio" name="rating" value="4"> 4점</label>
           <label><input type="radio" name="rating" value="3"> 3점</label>
@@ -65,8 +84,10 @@
           <label><input type="radio" name="rating" value="1"> 1점</label>
         </fieldset>
 
+        # 여행 유형(혼자, 커플, 친구, 가족) 라디오 버튼들을 하나의 그룹으로 묶어줍니다.
         <fieldset class="travel-type-fieldset">
           <legend>여행 유형</legend>
+          # 똑같은 name("travelType")을 공유하므로 4개 중 단 하나만 동그라미 체크할 수 있습니다.
           <label><input type="radio" name="travelType" value="혼자" required> 혼자</label>
           <label><input type="radio" name="travelType" value="커플"> 커플</label>
           <label><input type="radio" name="travelType" value="친구"> 친구</label>
@@ -75,48 +96,64 @@
 
         <label class="review-date-label">
           여행 날짜
+          # 작은 달력 창이 떠서 다녀온 날짜를 쉽게 고를 수 있게 해주는 날짜 전용 입력창입니다.
           <input id="reviewDate" type="date" required>
         </label>
 
         <label>
           리뷰 내용
+          # 여러 줄의 긴 글을 입력받을 수 있는 커다란 텍스트 입력 상자입니다. 높이를 6줄(rows="6") 크기로 맞췄습니다.
           <textarea id="reviewContent" rows="6" placeholder="좋았던 점, 추천 코스, 아쉬웠던 점을 적어주세요." required></textarea>
         </label>
 
+        # 리뷰를 쓸 때 힌트를 주는 안내용 소구역(section)입니다. 웹 접근성을 위해 aria-label 제목을 달았습니다.
         <section class="review-guide" aria-label="리뷰 작성 안내">
           <h3>리뷰에 넣으면 좋은 내용</h3>
+          # 순서가 있는 리스트(ol) 태그입니다. 자동으로 앞에 1, 2, 3 번호가 붙습니다.
           <ol>
+            # li: 리스트 안의 개별 항목(원소)입니다.
             <li>가장 좋았던 장소나 활동</li>
             <li>추천하는 맛집 또는 카페</li>
             <li>다음 여행자에게 알려주고 싶은 팁</li>
           </ol>
         </section>
 
+        # 이 버튼을 누르면 form 안에 입력한 모든 내용이 등록 프로세스로 전송(submit)됩니다.
         <button class="primary-button review-submit-button" type="submit">리뷰 등록</button>
+        # 리뷰 등록 상태를 안내해 줄 알림 문단입니다.
         <p id="reviewMessage" class="review-message">등록한 리뷰는 현재 페이지에서 바로 확인할 수 있습니다.</p>
       </form>
 
+      # 다른 사람들이 등록한 리뷰 목록을 보여주는 리스트 섹션 영역입니다.
       <section class="review-list-section">
+        # 목록의 타이틀과 전체 삭제 버튼을 나란히 배치한 상단 머리 영역입니다.
         <div class="review-list-head">
           <div>
             <p class="eyebrow">Community</p>
             <h2>등록된 리뷰</h2>
           </div>
+          # 누르면 누적된 리뷰를 전부 지울 수 있도록 만든 기능성 일반 버튼입니다.
           <button id="clearReviews" class="secondary-button" type="button">전체 삭제</button>
         </div>
 
+        # 순서가 없는 목록(ul) 태그입니다. 자바스크립트가 이 내부에 작성된 리뷰 카드를 li 태그 형태로 동적 주입합니다.
         <ul id="reviewList" class="review-list"></ul>
       </section>
     </section>
   </main>
 
+  # [푸터] 웹 사이트 맨 아래에 항상 들어가는 고정 정보 창 구역입니다.
   <footer class="site-footer">
+    # 서비스 이름을 두껍고 중요하게 강조하여 보여줍니다.
     <strong>Trip Pick</strong>
     <p>여행지 추천 · 숙소 예약 · 이동수단 예매</p>
+    # 사이트를 개발한 소속 조 명시 문단입니다.
     <p>동양미래대 컴퓨터소프트웨어공학과 웹프로그래밍 6조</p>
+    # mailto: 링크를 걸어 누르면 자동으로 사용자 컴퓨터의 메일 작성 앱이 실행되도록 연결해 줍니다.
     <p>문의: <a href="mailto:trippick@example.com">trippick@example.com</a></p>
   </footer>
 
+  # 리뷰 등록, 삭제, 리스트업 등의 동적 기능을 총괄하여 작동시키는 전용 자바스크립트(JS) 파일입니다.
   <script src="js/reviews.js"></script>
 </body>
 </html>

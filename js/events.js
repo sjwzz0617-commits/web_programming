@@ -1,4 +1,6 @@
 ﻿document.body.addEventListener("click", (event) => {
+  // 사용자가 클릭한 요소가 특정 버튼(화면 전환, 즐겨찾기, 상세정보 등)인지 확인하고 가져옵니다.
+  // .closest()는 클릭한 위치에서 가장 가까운 상위 태그를 찾는 기능입니다.
   const viewButton = event.target.closest("[data-view]");
   const favoriteButton = event.target.closest("[data-favorite]");
   const detailButton = event.target.closest("[data-detail]");
@@ -7,18 +9,26 @@
   const hotelButton = event.target.closest("[data-hotel]");
   const hotelDetailButton = event.target.closest("[data-hotel-detail]");
 
-  if (viewButton) showView(viewButton.dataset.view);
-  if (favoriteButton) toggleFavorite(favoriteButton.dataset.favorite);
-  if (detailButton) renderDetail(detailButton.dataset.detail);
-  if (hotelDetailButton) renderHotelDetail(hotelDetailButton.dataset.hotelDetail);
+  // 각각의 버튼이 실제로 클릭되었다면(존재한다면), 그에 맞는 함수를 실행합니다.
+  if (viewButton) showView(viewButton.dataset.view); // 화면 보기 전환
+  if (favoriteButton) toggleFavorite(favoriteButton.dataset.favorite); // 즐겨찾기 추가/해제
+  if (detailButton) renderDetail(detailButton.dataset.detail); // 상세 정보 표시
+  if (hotelDetailButton) renderHotelDetail(hotelDetailButton.dataset.hotelDetail); // 호텔 상세 정보 표시
+  
+  // 즐겨찾기 목록에서 특정 항목을 삭제하는 기능입니다.
   if (removeButton) {
+    // .filter()를 이용해 삭제하려는 id만 빼고 새로운 즐겨찾기 목록을 만듭니다.
     favorites = favorites.filter((id) => id !== removeButton.dataset.remove);
-    renderFavorites();
-    updateHomeFavoriteButtons();
+    renderFavorites(); // 바뀐 목록을 화면에 다시 그려줍니다.
+    updateHomeFavoriteButtons(); // 홈 화면의 버튼 상태도 업데이트합니다.
   }
+  
+  // 기차(이동수단) 선택 버튼을 눌렀을 때 장바구니에 추가하는 기능입니다.
   if (trainButton && selectTrain(trainButton.dataset.train)) {
     alert("해당 이동수단을 장바구니에 추가하였습니다.");
   }
+  
+  // 호텔 선택 버튼을 눌렀을 때 장바구니에 추가하는 기능입니다.
   if (hotelButton) {
     selectHotel(hotelButton.dataset.hotel);
     alert("장바구니에 추가되었습니다.");
@@ -133,7 +143,6 @@ document.querySelector("#paymentForm").addEventListener("submit", (event) => {
     return;
   }
 
-  // select 대신 선택된 radio 버튼의 결제 수단 값을 사용합니다.
   const method = document.querySelector("input[name='payment']:checked").value;
   message.textContent = `${payer}님의 ${method} 주문이 완료되었습니다. 총 금액은 ${formatWon(total)}입니다.`;
 });

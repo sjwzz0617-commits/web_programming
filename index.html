@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  # 웹 브라우저 탭에 표시될 사이트의 제목입니다.
   <title>Trip Pick - 나에게 맞는 여행지 추천</title>
+  # 외부에 있는 CSS(스타일시트) 파일들을 불러와서 웹 페이지를 예쁘게 꾸밉니다.
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/destinations.css">
@@ -11,63 +13,88 @@
   <link rel="stylesheet" href="css/services.css">
 </head>
 <body>
+  # [상단 바] 웹사이트의 최상단에 고정되는 로고와 메뉴 영역입니다.
   <header class="topbar">
+    # 브랜드 로고 버튼: 클릭하면 메인(home) 화면으로 이동하도록 data-view 속성을 주었습니다.
     <button class="brand" type="button" data-view="home">
+      # 로고 앞에 붙는 작은 심볼/마크를 감싸는 태그입니다.
       <span class="brand-mark">TP</span>
+      # 서비스 이름입니다.
       <span>Trip Pick</span>
     </button>
+    # 네비게이션 메뉴: 사용자가 사이트를 탐색할 수 있는 메뉴 링크들의 모음입니다.
     <nav class="nav" aria-label="주요 메뉴">
+      # 소통 관련 메뉴 그룹입니다.
       <div class="nav-group">
         <span class="nav-title">소통</span>
+        # 다른 HTML 파일(리뷰 페이지)로 이동하는 링크(하이퍼링크) 태그입니다.
         <a class="nav-link-button" href="reviews.html">리뷰</a>
       </div>
+      # 여행 관련 메뉴 그룹입니다.
       <div class="nav-group">
         <span class="nav-title">여행</span>
+        # 즐겨찾기 화면으로 이동하는 버튼과 담긴 개수를 보여줄 숫자창입니다.
         <button type="button" data-view="favorites">즐겨찾기 <span id="favoriteCount">0</span></button>
       </div>
+      # 예약 관련 메뉴 그룹입니다.
       <div class="nav-group">
         <span class="nav-title">예약</span>
+        # 각각 이동수단, 숙소, 장바구니 화면으로 전환해주는 버튼들입니다.
         <button type="button" data-view="train">이동수단</button>
         <button type="button" data-view="hotel">숙소</button>
         <button type="button" data-view="payment">장바구니</button>
       </div>
+      # 계정 관련 메뉴 그룹입니다.
       <div class="nav-group account-group">
         <span class="nav-title">계정</span>
+        # 로그인 화면으로 이동하는 버튼입니다.
         <button class="login-nav-button" type="button" data-view="login">로그인</button>
       </div>
     </nav>
   </header>
 
+  # [메인 콘텐츠 영역] 사용자가 보는 실제 핵심 내용들이 들어갑니다.
   <main>
+    # 1. 홈(메인) 화면 레이아웃 (기본적으로 active 클래스가 붙어있어 가장 먼저 보입니다)
     <section id="homeView" class="view active">
-     <div class="hero">
-  <video class="hero-bg-video" autoplay loop muted playsinline>
-    <source src="main_video_mp4.mp4" type="video/mp4">
-  </video>
+      # 대형 홍보 영역(히어로 섹션): 배경 동영상과 메인 타이틀 문구가 들어갑니다.
+      <div class="hero">
+        # 자동 재생(autoplay), 반복 재생(loop), 소리 끔(muted) 상태로 돌아가는 배경 동영상입니다.
+        <video class="hero-bg-video" autoplay loop muted playsinline>
+          <source src="main_video_mp4.mp4" type="video/mp4">
+        </video>
 
-  <div class="hero-copy">
-    <p class="eyebrow">테마별 추천 여행지</p>
-    <h1>Trip Pick</h1>
-    <p>힐링, 액티비티, 쇼핑, 관광 탭에서 취향에 맞는 여행지를 바로 둘러보고 마음에 드는 장소를 저장해보세요.</p>
-  </div>
+        # 동영상 위에 겹쳐서 보여줄 멋진 안내 문구들입니다.
+        <div class="hero-copy">
+          <p class="eyebrow">테마별 추천 여행지</p>
+          <h1>Trip Pick</h1>
+          <p>힐링, 액티비티, 쇼핑, 관광 탭에서 취향에 맞는 여행지를 바로 둘러보고 마음에 드는 장소를 저장해보세요.</p>
+        </div>
 
-  <div class="audio-control-panel">
-    <audio id="bgmAudio" loop>
-      <source src="bgm.mp3.mp3" type="audio/mpeg">
-    </audio>
-    <button id="audioPlayBtn" type="button">재생</button>
-    <label for="bgmVolume">사운드</label>
-    <input id="bgmVolume" type="range" min="0" max="1" step="0.1" value="0.5">
-  </div>
-</div>
+        # 배경음악(BGM)을 끄고 켜거나 볼륨을 조절할 수 있는 컨트롤러 상자입니다.
+        <div class="audio-control-panel">
+          # 반복 재생되는 오디오 파일 배경 태그입니다.
+          <audio id="bgmAudio" loop>
+            <source src="bgm.mp3.mp3" type="audio/mpeg">
+          </audio>
+          # 음악을 틀고 멈출 재생 버튼입니다.
+          <button id="audioPlayBtn" type="button">재생</button>
+          # 볼륨 조절 슬라이더(range 입력창)입니다. 최소 0, 최대 1, 0.1칸씩 조절 가능합니다.
+          <label for="bgmVolume">사운드</label>
+          <input id="bgmVolume" type="range" min="0" max="1" step="0.1" value="0.5">
+        </div>
+      </div>
 
+      # 추천 여행지 리스트를 카테고리별로 모아둔 섹션입니다.
       <section class="all-destinations-section">
         <div class="section-title">
           <p class="eyebrow">RECOMMENDS</p>
           <h2>추천 여행지 보기</h2>
         </div>
 
+        # CSS를 활용해 탭(Tab) 메뉴를 구현하기 위해 라디오 버튼들을 배치해 두었습니다.
         <div class="category-tabs-wrap">
+          # 같은 name("homeCategory")을 공유하므로 단 하나만 선택할 수 있습니다.
           <input class="category-radio" type="radio" name="homeCategory" id="tab-all" checked>
           <input class="category-radio" type="radio" name="homeCategory" id="tab-sea">
           <input class="category-radio" type="radio" name="homeCategory" id="tab-healing">
@@ -75,6 +102,7 @@
           <input class="category-radio" type="radio" name="homeCategory" id="tab-shopping">
           <input class="category-radio" type="radio" name="homeCategory" id="tab-tour">
 
+          # 화면에 깔끔하게 보여줄 카테고리 탭 버튼(라벨)들입니다. 클릭하면 위의 라디오 버튼이 체크됩니다.
           <nav class="category-tabs" aria-label="여행지 카테고리">
             <label for="tab-all">전체 여행지</label>
             <label for="tab-sea">바다</label>
@@ -84,6 +112,7 @@
             <label for="tab-tour">관광</label>
           </nav>
 
+          # 자바스크립트를 통해 각 카테고리에 맞는 여행지 카드들이 동적으로 들어갈 빈 상자 영역들입니다.
           <div class="tab-panels">
             <section class="tab-panel all-panel" data-category-panel="all"></section>
             <section class="tab-panel sea-panel" data-category-panel="sea"></section>
@@ -96,11 +125,15 @@
       </section>
     </section>
 
+    # 2. 여행지 상세 정보 화면 구역
     <section id="detailView" class="view">
+      # 뒤로 가기 버튼입니다.
       <button class="back-button" type="button" data-view="home">← 첫 화면으로</button>
+      # 상세 내용(하단의 detailTemplate 내용)이 스크립트에 의해 주입될 빈 독립 문서(article) 영역입니다.
       <article id="detailContent" class="detail"></article>
     </section>
 
+    # 3. 즐겨찾기(찜) 목록 화면 구역
     <section id="favoritesView" class="view">
       <div class="page-head">
         <div>
@@ -109,9 +142,11 @@
         </div>
         <button class="secondary-button" type="button" data-view="home">전체 여행지 보기</button>
       </div>
+      # 사용자가 하트를 누른 여행지 카드가 그리드(격자) 형태로 이곳에 배치됩니다.
       <div id="favoriteList" class="card-grid"></div>
     </section>
 
+    # 4. 로그인 화면 구역
     <section id="loginView" class="view service-view">
       <div class="page-head">
         <div>
@@ -122,29 +157,36 @@
       </div>
 
       <div class="member-layout account-layout">
+        # 사용자가 아이디/비번을 입력해 제출(submit)할 수 있는 폼 상자입니다.
         <form id="loginForm" class="form-panel account-card">
           <h2>Trip Pick 로그인</h2>
 
           <div class="input-list">
+            # 입력창과 텍스트 제목을 연결해 주는 label 태그입니다.
             <label>
               아이디
+              # 필수(required)로 입력해야 하는 일반 텍스트 입력창입니다.
               <input id="loginEmail" type="text" placeholder="아이디" required>
             </label>
             <label>
               비밀번호
+              # 글자가 땡땡땡(***)으로 가려지는 비밀번호 전용 입력창입니다.
               <input id="loginPassword" type="password" placeholder="비밀번호" required>
             </label>
           </div>
 
+          # 이 버튼을 누르면 form 안의 데이터가 전송되거나 확인 절차가 실행됩니다.
           <button class="primary-button account-button" type="submit">로그인</button>
 
           <div class="account-links">
+            # 회원가입 화면으로 전환시켜 주는 텍스트 디자인 버튼입니다.
             <button class="text-button" type="button" data-view="signup">회원가입</button>
           </div>
         </form>
       </div>
     </section>
 
+    # 5. 회원가입 화면 구역
     <section id="signupView" class="view service-view">
       <div class="page-head">
         <div>
@@ -155,6 +197,7 @@
       </div>
 
       <div class="member-layout account-layout">
+        # 회원정보 입력을 위한 폼 구역입니다.
         <form id="signupForm" class="form-panel account-card">
           <h2>Trip Pick 회원가입</h2>
 
@@ -169,6 +212,7 @@
             </label>
             <label>
               이메일
+              # 이메일 형식(@ 기호 포함)인지 브라우저가 알아서 검사해주는 이메일 전용 입력창입니다.
               <input id="signupEmail" type="email" placeholder="trip@example.com" required>
             </label>
             <label>
@@ -185,6 +229,7 @@
       </div>
     </section>
 
+    # 6. 이동수단 예약 화면 구역
     <section id="trainView" class="view service-view">
       <div class="page-head">
         <div>
@@ -198,6 +243,7 @@
         <div class="form-grid">
           <label>
             이동수단
+            # 드롭다운 선택 상자입니다. 여러 선택지 중 하나를 마우스로 골라 선택하게 합니다.
             <select id="transportType">
               <option value="train">기차</option>
               <option value="flight">비행기</option>
@@ -238,6 +284,7 @@
           </label>
           <label>
             출발일
+            # 작은 달력 창이 뜨면서 연, 월, 일을 편하게 고를 수 있게 해주는 날짜 전용 입력창입니다.
             <input id="trainDate" type="date">
           </label>
           <label id="passengerLabel">
@@ -251,10 +298,12 @@
           </label>
         </div>
 
+        # 조건에 맞는 기차/차량 예약 옵션 결과 리스트들이 자바스크립트에 의해 들어올 빈 공간입니다.
         <div class="booking-list" id="trainOptions"></div>
       </form>
     </section>
 
+    # 7. 숙소 예약 화면 구역
     <section id="hotelView" class="view service-view">
       <div class="page-head">
         <div>
@@ -264,6 +313,7 @@
         <button class="secondary-button" type="button" data-view="payment">장바구니로</button>
       </div>
 
+      # 숙소를 필터링하고 정렬하는 조건 도구 모음 바(Toolbar) 영역입니다.
       <div class="toolbar stay-toolbar">
         <label>
           여행지
@@ -293,6 +343,7 @@
         </label>
         <label>
           숙박
+          # 사용자가 임의로 글자를 수정할 수 없고 오직 읽기만 가능한(readonly) 안내창입니다.
           <input id="nightCount" type="text" value="1박" readonly>
         </label>
         <label>
@@ -305,9 +356,11 @@
         </label>
       </div>
 
+      # 조건에 맞춰 필터링 된 호텔 카드 목록이 동적으로 배치될 그리드 박스입니다.
       <div id="hotelList" class="hotel-grid"></div>
     </section>
 
+    # 8. 장바구니 화면 구역
     <section id="paymentView" class="view service-view">
       <div class="page-head">
         <div>
@@ -318,11 +371,14 @@
       </div>
 
       <div class="payment-layout">
+        # 메인 흐름 외에 우측이나 좌측의 사이드바/요약창을 만들 때 사용하는 사이드 정보(aside) 태그입니다.
         <aside class="payment-summary">
           <h2>장바구니 요약</h2>
+          # 현재 담은 선택 상품 리스트가 자바스크립트로 표현될 곳입니다.
           <div id="bookingSummary"></div>
           <div class="total-row">
             <span>총 금액</span>
+            # 금액 글씨를 굵고 중요하게 강조하여 보여주는 strong 태그입니다.
             <strong id="totalPrice">0원</strong>
           </div>
         </aside>
@@ -333,6 +389,7 @@
       </div>
     </section>
 
+    # 9. 최종 결제 화면 구역
     <section id="checkoutView" class="view service-view">
       <div class="page-head">
         <div>
@@ -351,6 +408,8 @@
             <strong id="checkoutTotalPrice">0원</strong>
           </div>
         </aside>
+        
+        # 주문자의 개인 정보와 결제 방식을 입력받는 최종 서류(Form) 양식입니다.
         <form id="paymentForm" class="form-panel">
           <h2>주문자 정보</h2>
           <label>
@@ -359,12 +418,16 @@
           </label>
           <label>
             연락처
+            # 전화번호(tel) 양식창이며, 정규표현식(pattern) 기능을 빌려 010-0000-0000 형식만 입력되도록 강제합니다.
             <input id="payerPhone" type="tel" placeholder="010-0000-0000" pattern="010-[0-9]{4}-[0-9]{4}" maxlength="13" required>
           </label>
-          <!-- 결제 수단은 입력양식 단원에서 배운 fieldset, legend, radio 태그로 구성했습니다. -->
+          
+          # fieldset: 폼 안에서 연관된 입력 항목들을 하나의 사각형 그룹으로 예쁘게 묶어주는 태그입니다.
           <fieldset class="payment-method-fieldset">
+            # legend: fieldset으로 묶은 입력 그룹의 대표 제목을 붙여주는 태그입니다.
             <legend>결제 수단 선택</legend>
             <label>
+              # radio: 동일한 name 속성을 가진 단추 중 단 하나만 동그라미 체크할 수 있는 라디오 버튼입니다.
               <input type="radio" name="payment" value="카드 결제" required>
               카드 결제
             </label>
@@ -378,26 +441,36 @@
             </label>
           </fieldset>
           <button class="primary-button" type="submit">주문하기</button>
+          # 하단에 상태 메시지를 실시간으로 띄워줄 알림 문단입니다.
           <p id="paymentMessage" class="status-message">이동수단이나 숙소를 선택하면 장바구니 요약에 표시됩니다.</p>
         </form>
       </div>
     </section>
   </main>
 
+  # [템플릿 구역] 당장 화면에 출력되지는 않지만, 자바스크립트가 구조를 복사해 새 항목을 찍어낼 때 쓰는 '양식 틀'입니다.
+  
+  # 여행지 상세 페이지를 채울 전체 템플릿 양식입니다.
   <template id="detailTemplate">
     <div class="detail-hero">
+      # 이미지를 표시하는 태그입니다. 자바스크립트가 데이터를 채워 넣을 수 있게 data-field를 가지고 있습니다.
       <img data-field="image" src="" alt="">
       <div class="detail-main">
         <div class="detail-title-row">
           <div>
             <p class="eyebrow">Destination Detail</p>
+            # 대제목: 여행지의 이름이 대문짝만하게 찍힐 타이틀입니다.
             <h1 data-field="name"></h1>
             <p class="detail-intro" data-field="intro"></p>
           </div>
+          # 찜하기(하트) 기능을 수행할 버튼입니다.
           <button class="favorite-button" type="button" data-field="favoriteButton">♥</button>
         </div>
         <div class="tags" data-field="tags"></div>
+        
+        # 격자 구조로 가이드 박스 7개를 알차게 배치하는 인포메이션 공간입니다.
         <div class="info-grid">
+          # 각각의 개별 정보 테마를 의미론적으로 분리한 소구역(section) 태그들입니다.
           <section class="info-box">
             <h3>추천 코스</h3>
             <p data-field="course"></p>
@@ -427,22 +500,32 @@
             <p data-field="tips"></p>
           </section>
         </div>
+        
+        # 클릭하면 숨겨진 내용이 주르륵 열리는 아코디언 메뉴 존입니다.
         <div class="detail-accordion">
+          # details: 자체적으로 접고 펼치는 인터랙티브 기능을 수행하는 토글 태그입니다.
           <details class="detail-panel">
+            # summary: details 태그가 닫혀있을 때 겉으로 드러나는 대표 요약 제목 문구입니다.
             <summary>1일차 / 2일차 / 3일차 추천 코스</summary>
+            # 이 내부에 상세 테이블 일정표들이 차곡차곡 쌓이게 됩니다.
             <div class="itinerary-stack" data-field="itinerary"></div>
           </details>
           <details class="detail-panel">
             <summary>여행 준비물 체크리스트</summary>
+            # 순서가 따로 없는 목록(ul) 태그로, 이 안에 체크리스트 항목이 들어옵니다.
             <ul class="packing-checklist" data-field="packing"></ul>
           </details>
         </div>
+        
+        # 추천 주변 관광지를 카드 형태로 모아 보여줄 탭 섹션입니다.
         <section class="detail-attraction-tab">
           <div class="detail-tab-head">
             <span>추천 관광지</span>
           </div>
           <div class="detail-attraction-list" data-field="attractions"></div>
         </section>
+        
+        # 추천 주변 숙소를 카드 형태로 모아 보여줄 탭 섹션입니다.
         <section class="detail-hotel-tab">
           <div class="detail-tab-head">
             <span>추천 숙소</span>
@@ -453,23 +536,31 @@
     </div>
   </template>
 
+  # 일정표를 담을 표(Table) 기본 틀 템플릿입니다.
   <template id="itineraryTableTemplate">
     <table class="itinerary-table">
+      # 표 바로 위에 표의 핵심 제목이나 부연 설명을 달아두는 캡션 태그입니다.
       <caption></caption>
+      # 표의 최상단 제목 행들을 모아서 선언해 주는 헤더 구역입니다.
       <thead>
+        # tr: 한 줄(Row, 행)을 생성합니다.
         <tr>
+          # th: 열의 제목이 되는 칸(셀)을 만듭니다. scope="col"은 아래 세로 방향 데이터들의 대리인임을 뜻합니다.
           <th scope="col">시간</th>
           <th scope="col">장소</th>
           <th scope="col">활동</th>
           <th scope="col">예상 비용</th>
         </tr>
       </thead>
+      # 표의 실제 본문 내용 데이터 행들이 주입되어 채워지는 본체 구역입니다.
       <tbody></tbody>
     </table>
   </template>
 
+  # 일정표 내부의 실질적인 데이터 한 줄(Row) 모양의 템플릿입니다.
   <template id="itineraryRowTemplate">
     <tr>
+      # td: 일반적인 정보 데이터가 들어가는 알맹이 칸(셀)들입니다.
       <td data-field="time"></td>
       <td data-field="place"></td>
       <td data-field="activity"></td>
@@ -477,30 +568,40 @@
     </tr>.
   </template>
 
+  # 준비물 체크리스트 항목 하나하나의 모양을 정의한 템플릿입니다.
   <template id="packingItemTemplate">
+    # li: 리스트(ul) 구조 내부에 들어갈 개별 항목 요소입니다.
     <li>
       <label>
+        # 체크 표시를 껐다 켰다 할 수 있는 네모난 체크박스(checkbox) 창입니다.
         <input type="checkbox">
+        # 준비물 이름 텍스트가 인쇄될 자리입니다.
         <span></span>
       </label>
     </li>
   </template>
 
+  # [푸터] 웹 사이트 하단에 상시 노출되는 고정 안내창 구역입니다.
   <footer class="site-footer">
+    # 서비스 이름을 진하고 강력하게 강조합니다.
     <strong>Trip Pick</strong>
     <p>여행지 추천 · 숙소 예약 · 이동수단 예매</p>
+    # 사이트를 개발한 소속 그룹 안내 문단입니다.
     <p>동양미래대 컴퓨터소프트웨어공학과 웹프로그래밍 6조</p>
+    # mailto 프로토콜 링크를 걸어, 누르면 지정된 메일 주소로 편지를 쓸 수 있게 앱을 연동합니다.
     <p>문의: <a href="mailto:trippick@example.com">trippick@example.com</a></p>
+    # 사이트 저작권 소유 명시 문단입니다.
     <p>Copyright 2026 CampTrip. All rights reserved.</p>
-    
   </footer>
+  
+  # 사이트에 동적인 기능과 데이터 연동을 담당하는 외부 자바스크립트(JS) 파일들을 연이어 장착합니다.
   <script src="js/data.js"></script>
   <script src="js/app-state.js"></script>
   <script src="js/destination-cards.js"></script>
   <script src="js/booking.js"></script>
   <script src="js/detail.js"></script>
   <script src="js/events.js"></script>
+  # 앞선 모든 자바스크립트 설정을 마친 후 최종적으로 사이트를 구동하고 첫 단추를 꿰는 실행 파일입니다.
   <script src="js/init.js"></script>
 </body>
 </html>
-
