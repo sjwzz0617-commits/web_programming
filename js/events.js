@@ -138,3 +138,33 @@ document.querySelector("#paymentForm").addEventListener("submit", (event) => {
   message.textContent = `${payer}님의 ${method} 주문이 완료되었습니다. 총 금액은 ${formatWon(total)}입니다.`;
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const bgmAudio = document.querySelector("#bgmAudio");
+  const audioPlayBtn = document.querySelector("#audioPlayBtn");
+  const bgmVolumeInput = document.querySelector("#bgmVolume");
+
+  if (bgmAudio && audioPlayBtn && bgmVolumeInput) {
+    bgmAudio.volume = bgmVolumeInput.value;
+
+    audioPlayBtn.addEventListener("click", () => {
+      if (bgmAudio.paused) {
+        bgmAudio.play()
+          .then(() => {
+            audioPlayBtn.textContent = "정지";
+            audioPlayBtn.style.backgroundColor = "var(--coral)";
+          })
+          .catch((error) => {
+            console.error("자동재생 차단:", error);
+          });
+      } else {
+        bgmAudio.pause();
+        audioPlayBtn.textContent = "재생";
+        audioPlayBtn.style.backgroundColor = "var(--sky)";
+      }
+    });
+
+    bgmVolumeInput.addEventListener("input", (event) => {
+      bgmAudio.volume = event.target.value;
+    });
+  }
+});

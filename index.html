@@ -40,14 +40,26 @@
 
   <main>
     <section id="homeView" class="view active">
-      <div class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">테마별 추천 여행지</p>
-          <h1>Trip Pick</h1>
-          <p>힐링, 액티비티, 쇼핑, 관광 탭에서 취향에 맞는 여행지를 바로 둘러보고 마음에 드는 장소를 저장해보세요.</p>
-        </div>
+     <div class="hero">
+  <video class="hero-bg-video" autoplay loop muted playsinline>
+    <source src="main_video_mp4.mp4" type="video/mp4">
+  </video>
 
-      </div>
+  <div class="hero-copy">
+    <p class="eyebrow">테마별 추천 여행지</p>
+    <h1>Trip Pick</h1>
+    <p>힐링, 액티비티, 쇼핑, 관광 탭에서 취향에 맞는 여행지를 바로 둘러보고 마음에 드는 장소를 저장해보세요.</p>
+  </div>
+
+  <div class="audio-control-panel">
+    <audio id="bgmAudio" loop>
+      <source src="bgm.mp3.mp3" type="audio/mpeg">
+    </audio>
+    <button id="audioPlayBtn" type="button">재생</button>
+    <label for="bgmVolume">사운드</label>
+    <input id="bgmVolume" type="range" min="0" max="1" step="0.1" value="0.5">
+  </div>
+</div>
 
       <section class="all-destinations-section">
         <div class="section-title">

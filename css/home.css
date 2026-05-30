@@ -1,19 +1,73 @@
 ﻿.hero {
+  position: relative;
   display: flex;
   align-items: center;
   min-height: 520px;
   padding: 76px 72px 86px;
-  background:
-    linear-gradient(90deg, rgba(11, 48, 61, 0.72), rgba(11, 48, 61, 0.32), rgba(11, 48, 61, 0.12)),
-    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=80") center/cover;
+  overflow: hidden;
+  background: rgba(11, 48, 61, 0.4); 
+}
+
+.hero-bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .hero-copy {
+  position: relative;
+  z-index: 2;
   align-self: center;
   max-width: 620px;
   color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+.audio-control-panel {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  color: white;
+  backdrop-filter: blur(4px);
 }
 
+.audio-control-panel button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--sky);
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.audio-control-panel button:hover {
+  background-color: var(--sky-dark);
+}
+
+.audio-control-panel label {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.audio-control-panel input[type="range"] {
+  width: 100px;
+  accent-color: var(--sky);
+  cursor: pointer;
+}
 .eyebrow {
   margin: 0 0 10px;
   color: var(--sky-dark);
