@@ -278,7 +278,8 @@ const destinations = [
   }
 ];
 
-// [2. 숙소 정보 데이터 배열 (지도의 검색 키워드로 연동될 예정)]
+// [2. 숙소 데이터 배열]
+// 숙소 예약 화면과 여행지 상세 페이지의 추천 숙소 카드가 이 데이터를 함께 사용합니다.
 const hotels = [
   {
     id: "jeju-ocean",
@@ -405,7 +406,7 @@ const hotels = [
     id: "gwangju-art",
     destination: "광주",
     name: "유탑 부티크 호텔 & 레지던스",
-    image: "photo/gwangju",
+    image: "photo/광주1.png",
     type: "레지던스 호텔",
     rating: 4.3,
     price: 85000,
@@ -416,7 +417,7 @@ const hotels = [
     id: "daegu-center",
     destination: "대구",
     name: "토요코인 대구동성로",
-    image: "photo/daegu",
+    image: "photo/대구1.png",
     type: "실속형 호텔",
     rating: 4.2,
     price: 68000,
@@ -425,7 +426,8 @@ const hotels = [
   }
 ];
 
-// [3. 이동수단 상품 데이터 배열 (기차, 항공, 렌터카 카테고리 분류)]
+// [3. 이동수단 상품 데이터 배열]
+// 기차, 비행기, 렌터카 옵션을 같은 구조로 저장해 예약 카드 생성에 사용합니다.
 const trainProducts = [
   { id: "train-ktx", category: "train", type: "KTX", time: "08:30", duration: "약 2시간 30분 소요", price: 59800 },
   { id: "train-itx", category: "train", type: "ITX-새마을", time: "09:15", duration: "약 3시간 40분 소요", price: 42600 },
@@ -438,7 +440,8 @@ const trainProducts = [
   { id: "car-electric", category: "car", type: "친환경 전기차 (아이오닉/EV6 등)", time: "24시간 대여", duration: "보험 및 충전카드 포함", price: 85000 }
 ];
 
-// [4. 하드코딩된 상세 일정 계획표 데이터 테이블 객체]
+// [4. 특정 지역용 상세 일정 데이터]
+// 일부 여행지는 별도 일정표를 더 구체적으로 보여주기 위해 지역 이름별 일정을 저장합니다.
 const itineraries = {
   "jeju": [
     { day: "1일차", plans: [
@@ -481,7 +484,8 @@ const itineraries = {
 };
 
 // [5. 화면 상단 메뉴 전환 등에 연동하기 위한 즐겨찾기 목록과 장바구니 상태 객체]
-let favorites = ["jeju", "gangneung"];
+// favorites는 사용자가 하트 버튼으로 담은 여행지 id 목록이고, booking은 예약 과정에서 선택한 항목을 저장합니다.
+let favorites = [];
 const booking = {
   trains: [],
   hotel: null

@@ -1,10 +1,12 @@
 .review-page {
+  /* 리뷰 작성 폼과 리뷰 목록을 담는 페이지 전체 폭입니다. */
   width: 1040px;
   margin: 0 auto;
   padding: 48px 0 72px;
 }
 
 .review-head {
+  /* 리뷰 페이지 상단 제목과 설명 문구 영역입니다. */
   margin-bottom: 24px;
 }
 
@@ -20,6 +22,7 @@
 }
 
 .review-layout {
+  /* 왼쪽 작성 폼, 오른쪽 리뷰 목록을 나란히 배치하는 2열 레이아웃입니다. */
   display: grid;
   grid-template-columns: 390px 1fr;
   gap: 22px;
@@ -28,6 +31,7 @@
 
 .review-form,
 .review-list-section {
+  /* 작성 폼과 목록 영역을 같은 카드 톤으로 맞춥니다. */
   border: 1px solid var(--line);
   border-radius: 8px;
   background: white;
@@ -35,6 +39,7 @@
 }
 
 .review-form {
+  /* 리뷰 입력 항목들이 세로로 일정한 간격을 갖도록 grid를 사용합니다. */
   display: grid;
   gap: 16px;
   padding: 22px;
@@ -56,6 +61,7 @@
 .review-form input,
 .review-form select,
 .review-form textarea {
+  /* 폼 안의 입력 요소들이 같은 크기와 배경을 갖도록 통일합니다. */
   width: 100%;
   padding: 12px;
   color: var(--ink);
@@ -76,6 +82,7 @@
 
 .rating-fieldset,
 .travel-type-fieldset {
+  /* 만족도와 여행 유형 radio 버튼 묶음을 작은 칩 그룹처럼 보여줍니다. */
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -110,6 +117,7 @@
 }
 
 .review-guide {
+  /* 사용자가 어떤 내용을 쓰면 좋은지 알려주는 안내 박스입니다. */
   padding: 14px;
   border-radius: 8px;
   background: #f7fbfc;
@@ -129,6 +137,7 @@
 }
 
 .review-submit-button {
+  /* 리뷰 폼을 제출하는 주요 버튼입니다. */
   width: 100%;
   padding: 13px 16px;
   border: 0;
@@ -146,10 +155,12 @@
 }
 
 .review-list-section {
+  /* 등록된 리뷰 카드 목록을 감싸는 오른쪽 패널입니다. */
   padding: 22px;
 }
 
 .review-list-head {
+  /* 목록 제목과 전체 삭제 버튼을 한 줄에 배치합니다. */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -158,6 +169,7 @@
 }
 
 .review-list {
+  /* ul의 기본 점을 없애고 리뷰 카드를 세로로 쌓습니다. */
   display: grid;
   gap: 14px;
   margin: 0;
@@ -166,6 +178,7 @@
 }
 
 .review-card {
+  /* 자바스크립트로 생성되는 개별 리뷰 카드입니다. */
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -186,6 +199,7 @@
 }
 
 .review-score {
+  /* 만족도 점수를 작은 배지처럼 강조합니다. */
   padding: 6px 10px;
   border-radius: 999px;
   color: white;
@@ -195,6 +209,7 @@
 }
 
 .review-meta {
+  /* 작성자, 여행 유형, 날짜 정보를 작은 칩 형태로 나열합니다. */
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -214,6 +229,7 @@
 }
 
 .review-content {
+  /* 사용자가 입력한 줄바꿈을 유지하기 위해 pre-wrap을 사용합니다. */
   margin: 0;
   color: #40575f;
   line-height: 1.65;
@@ -221,6 +237,7 @@
 }
 
 .empty-review {
+  /* 아직 리뷰가 없을 때 리스트 안에 표시되는 빈 상태 안내 카드입니다. */
   padding: 42px 18px;
   border: 1px dashed #bcd8df;
   border-radius: 8px;

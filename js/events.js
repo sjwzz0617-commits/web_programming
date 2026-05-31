@@ -1,4 +1,6 @@
 ﻿document.body.addEventListener("click", (event) => {
+  // [1. 전체 페이지 클릭 이벤트 위임]
+  // 버튼이 자바스크립트로 나중에 생성되어도 document.body에서 한 번에 클릭을 감지할 수 있게 처리합니다.
   // 사용자가 클릭한 요소가 특정 버튼(화면 전환, 즐겨찾기, 상세정보 등)인지 확인하고 가져옵니다.
   // .closest()는 클릭한 위치에서 가장 가까운 상위 태그를 찾는 기능입니다.
   const viewButton = event.target.closest("[data-view]");
@@ -35,20 +37,28 @@
   }
 });
 
+// [2. 이동수단 종류 변경 이벤트]
+// 기차/비행기/렌터카 선택에 따라 출발지, 도착지, 인원 입력 방식을 다시 구성합니다.
 document.querySelector("#transportType").addEventListener("input", () => {
   updateTransportPlaceOptions();
   updatePassengerOptions();
   renderTrainOptions();
 });
 
+// [3. 이동수단 검색 조건 변경 이벤트]
+// 출발지, 도착지, 날짜, 인원이 바뀌면 교통 옵션 카드를 즉시 다시 그립니다.
 ["#departureStation", "#arrivalStation", "#trainDate", "#passengerCount"].forEach((selector) => {
   document.querySelector(selector).addEventListener("input", renderTrainOptions);
 });
 
+// [4. 날짜 입력창 클릭 이벤트]
+// 브라우저가 지원하면 input[type=date]의 기본 달력 UI를 바로 열어줍니다.
 const trainDateInput = document.querySelector("#trainDate");
 trainDateInput.addEventListener("click", () => openDatePicker(trainDateInput));
 trainDateInput.addEventListener("focus", () => openDatePicker(trainDateInput));
 
+// [5. 숙소 필터 변경 이벤트]
+// 여행지, 체크인/체크아웃, 정렬 기준이 바뀔 때 숙소 목록과 장바구니 가격을 같이 갱신합니다.
 ["#hotelDestination", "#checkinDate", "#checkoutDate", "#hotelSort"].forEach((selector) => {
   document.querySelector(selector).addEventListener("input", handleHotelFilterChange);
 });
@@ -59,6 +69,8 @@ trainDateInput.addEventListener("focus", () => openDatePicker(trainDateInput));
   input.addEventListener("focus", () => openDatePicker(input));
 });
 
+// [6. 로그인 폼 검사 이벤트]
+// 실제 서버 로그인 대신 발표용으로 아이디/비밀번호 입력 여부와 비밀번호 길이만 확인합니다.
 document.querySelector("#loginForm").addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -79,6 +91,8 @@ document.querySelector("#loginForm").addEventListener("submit", (event) => {
   alert("로그인되었습니다.");
 });
 
+// [7. 회원가입 폼 검사 이벤트]
+// 이름은 한글 세 글자, 이메일은 @와 .com 포함, 비밀번호는 8자 이상인지 검사합니다.
 document.querySelector("#signupForm").addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -112,6 +126,8 @@ document.querySelector("#signupForm").addEventListener("submit", (event) => {
   alert("회원가입이 완료되었습니다.");
 });
 
+// [8. 결제자 연락처 자동 포맷 이벤트]
+// 숫자만 남긴 뒤 010-0000-0000 형태로 하이픈을 자동 삽입합니다.
 document.querySelector("#payerPhone").addEventListener("input", (event) => {
   const numbers = event.target.value.replace(/[^0-9]/g, "").slice(0, 11);
 
@@ -124,6 +140,8 @@ document.querySelector("#payerPhone").addEventListener("input", (event) => {
   }
 });
 
+// [9. 최종 결제 폼 제출 이벤트]
+// 장바구니가 비어 있는지, 주문자 이름이 유효한지 확인한 뒤 결제 완료 메시지를 표시합니다.
 document.querySelector("#paymentForm").addEventListener("submit", (event) => {
   event.preventDefault();
   const message = document.querySelector("#paymentMessage");
@@ -147,6 +165,8 @@ document.querySelector("#paymentForm").addEventListener("submit", (event) => {
   message.textContent = `${payer}님의 ${method} 주문이 완료되었습니다. 총 금액은 ${formatWon(total)}입니다.`;
 });
 
+// [10. 배경음악 컨트롤 초기화]
+// DOM이 모두 준비된 뒤 오디오 재생/정지 버튼과 볼륨 슬라이더 이벤트를 연결합니다.
 document.addEventListener("DOMContentLoaded", () => {
   const bgmAudio = document.querySelector("#bgmAudio");
   const audioPlayBtn = document.querySelector("#audioPlayBtn");

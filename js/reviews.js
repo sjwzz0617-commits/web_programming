@@ -46,7 +46,7 @@ function makeReviewItem(review) {
   // 작성자, 여행유형, 여행날짜, 리뷰 작성일을 순서대로 매칭하여 넣어줍니다.
   const metaItems = item.querySelectorAll(".review-meta li");
   metaItems[0].textContent = `작성자: ${review.name}`;
-  metaItems[1].textContent = `旅行유형: ${review.travelType}`;
+  metaItems[1].textContent = `여행유형: ${review.travelType}`;
   metaItems[2].textContent = `여행날짜: ${review.travelDate}`;
   metaItems[3].textContent = `리뷰 작성 날짜: ${review.createdAt}`;
   item.querySelector(".review-content").textContent = review.content; // 리뷰 본문 내용 입력

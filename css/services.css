@@ -1,16 +1,19 @@
 ﻿.payment-layout {
   display: grid;
+  /* 장바구니/결제 화면에서 요약 영역과 입력 폼을 나란히 두는 기본 레이아웃입니다. */
   grid-template-columns: 1fr 1fr;
   gap: 22px;
   margin-top: 24px;
 }
 
 #paymentView .payment-layout {
+  /* 장바구니 화면은 결제 폼 없이 요약만 보여주기 때문에 한 열로 바꿉니다. */
   grid-template-columns: 1fr;
 }
 
 .cart-actions {
   display: flex;
+  /* 장바구니 화면의 '결제하러 가기' 버튼을 오른쪽에 배치합니다. */
   justify-content: flex-end;
   margin-top: 18px;
 }
@@ -22,6 +25,7 @@
 
 .member-layout {
   display: grid;
+  /* 로그인/회원가입 같은 계정 화면의 폼 배치용 레이아웃입니다. */
   grid-template-columns: 1fr 1fr;
   gap: 24px;
   margin-top: 24px;
@@ -34,6 +38,7 @@
 }
 
 .account-card {
+  /* 로그인/회원가입 폼을 카드처럼 보이게 하는 스타일입니다. */
   padding: 34px;
   border-color: var(--line);
   background: white;
@@ -76,6 +81,7 @@
 .text-button {
   padding: 0;
   border: 0;
+  /* 회원가입 전환처럼 링크 느낌으로 쓰는 작은 텍스트 버튼입니다. */
   background: transparent;
   color: var(--sky-dark);
   font-size: 14px;
@@ -89,6 +95,7 @@
 
 .form-panel,
 .payment-summary {
+  /* 예약/결제 입력 폼과 장바구니 요약 박스의 공통 카드 스타일입니다. */
   padding: 26px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -109,6 +116,7 @@
 .form-grid label {
   display: grid;
   gap: 8px;
+  /* 입력 제목과 실제 입력창을 세로로 쌓아 폼을 읽기 쉽게 만듭니다. */
   margin-top: 16px;
   color: var(--muted);
   font-size: 14px;
@@ -149,6 +157,7 @@
 
 .input-list {
   display: grid;
+  /* 로그인/회원가입처럼 입력창들이 세로로 이어지는 구역입니다. */
   gap: 14px;
 }
 
@@ -160,6 +169,7 @@
 .form-panel select,
 .form-grid input,
 .form-grid select {
+  /* 폼 입력창과 select 박스의 높이, 테두리, 배경을 통일합니다. */
   height: 46px;
   padding: 0 13px;
   color: var(--ink);
@@ -185,12 +195,14 @@
 
 .form-grid {
   display: grid;
+  /* 이동수단 예약 조건들을 한 줄에 5칸으로 나누어 배치합니다. */
   grid-template-columns: repeat(5, 1fr);
   gap: 14px;
 }
 
 .booking-list {
   display: grid;
+  /* 이동수단 옵션 카드들을 3열로 보여주는 결과 영역입니다. */
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-top: 24px;
@@ -198,6 +210,7 @@
 
 .option-card,
 .hotel-card {
+  /* 이동수단 카드와 숙소 카드에 공통으로 적용되는 박스 스타일입니다. */
   padding: 20px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -206,6 +219,7 @@
 
 .option-card.selected,
 .hotel-card.selected {
+  /* 이미 장바구니에 선택된 항목을 파란 테두리로 강조합니다. */
   border-color: var(--sky-dark);
   box-shadow: 0 12px 26px rgba(35, 127, 163, 0.18);
 }
@@ -225,6 +239,7 @@
 }
 
 .price {
+  /* 금액 정보는 초록색 굵은 글씨로 눈에 띄게 표시합니다. */
   display: block;
   margin: 16px 0;
   color: var(--leaf);
@@ -233,6 +248,7 @@
 }
 
 .select-button {
+  /* 예약 상품을 장바구니에 담는 주요 선택 버튼입니다. */
   width: 100%;
   padding: 12px 14px;
   color: white;
@@ -249,6 +265,7 @@
 
 .hotel-actions {
   display: grid;
+  /* 숙소 카드 하단의 선택 버튼과 상세 보기 버튼을 2열로 배치합니다. */
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
@@ -273,6 +290,7 @@
 }
 
 .stay-toolbar {
+  /* 숙소 검색 조건 입력창들을 5열로 정리하는 툴바입니다. */
   grid-template-columns: repeat(5, 1fr);
   margin-top: 24px;
 }
@@ -289,6 +307,7 @@
 
 .hotel-grid {
   display: grid;
+  /* 숙소 검색 결과 카드를 3열 그리드로 배치합니다. */
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
   margin-top: 20px;
@@ -308,10 +327,12 @@
 }
 
 .payment-summary {
+  /* 결제 요약 박스는 내용 높이에 맞춰 위쪽에 고정되도록 합니다. */
   align-self: start;
 }
 
 .summary-item {
+  /* 장바구니 안의 이동수단/숙소 한 건을 구분하는 항목 박스입니다. */
   padding: 16px 0;
   border-bottom: 1px solid var(--line);
 }
@@ -324,6 +345,7 @@
 
 .total-row {
   display: flex;
+  /* 최종 합계 금액을 별도 박스로 강조해 결제 흐름의 끝을 보여줍니다. */
   justify-content: space-between;
   align-items: center;
   margin-top: 18px;

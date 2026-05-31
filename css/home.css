@@ -1,4 +1,5 @@
 ﻿.hero {
+  /* 메인 첫 화면의 큰 영상 배너 영역입니다. 내부 텍스트와 오디오 컨트롤을 영상 위에 겹쳐 배치합니다. */
   position: relative;
   display: flex;
   align-items: center;
@@ -9,6 +10,7 @@
 }
 
 .hero-bg-video {
+  /* 배경 영상이 hero 전체를 꽉 채우도록 절대 위치로 깔아둡니다. */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -21,6 +23,7 @@
 }
 
 .hero-copy {
+  /* 영상 위에 올라가는 제목/설명 문구입니다. z-index로 영상보다 앞에 보이게 합니다. */
   position: relative;
   z-index: 2;
   align-self: center;
@@ -29,6 +32,7 @@
   text-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 .audio-control-panel {
+  /* 배경음악 재생 버튼과 볼륨 슬라이더를 담는 작은 컨트롤 패널입니다. */
   position: absolute;
   bottom: 24px;
   right: 24px;
@@ -69,6 +73,7 @@
   cursor: pointer;
 }
 .eyebrow {
+  /* 섹션 위에 붙는 작은 영문/보조 제목 스타일입니다. */
   margin: 0 0 10px;
   color: var(--sky-dark);
   font-size: 13px;
@@ -95,6 +100,7 @@
 }
 
 .all-destinations-section {
+  /* 메인 페이지의 추천 여행지 카드 목록을 담는 영역입니다. */
   width: 1040px;
   margin: 0 auto;
   padding: 48px 0 72px;
@@ -105,12 +111,14 @@
 }
 
 .category-radio {
+  /* 실제 radio 입력은 숨기고 label을 탭 버튼처럼 사용합니다. */
   position: absolute;
   opacity: 0;
   pointer-events: none;
 }
 
 .category-tabs {
+  /* 여행지 카테고리 탭 버튼들을 가로로 정렬하는 바입니다. */
   display: flex;
   justify-content: center;
   gap: 8px;
@@ -143,6 +151,7 @@
 }
 
 .tab-panel {
+  /* 선택되지 않은 탭 패널은 기본적으로 숨겨두고, 아래 checked 선택자에서 보여줍니다. */
   display: none;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -154,6 +163,7 @@
 #tab-activity:checked ~ .category-tabs label[for="tab-activity"],
 #tab-shopping:checked ~ .category-tabs label[for="tab-shopping"],
 #tab-tour:checked ~ .category-tabs label[for="tab-tour"] {
+  /* 체크된 radio와 연결된 label만 활성 탭처럼 진한 배경으로 표시합니다. */
   color: white;
   background: var(--sky-dark);
   box-shadow: 0 8px 18px rgba(35, 127, 163, 0.22);
@@ -165,11 +175,13 @@
 #tab-activity:checked ~ .tab-panels .activity-panel,
 #tab-shopping:checked ~ .tab-panels .shopping-panel,
 #tab-tour:checked ~ .tab-panels .tour-panel {
+  /* 체크된 카테고리에 해당하는 카드 패널만 grid로 보여주는 CSS 탭 핵심 로직입니다. */
   display: grid;
 }
 
 .section-title,
 .page-head {
+  /* 섹션 제목과 우측 버튼을 한 줄에 정렬하는 공통 머리말 레이아웃입니다. */
   display: flex;
   justify-content: space-between;
   align-items: end;
@@ -183,6 +195,7 @@
 
 .primary-button,
 .secondary-button {
+  /* 여러 화면에서 재사용하는 기본 버튼 모양입니다. */
   border-radius: 8px;
   font-weight: 800;
 }

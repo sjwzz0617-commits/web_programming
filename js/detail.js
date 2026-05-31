@@ -1,4 +1,6 @@
 ﻿const attractionDescriptions = {
+  // [1. 관광지 설명 사전]
+  // 여행지 데이터에는 관광지 이름만 들어 있으므로, 상세 카드에 보여줄 설명문은 이 객체에서 찾아옵니다.
   "성산일출봉": "유네스코 세계자연유산으로 지정된 제주의 대표 명소이며, 정상에서 바라보는 일출과 바다 풍경이 유명합니다.",
   "협재해변": "맑은 에메랄드빛 바다와 비양도 풍경을 함께 볼 수 있는 제주 서쪽의 인기 해변입니다.",
   "우도": "제주 동쪽에서 배로 들어가는 섬으로 해안도로, 검멀레해변, 땅콩 아이스크림으로 잘 알려져 있습니다.",
@@ -37,6 +39,8 @@
   "무등산": "광주를 대표하는 산으로 등산과 전망, 계절 자연 풍경을 즐기기 좋은 명소입니다."
 };
 
+// [2. 관광지 이미지 경로 사전]
+// 관광지 이름을 key로 사용해서 해당 관광지 이미지 파일 경로를 빠르게 찾습니다.
 const attractionImages = {
   "성산일출봉": "photo/성산일출봉.png",
   "협재해변": "photo/협재해변.png",
@@ -76,14 +80,20 @@ const attractionImages = {
   "무등산": "photo/무등산.png"
 };
 
+// [3. 관광지 설명 가져오기]
+// 등록된 설명이 있으면 사용하고, 없으면 해당 여행지 이름을 넣은 기본 문장을 반환합니다.
 function getAttractionDescription(place, spot) {
   return attractionDescriptions[spot] || `${place.name} 여행에서 함께 둘러보기 좋은 추천 관광지입니다.`;
 }
 
+// [4. 네이버 지도 검색 URL 만들기]
+// 사용자가 '위치 보기'를 누르면 새 탭에서 해당 장소 검색 결과를 열기 위한 주소입니다.
 function getNaverMapSearchUrl(place, spot) {
   return `https://map.naver.com/p/search/${encodeURIComponent(`${place.name} ${spot}`)}`;
 }
 
+// [5. 추천 관광지 카드 HTML 만들기]
+// 상세 페이지 하단의 관광지 카드 한 장을 문자열 템플릿으로 생성합니다.
 function makeAttractionCard(place, spot, index) {
   const attractionId = `${place.id}-attraction-${index + 1}`;
   const mapUrl = getNaverMapSearchUrl(place, spot);
@@ -105,11 +115,15 @@ function makeAttractionCard(place, spot, index) {
   `;
 }
 
+// [6. 지역 음식 목록에서 n번째 음식 가져오기]
+// place.food는 쉼표로 연결된 문자열이므로 배열처럼 쓰기 위해 split 처리합니다.
 function getFoodItem(place, index) {
   const items = place.food.split(",").map((item) => item.trim()).filter(Boolean);
   return items[index] || items[0] || "지역 맛집";
 }
 
+// [7. 3일 여행 일정 데이터 만들기]
+// 여행지별 대표 관광지와 음식 정보를 조합해 1~3일차 표 데이터를 구성합니다.
 function getTravelItinerary(place) {
   const [firstSpot, secondSpot, thirdSpot] = place.spots;
 
@@ -144,15 +158,21 @@ function getTravelItinerary(place) {
   ];
 }
 
+// [8. 상세 템플릿 안에서 data-field 요소 찾기]
+// HTML template 안의 빈 칸을 자바스크립트가 채울 때 반복해서 사용하는 헬퍼입니다.
 function getDetailField(root, name) {
   return root.querySelector(`[data-field="${name}"]`);
 }
 
+// [9. 상세 템플릿의 특정 칸에 텍스트 넣기]
+// 요소가 존재할 때만 textContent를 넣어서 오류 없이 안전하게 처리합니다.
 function setDetailText(root, name, value) {
   const element = getDetailField(root, name);
   if (element) element.textContent = value;
 }
 
+// [10. 일정표 table 만들기]
+// template 태그에 준비된 표 구조를 복사한 뒤 각 시간대별 행을 채워 넣습니다.
 function makeItineraryTable(place, dayPlan) {
   const table = document.querySelector("#itineraryTableTemplate").content.firstElementChild.cloneNode(true);
   const rowTemplate = document.querySelector("#itineraryRowTemplate");
@@ -171,6 +191,8 @@ function makeItineraryTable(place, dayPlan) {
   return table;
 }
 
+// [11. 여행 준비물 목록 만들기]
+// 바다/산/자연 태그 여부에 따라 마지막 준비물 일부가 달라집니다.
 function getPackingItems(place) {
   return [
     "신분증/예약 확인 내역",
@@ -182,6 +204,8 @@ function getPackingItems(place) {
   ];
 }
 
+// [12. 준비물 체크리스트 한 줄 만들기]
+// checkbox와 label을 연결하기 위해 여행지 id와 순번으로 고유 id를 만듭니다.
 function makePackingChecklistItem(place, item, index) {
   const li = document.querySelector("#packingItemTemplate").content.firstElementChild.cloneNode(true);
   const input = li.querySelector("input");
@@ -191,6 +215,8 @@ function makePackingChecklistItem(place, item, index) {
   return li;
 }
 
+// [13. 여행지 상세 화면 렌더링]
+// 사용자가 카드의 '상세 보기'를 누르면 여행지 id를 기준으로 이미지, 정보 박스, 일정표, 관광지, 숙소를 모두 채웁니다.
 function renderDetail(id) {
   const place = destinations.find((item) => item.id === id);
   if (!place) return;
@@ -211,6 +237,7 @@ function renderDetail(id) {
   favoriteButton.classList.toggle("saved", isSaved);
   favoriteButton.dataset.favorite = place.id;
   favoriteButton.setAttribute("aria-label", `${place.name} 즐겨찾기`);
+  favoriteButton.setAttribute("aria-pressed", isSaved);
 
   setDetailText(detail, "name", place.name);
   setDetailText(detail, "intro", place.intro);
@@ -249,6 +276,8 @@ function renderDetail(id) {
   showView("detail");
 }
 
+// [14. 즐겨찾기 토글]
+// 이미 담긴 여행지는 제거하고, 없던 여행지는 추가한 뒤 관련 화면과 카운트를 전부 갱신합니다.
 function toggleFavorite(id) {
   favorites = favorites.includes(id)
     ? favorites.filter((item) => item !== id)

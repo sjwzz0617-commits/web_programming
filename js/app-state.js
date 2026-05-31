@@ -25,7 +25,9 @@ function updateFavoriteCount() {
 // 메인 화면에서 내가 찜한 카드들만 하트에 빨간불 켜기
 function updateHomeFavoriteButtons() {
   document.querySelectorAll("#homeView [data-favorite]").forEach((button) => {
-    button.classList.toggle("saved", favorites.includes(button.dataset.favorite));
+    const isSaved = favorites.includes(button.dataset.favorite);
+    button.classList.toggle("saved", isSaved);
+    button.setAttribute("aria-pressed", isSaved);
   });
 }
 
